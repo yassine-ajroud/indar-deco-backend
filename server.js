@@ -1,62 +1,64 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const morgan = require ('morgan')
-const bodyParser = require('body-parser')
-const app = express()
-require('dotenv').config()
+const express = require('express');
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+require('dotenv').config();
 
-const AuthRoute = require ('./routes/Auth')
+const app = express();
+
+// Vérifier si les variables d'environnement sont bien chargées
+if (!process.env.PORT || !process.env.DB_HOST) {
+    console.error("❌ ERREUR: Les variables d'environnement ne sont pas chargées correctement.");
+    process.exit(1);
+}
+
+// Middleware
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors({ origin: '*' }));
+
+// Gestion des fichiers statiques
+const uploadPaths = [
+    "uploads/images",
+    "uploads/product_images",
+    "uploads/color_images",
+    "uploads/color_files",
+    "uploads/suppliers",
+    "uploads/reviews",
+    "uploads/category_image",
+    "uploads/subcategory_image"
+];
+
+uploadPaths.forEach(path => app.use(`/${path}`, express.static(path)));
+
+// Connexion MongoDB
+mongoose
+    .connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/indar-deco`)
+    .then(() => console.log("✅ DB Connected"))
+    .catch((err) => {
+        console.error("❌ ERREUR: Impossible de se connecter à MongoDB", err);
+        process.exit(1);
+    });
+
+// Importation des routes
+const AuthRoute = require('./routes/Auth');
 const cartRoute = require("./routes/Cart");
-const listRoute = require("./routes/WishList")
+const listRoute = require("./routes/WishList");
 const prodRoute = require('./routes/Product');
-const RatingRoutes = require ('./routes/Rating')
-const CategoryRoutes = require ('./routes/Category')
-const SubCategoryRoutes = require ('./routes/SubCategory')
+const RatingRoutes = require('./routes/Rating');
+const CategoryRoutes = require('./routes/Category');
+const SubCategoryRoutes = require('./routes/SubCategory');
 const SupplierRoutes = require('./routes/SupplierRoutes');
 const PromotionRoutes = require('./routes/Promotion');
-const ReviewRoute = require ('./routes/Review')
+const ReviewRoute = require('./routes/Review');
 const SalesRoutes = require('./routes/Sales');
-const RecRoutes = require ('./routes/ReclamationRoutes')
+const RecRoutes = require('./routes/ReclamationRoutes');
 const NotifRoutes = require('./routes/Notifications');
 
-app.use(morgan('dev'))
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
-const cors = require('cors')
-app.use(cors({origin: '*'}))
-app.use("/uploads/images",express.static('uploads/images'));
-app.use("/uploads/product_images",express.static('uploads/product_images'));
-app.use("/uploads/color_images",express.static('uploads/color_images'));
-app.use("/uploads/color_files", express.static('uploads/color_files'));
-app.use("/uploads/suppliers",express.static('uploads/suppliers'));
-app.use("/uploads/reviews",express.static('uploads/reviews'));
-app.use("/uploads/category_image",express.static('uploads/category_image'));
-app.use("/uploads/subcategory_image",express.static('uploads/subcategory_image'));
-
-
-
-
-// cors for angular integration
-// cors for angular integration
-//::::::::::
-
-//`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.HOST}:${process.env.DB_PORT}/indar-deco`
-mongoose
-  .connect(`mongodb://127.0.0.1:27017/indar-deco`
-, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("DB Connected");
-  })
-  .catch((err) => console.log(err));
-
-app.listen(process.env.PORT, ()=>{
-    console.log(`server run on port ${process.env.PORT}`)
-})
-
-app.use('/api', AuthRoute)
+// Définition des routes
+app.use('/api', AuthRoute);
 app.use('/api', cartRoute);
 app.use('/api', listRoute);
 app.use('/api', prodRoute);
@@ -65,7 +67,12 @@ app.use('/api', CategoryRoutes);
 app.use('/api', SubCategoryRoutes);
 app.use('/api', SupplierRoutes);
 app.use('/api', PromotionRoutes);
-app.use('/api', ReviewRoute)
+app.use('/api', ReviewRoute);
 app.use('/api', SalesRoutes);
 app.use('/api', RecRoutes);
 app.use('/api', NotifRoutes);
+
+// Démarrage du serveur
+app.listen(process.env.PORT, () => {
+    console.log(`🚀 Serveur en cours d'exécution sur le port ${process.env.PORT}`);
+});
