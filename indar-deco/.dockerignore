@@ -1,4 +1,0 @@
-/node_modules
-Dokerfile
-.env
-docker-compose*
