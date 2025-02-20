@@ -1,0 +1,225 @@
+<----Authentication---->
+
+1- register new user
+method: POST 
+uri: http://192.168.1.20:9000/api/register
+body:{
+    "firstName":"yassine",
+    "lastName":"ajroud",
+    "email":"yassine@gmail.com",
+    "address":"M'saken-sousse",
+    "imageUrl":"",
+    "phone":"55332620",
+    "password":"12345678",
+    "OAuth":"G",
+    "gender":"male",
+    "birthDate":"30-12-2002"
+}
+response:{
+    "message": "user Added Successfully",
+    "uId": "668db7431f6e37b2354c55c9"
+}
+
+<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>
+
+2- login
+method: POST 
+uri: http://192.168.1.20:9000/api/login
+body: {
+    "email":"yassine@gmail.com",
+    "password":"12345678"
+    }
+response: {
+    "message": "login successful",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Inlhc3NpbmVAZ21haWwuY29tIiwiaWF0IjoxNzIwNTYzNjMzLCJleHAiOjE3MjA1NjQ1MzN9.g05D_Vil5CEU3QhWEPlFiPqrDSr3D_pkFS7-8kxVIl0",
+    "refreshtoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoieWFzc2luZSIsImlhdCI6MTcyMDU2MzYzMywiZXhwIjoxNzIxMTY4NDMzfQ.o3oGh7FV5AB2ROpR1EN7dz-0PPprhueeGNbvQdx82WM",
+    "tokenExpiration": "2024-07-09 23:35:33",
+    "Uid": "668db7431f6e37b2354c55c9"
+}
+
+<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>
+
+3- get user by id
+method: GET 
+uri: http://192.168.1.20:9000/api/users/byId
+body: {
+    "id":"668db7431f6e37b2354c55c9"
+}
+response:{
+    "message": "get user successful  ",
+    "user": {
+        "_id": "668db7431f6e37b2354c55c9",
+        "firstName": "yassine",
+        "lastName": "ajroud",
+        "imageUrl": "",
+        "email": "yassine@gmail.com",
+        "OAuth": "G",
+        "address": "M'saken-sousse",
+        "phone": "55332620",
+        "ban": false,
+        "role": "user",
+        "gender": "male",
+        "birthDate": "30-12-2002",
+        "createdAt": "2024-07-09T22:18:43.106Z",
+        "updatedAt": "2024-07-09T22:18:43.106Z",
+        "__v": 0
+    }
+}
+
+<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>
+
+4- update user
+method: PUT 
+uri: http://192.168.1.20:9000/api/UpdateProfil
+header: bearer token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDk1ODYyNzgsImV4cCI6MTcwOTU4NjM5OH0.XWUaDdUV4aN1uCzWvUwgXjFyHxsxsPAUMTAVT3iGwIU"
+body: {
+    "id":"65e377120f7cd5923302b74d",
+    "firstName":"yassine",
+    "lastName":"ajr",
+    "email":"ajroudyassine7@gmail.com",
+    "phone":"55 332 620"
+    "address":"M'saken-sousse"
+    }
+response:{
+    "message": "profil updated suuccessful",
+    "userr": {
+        "_id": "668db7431f6e37b2354c55c9",
+        "firstName": "yassine",
+        "lastName": "ajr",
+        "imageUrl": "",
+        "email": "ajroudyassine7@gmail.com",
+        "OAuth": "G",
+        "address": "M'saken-sousse",
+        "phone": "55 332 620",
+        "password": "$2a$10$jZcJpxqxjBg0kX.zvuHda.LErm.r9U7lV9SvL.O5jI2gXz9mor5LO",
+        "ban": false,
+        "role": "user",
+        "gender": "male",
+        "birthDate": "30-12-2002",
+        "createdAt": "2024-07-09T22:18:43.106Z",
+        "updatedAt": "2024-07-09T22:25:36.254Z",
+        "__v": 0
+    }
+}
+<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>
+
+5- get all users
+method: GET 
+uri: http://192.168.1.20:9000/api/users
+header: bearer token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDk1ODYyNzgsImV4cCI6MTcwOTU4NjM5OH0.XWUaDdUV4aN1uCzWvUwgXjFyHxsxsPAUMTAVT3iGwIU"
+body: null
+response:[
+    {
+        "_id": "668db7431f6e37b2354c55c9",
+        "firstName": "yassine",
+        "lastName": "ajr",
+        "imageUrl": "",
+        "email": "ajroudyassine7@gmail.com",
+        "OAuth": "G",
+        "address": "M'saken-sousse",
+        "phone": "55 332 620",
+        "ban": false,
+        "role": "user",
+        "gender": "male",
+        "birthDate": "30-12-2002",
+        "createdAt": "2024-07-09T22:18:43.106Z",
+        "updatedAt": "2024-07-09T22:25:57.102Z",
+        "__v": 0
+    }
+]
+
+<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>
+
+6- delete user
+method: DELETE 
+uri: http://192.168.1.20:9000/api/users/delete
+header: bearer token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDk1ODYyNzgsImV4cCI6MTcwOTU4NjM5OH0.XWUaDdUV4aN1uCzWvUwgXjFyHxsxsPAUMTAVT3iGwIU"
+body:{
+    "id":"65e377120f7cd5923302b74d"
+    }
+response:{
+    "message": "User deleted successfully"
+    }
+
+<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>
+
+7- ban user
+method: PUT 
+uri: http://192.168.1.20:9000/api/users/ban
+header: bearer token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDk1ODYyNzgsImV4cCI6MTcwOTU4NjM5OH0.XWUaDdUV4aN1uCzWvUwgXjFyHxsxsPAUMTAVT3iGwIU"
+body:{
+    "id":"668db7431f6e37b2354c55c9",
+    "ban":true
+    }
+response:{
+    "message": "user banned "
+}
+
+<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>
+
+8- forget password
+method: POST 
+uri: http://192.168.1.20:9000/api/forgetPassword
+body:{
+    "email":"ajroudyassine7@gmail.com"
+}
+response:{
+    "message": "send email  suuccessful "
+}
+
+//OTP sent in email 
+
+<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>
+
+9- verif OTP
+method: POST 
+uri: http://192.168.1.20:9000/api/VerifCode
+body:{
+    "email":"ajroudyassine7@gmail.com",
+    "otp":2524
+}
+response:{
+    "message": "code suuccessful"
+}
+
+<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>
+
+10- reset password
+method: POST 
+uri: http://192.168.1.20:9000/api/Resetpassword
+body:{
+    "email":"ajroudyassine7@gmail.com",
+    "password":"yassine123"
+}
+response:{
+    "message": "password updated suuccessful"
+}
+
+<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>
+
+11- update password
+method: POST 
+uri: http://192.168.1.20:9000/api/updatepassword
+header: bearer token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDk1ODYyNzgsImV4cCI6MTcwOTU4NjM5OH0.XWUaDdUV4aN1uCzWvUwgXjFyHxsxsPAUMTAVT3iGwIU"
+body:{
+    "id":"65e4925e174458a7822e0614",
+    "oldPassword":"yassine",
+    "newPassword":"yassine123"
+}
+response:{
+    "message": "password updated suuccessful"
+}
+
+<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>
+
+12- refreshtoken
+method: POST 
+uri: http://192.168.1.20:9000/api/refreshtoken
+body:{
+    "refreshtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoieWFzc2luZSIsImlhdCI6MTcwOTU4NDc5NCwiZXhwIjoxNzA5NzU3NTk0fQ.gBYF5zl1FgGfG_AqGLx9YWyyMEPwpVq86zWzk2dw3Kk"
+}
+response:{
+    "message": "Token refreshed",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDk1ODYyNzgsImV4cCI6MTcwOTU4NjM5OH0.XWUaDdUV4aN1uCzWvUwgXjFyHxsxsPAUMTAVT3iGwIU",
+    "refreshtoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoieWFzc2luZSIsImlhdCI6MTcwOTU4NDc5NCwiZXhwIjoxNzA5NzU3NTk0fQ.gBYF5zl1FgGfG_AqGLx9YWyyMEPwpVq86zWzk2dw3Kk"
+}
