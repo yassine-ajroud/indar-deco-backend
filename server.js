@@ -36,7 +36,7 @@ app.use("/uploads/subcategory_image",express.static('uploads/subcategory_image')
 
 
 
-// cors for angular integrationnnnn
+// cors for angular integration
 // cors for angular integration
 //::::::::::
 
