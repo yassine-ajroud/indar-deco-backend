@@ -33,7 +33,7 @@ pipeline {
             steps {
                 // Construire le projet (si nécessaire)
                 script {
-                    sh 'npm run build'  // Remplace par la commande de build si nécessaire
+                    sh 'npm run build:prod'  // Remplace par la commande de build si nécessaire
                 }
             }
         }
