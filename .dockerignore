@@ -1,7 +1,29 @@
+# Node.js dependencies
 node_modules
-dist
 npm-debug.log
-yarn-error.log
-.DS_Store
+yarn.lock
+.pnpm-debug.log
+
+# Build outputs
+dev-build
+prod-build
+
+# Logs
+logs
+*.log
+
+# Configuration locale et environnement
+
+.env.local
+*.env.*
+
+# Ignorer les fichiers sensibles et inutiles
 .git
 .gitignore
+.DS_Store
+.vscode
+.idea
+
+# Docker compose et build cache
+docker-compose*.yaml
+Dockerfile*
