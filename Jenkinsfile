@@ -13,7 +13,7 @@ pipeline {
         stage('Cloner le dépôt') {
             steps {
                 // Cloner le dépôt depuis Git
-                git 'https://github.com/yassine-ajroud/indar-deco-backend.git'
+                git url: GIT_REPO_URL, branch: GIT_BRANCH
             }
         }
     }
