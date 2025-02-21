@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     tools { 
-        nodejs "NODEJS_HOME"  // Assure-toi que l'outil NodeJS est bien configuré dans Jenkins
+        nodejs "NODEJS_HOME"  
     }
 
     environment {
@@ -11,35 +11,26 @@ pipeline {
     }
 
     stages {
-        stage('Cloner le dépôt') {
+        stage('Clone Repository') {
             steps {
-                // Cloner le dépôt depuis Git
                 git url: GIT_REPO_URL, branch: GIT_BRANCH
             }
         }
 
-        stage('Installer les dépendances') {
+        stage('Install Dependencies') {
             steps {
-                // Installer les dépendances Node.js
                 script {
                     sh 'npm install'
                 }
             }
         }
 
-        
-
-        stage('Construire le projet') {
+        stage('Build the Project') {
             steps {
-                // Construire le projet (si nécessaire)
                 script {
-                    sh 'npm run build:prod'  // Remplace par la commande de build si nécessaire
+                    sh 'npm run build:prod'  
                 }
             }
         }
-
-        
     }
-
-    
 }
