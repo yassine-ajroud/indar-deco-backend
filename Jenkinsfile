@@ -43,25 +43,24 @@ pipeline {
                 }
             }
         }
-            stage('build docker image') {
+
+        stage('Build Docker Image') {
             steps {
                 script {
-                       
-                    sh "docker build -t instartech/backend:instardeco ."
-                    
+                    sh "docker build -t backend:instardeco ."
                 }
             }
         }
-          stage('Push Images to Docker Hub') {
+
+        stage('Tag and Push to Docker Hub') {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                        
-                            sh 'docker login -u instartech -p ${dockerhubpwd}'
-                        
+                        sh 'docker login -u instartech -p ${dockerhubpwd}'
+                        sh 'docker tag backend:instardeco instartech/backend:instardeco'
                         sh 'docker push instartech/backend:instardeco'
                     }
-                }  
+                }
             }
         }
     }
