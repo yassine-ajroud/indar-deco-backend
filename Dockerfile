@@ -25,7 +25,8 @@ COPY .env .env
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-RUN mkdir -p /app/uploads && chown -R appuser:appgroup /app/uploads
+RUN mkdir -p /app/uploads/images /app/uploads/category_image /app/uploads/color_file /app/uploads/color_images /app/uploads/product_images /app/uploads/promotions /app/uploads/reviews /app/uploads/subcategory_image /app/uploads/suppliers \
+    && chown -R appuser:appgroup /app/uploads
 
 USER appuser
 

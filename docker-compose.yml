@@ -7,11 +7,11 @@ services:
     env_file:
       - .env
     ports:
-      - "9001:9000"
+      - "9001:9000"  # Mappe le port 9000 du conteneur sur le port 9001 de l'hôte
     depends_on:
       - mongodb
     volumes:
-      - ./uploads:/app/uploads
+      - ./uploads:/app/uploads  # Monte le dossier uploads de l'hôte vers le conteneur
 
   mongodb:
     image: mongo:6.0
@@ -21,10 +21,10 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: instar
     ports:
-      - "27017:27017"
+      - "27017:27017"  # Mappe le port MongoDB du conteneur sur le port 27017 de l'hôte
     volumes:
-      - mongodb_data:/data/db
+      - mongodb_data:/data/db  # Volume pour la persistance des données MongoDB
 
 volumes:
   mongodb_data:
-    driver: local
+    driver: local  # Volume persistant pour MongoDB
