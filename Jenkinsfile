@@ -38,7 +38,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
-                        dir("${WORKSPACE}/${BACKEND_DIR}") {  // Accéder au répertoire du backend
+                        
                             sh 'npm install sonar-scanner'  // Installer SonarScanner localement
                             sh 'sonar-scanner'  // Lancer l'analyse SonarQube
                         }
