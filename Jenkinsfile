@@ -1,14 +1,13 @@
 pipeline {
     agent any
 
-    tools { 
-        nodejs "NODEJS_HOME"  
+    tools {
+        nodejs "NODEJS_HOME"
     }
 
     environment {
-        GIT_REPO_URL = 'https://github.com/yassine-ajroud/indar-deco-backend.git'    
+        GIT_REPO_URL = 'https://github.com/yassine-ajroud/indar-deco-backend.git'
         GIT_BRANCH = 'medamine'
-        BACKEND_DIR = 'indar-deco-backend'  // Définir le répertoire backend, si nécessaire
     }
 
     stages {
@@ -29,19 +28,17 @@ pipeline {
         stage('Build the Project') {
             steps {
                 script {
-                    sh 'npm run build:prod'  
+                    sh 'npm run build:prod'
                 }
             }
         }
 
-        stage('SonarQube Analysis - Backend') {
+        stage('SonarQube Analysis') {
             steps {
                 script {
-                    withSonarQubeEnv('SonarQube') {
-                        
-                            sh 'npm install sonar-scanner'  // Installer SonarScanner localement
-                            sh 'sonar-scanner'  // Lancer l'analyse SonarQube
-                        }
+                    withSonarQubeEnv('sonarqube') {
+                        sh 'npm install sonar-scanner'
+                        sh 'npm run sonar'
                     }
                 }
             }
