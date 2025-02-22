@@ -52,5 +52,17 @@ pipeline {
                 }
             }
         }
+          stage('Push Images to Docker Hub') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                        
+                            sh 'docker login -u instartech -p ${dockerhubpwd}'
+                        
+                        sh 'docker push instartech/backend:instardeco'
+                    }
+                }  
+            }
+        }
     }
 }
