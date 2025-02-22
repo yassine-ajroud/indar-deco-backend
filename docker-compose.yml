@@ -12,6 +12,7 @@ services:
       - mongodb
     volumes:
       - ./uploads:/app/uploads  # Monte le dossier uploads de l'hôte vers le conteneur
+    command: sh -c "chown -R node:node /app/uploads && npm start"  # Ajuste les permissions avant de démarrer
 
   mongodb:
     image: mongo:6.0
