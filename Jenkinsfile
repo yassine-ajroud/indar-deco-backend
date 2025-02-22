@@ -32,5 +32,22 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube Analysis') {
+    
+        stage('SonarQube Analysis - Backend') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQube') {
+                        dir(BACKEND_DIR) {
+                            sh 'npm install sonar-scanner'
+                            sh 'npm run sonar'
+                        }
+                    }
+                }
+            }
+        }
+        
+    
+}
     }
 }

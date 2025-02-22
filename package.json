@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "sonar": "sonar-scanner",
     "start": "node ./server.js",
     "start:dev": "node ./dev-build/main.js",
     "start:prod": "node ./prod-build/main.js",
