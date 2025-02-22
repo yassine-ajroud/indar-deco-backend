@@ -48,32 +48,29 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            steps {
-                script {
-                    sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
-                }
-            }
+    steps {
+        script {
+            sh "docker build -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG} ."
         }
+    }
+}
 
-        stage('Push Image to Docker Hub') {
-            steps {
-                script {
-                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                        sh 'echo ${dockerhubpwd} | docker login -u ${DOCKERHUB_USERNAME} --password-stdin'
-                        sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
-                        sh "docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
-                    }
-                }
+stage('Push Image to Docker Hub') {
+    steps {
+        script {
+            withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                sh 'echo ${dockerhubpwd} | docker login -u ${DOCKERHUB_USERNAME} --password-stdin'
+                sh "docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
             }
         }
+    }
+}
+
 
         stage('Run Docker Compose') {
             steps {
                 script {
-                    sh '''
-                    docker-compose down || true
-                    docker-compose up -d
-                    '''
+                    sh 'docker-compose up -d'
                 }
             }
         }
