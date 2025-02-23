@@ -3,21 +3,21 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-require('dotenv').config();  // Charger les variables d'environnement du fichier .env
+require('dotenv').config();
 
 const app = express();
 
 // Vérifier si les variables d'environnement sont bien chargées
-if (!process.env.PORT || !process.env.DB_HOST || !process.env.DB_USER || !process.env.DB_PASS) {
+if (!process.env.PORT || !process.env.DB_HOST || !process.env.DB_USER || !process.env.DB_PASS || !process.env.DB_NAME) {
     console.error("❌ ERREUR: Les variables d'environnement ne sont pas chargées correctement.");
-    process.exit(1);
+    process.exit(1); // Arrête le processus si les variables manquent
 }
 
 // Middleware
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cors({ origin: '*' }));
+app.use(morgan('dev')); // Log des requêtes HTTP
+app.use(bodyParser.urlencoded({ extended: true })); // Parse les données URL-encoded
+app.use(bodyParser.json()); // Parse les données JSON
+app.use(cors({ origin: '*' })); // Autorise toutes les origines (à restreindre en production)
 
 // Gestion des fichiers statiques
 const uploadPaths = [
@@ -33,15 +33,17 @@ const uploadPaths = [
 
 uploadPaths.forEach(path => app.use(`/${path}`, express.static(path)));
 
-// Connexion MongoDB
-const dbConnectionString = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/indar-deco`;
+// Connexion MongoDB avec gestion des erreurs améliorée
+const mongoURI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?authSource=admin`;
 
-mongoose
-    .connect(dbConnectionString)
-    .then(() => console.log("✅ DB Connected"))
+mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+    .then(() => console.log("✅ MongoDB Connected"))
     .catch((err) => {
         console.error("❌ ERREUR: Impossible de se connecter à MongoDB", err);
-        process.exit(1);
+        process.exit(1); // Arrête le processus en cas d'échec de connexion
     });
 
 // Importation des routes
@@ -73,6 +75,17 @@ app.use('/api', ReviewRoute);
 app.use('/api', SalesRoutes);
 app.use('/api', RecRoutes);
 app.use('/api', NotifRoutes);
+
+// Gestion des erreurs 404 (Route non trouvée)
+app.use((req, res, next) => {
+    res.status(404).json({ message: "Route non trouvée" });
+});
+
+// Gestion des erreurs globales
+app.use((err, req, res, next) => {
+    console.error("❌ ERREUR:", err.stack);
+    res.status(500).json({ message: "Une erreur interne est survenue" });
+});
 
 // Démarrage du serveur
 app.listen(process.env.PORT, () => {

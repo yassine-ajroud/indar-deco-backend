@@ -5,28 +5,28 @@ services:
     image: instartech/backend:instardeco
     restart: always
     env_file:
-      - .env  # Utilisation du fichier .env pour charger les variables d'environnement
+      - .env
     ports:
-      - "9001:9000"  # Mapping host port 9001 to container port 9000
+      - "9001:9000"
     depends_on:
-      - mongodb  # Dépendance sur MongoDB
+      - mongodb
     volumes:
-      - uploads_volume:/app/uploads  # Assurez-vous que ce chemin correspond à votre dossier de fichiers statiques
-    user: "appuser:appgroup"  # Définir l'utilisateur et le groupe
-    entrypoint: ["node", "./prod-build/server.js"]  # Point d'entrée du backend
-    # Un script comme 'wait-for-it' peut être utilisé pour attendre MongoDB avant de démarrer le backend si nécessaire
+      - uploads_volume:/app/uploads
+    user: "appuser:appgroup"
+    entrypoint: ["node", "./prod-build/server.js"]
 
   mongodb:
     image: mongo:6.0
     container_name: mongodb
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}  # Utilisation de la variable d'environnement DB_USER
-      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASS}  # Utilisation de la variable d'environnement DB_PASS
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: instar
+      MONGO_INITDB_DATABASE: indar-deco
     ports:
-      - "27017:27017"  # Exposition de MongoDB sur le port par défaut
+      - "27017:27017"
     volumes:
-      - mongodb_data:/data/db  # Montée du volume de données MongoDB
+      - mongodb_data:/data/db
 
 volumes:
   mongodb_data:
