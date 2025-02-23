@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   backend:
-    image: instartech/backend:instardeco
+    image: instartech/instardeco:backend  # Changement ici
     restart: always
     env_file:
       - .env
