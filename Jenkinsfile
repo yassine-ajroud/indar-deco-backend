@@ -89,9 +89,9 @@ pipeline {
             steps {
                 script {
                     // Déployer tous les fichiers YAML du répertoire k8s
-                    withCredentials([kubeconfigFile(credentialsId: 'k8sconfigpwd', variable: 'KUBECONFIG')]) {
+                    withCredentials([kubeconfigFile(credentialsId: 'k8sconfigpwd', variable: 'config')]) {
                         sh '''
-                            export KUBECONFIG=${KUBECONFIG}
+                            export config=${config}
                             kubectl apply -f k8s/
                         '''
                     }
