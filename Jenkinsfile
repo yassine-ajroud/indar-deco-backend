@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
-                        sh 'npm install sonar-scanner'
+                        sh 'npm install sonar-scanner --save-dev'
                         sh 'npm run sonar'
                     }
                 }
@@ -58,8 +58,8 @@ pipeline {
         stage('Push Image to Docker Hub') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                        sh 'echo ${dockerhubpwd} | docker login -u ${DOCKERHUB_USERNAME} --password-stdin'
+                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'DOCKERHUB_PASSWORD')]) {
+                        sh "echo ${DOCKERHUB_PASSWORD} | docker login -u ${DOCKERHUB_USERNAME} --password-stdin"
                         sh "docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
                     }
                 }
@@ -84,11 +84,24 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to k8s'){
-            steps{
-                script{
-                    kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8sconfigpwd')
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    kubernetesDeploy(
+                        configs: 'deploymentservice.yaml',
+                        kubeconfigId: 'k8sconfigpwd'
+                    )
                 }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                // Clean up Docker credentials after the pipeline runs
+                sh 'docker logout'
             }
         }
     }
