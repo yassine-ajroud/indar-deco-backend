@@ -23,7 +23,7 @@ spec:
               value: "mongodb://root:instar@mongodb-service:27017/indar-deco"
             - name: NODE_ENV
               value: "production"
-          command: ["node", "./prod-build/server.js"]  # Corrected entrypoint
+          command: ["node", "./prod-build/server.js"]
           resources:
             requests:
               memory: "256Mi"
@@ -48,7 +48,6 @@ spec:
           operator: "Exists"
           effect: "NoSchedule"
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -63,7 +62,6 @@ spec:
       nodePort: 31000
   type: NodePort
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -114,7 +112,6 @@ spec:
           operator: "Exists"
           effect: "NoSchedule"
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -128,7 +125,6 @@ spec:
       targetPort: 27017
   type: ClusterIP
 ---
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -141,7 +137,6 @@ spec:
   hostPath:
     path: /data/mongodb
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
