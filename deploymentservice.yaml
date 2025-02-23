@@ -97,6 +97,11 @@ spec:
             limits:
               memory: "1Gi"
               cpu: "1"
+          readinessProbe:
+            tcpSocket:
+              port: 27017
+            initialDelaySeconds: 10
+            periodSeconds: 5
           volumeMounts:
             - name: mongodb-data
               mountPath: /data/db
@@ -122,6 +127,19 @@ spec:
       port: 27017
       targetPort: 27017
   type: ClusterIP
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongodb-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/mongodb
 ---
 
 apiVersion: v1
