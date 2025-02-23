@@ -20,7 +20,7 @@ spec:
             - containerPort: 8081 # Nouveau port pour l'application
           env:
             - name: MONGO_URL
-              value: "mongodb://root:instar@mongodb:27018/indar-deco" # Connexion MongoDB via le service
+              value: "mongodb://root:instar@mongodb:27017/indar-deco" # Connexion MongoDB via le service (port aligné)
             - name: NODE_ENV
               value: "production"  # Variable d'environnement pour spécifier l'environnement
           volumeMounts:
@@ -28,9 +28,14 @@ spec:
               mountPath: /app/uploads # Point de montage pour les uploads
       volumes:
         - name: uploads-volume
-          emptyDir: {}  # Utilisation d'un volume temporaire vide (videDir)
-      
+          emptyDir: {}  # Utilisation d'un volume temporaire vide (emptyDir)
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"  # Tolérer le taint du nœud de contrôle
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -46,6 +51,7 @@ spec:
   name: backend-service
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -55,6 +61,6 @@ spec:
     app: mongodb
   ports:
     - protocol: TCP
-      port: 27017 # Nouveau port pour MongoDB
-      targetPort: 27017 # Nouveau port d'entrée pour MongoDB
+      port: 27017 # Port MongoDB aligné avec celui dans l'URL
+      targetPort: 27017 # Port d'entrée pour MongoDB
   type: ClusterIP # Service interne pour MongoDB
