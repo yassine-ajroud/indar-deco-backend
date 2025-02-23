@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
-                        sh 'npm install sonar-scanner --save-dev'
+                        sh 'npm install sonar-scanner'
                         sh 'npm run sonar'
                     }
                 }
@@ -58,8 +58,8 @@ pipeline {
         stage('Push Image to Docker Hub') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'DOCKERHUB_PASSWORD')]) {
-                        sh "echo ${DOCKERHUB_PASSWORD} | docker login -u ${DOCKERHUB_USERNAME} --password-stdin"
+                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                        sh 'echo ${dockerhubpwd} | docker login -u ${DOCKERHUB_USERNAME} --password-stdin'
                         sh "docker push ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
                     }
                 }
@@ -84,28 +84,16 @@ pipeline {
                 }
             }
         }
-
         stage('Deploy to k8s') {
-            steps {
-                script {
-                    // Déployer tous les fichiers YAML du répertoire k8s
-                    withCredentials([kubeconfigFile(credentialsId: 'k8sconfigpwd', variable: 'config')]) {
-                        sh '''
-                            export config=${config}
-                            kubectl apply -f k8s/
-                        '''
-                    }
-                }
-            }
+    steps {
+        script {
+            kubernetesDeploy(
+                configs: 'backend-deployment.yaml,backend-service.yaml,mongodb-deployment.yaml,mongodb-service.yaml,mongodb-pv.yaml,mongodb-pvc.yaml',
+                kubeconfigId: 'k8sconfigpwd'
+            )
         }
     }
+}
 
-    post {
-        always {
-            script {
-                // Nettoyer les credentials Docker après l'exécution du pipeline
-                sh 'docker logout'
-            }
-        }
     }
 }
