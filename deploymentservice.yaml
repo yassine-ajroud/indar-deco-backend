@@ -17,19 +17,20 @@ spec:
           image: instartech/backend:instardeco
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 9000  # Internal container port
+            - containerPort: 9000
           env:
             - name: MONGO_URL
-              value: "mongodb://root:instar@mongodb-service:27017/indar-deco"  # Use Kubernetes service name
+              value: "mongodb://root:instar@mongodb-service:27017/indar-deco"
             - name: NODE_ENV
               value: "production"
+          command: ["node", "./prod-build/server.js"]  # Corrected entrypoint
           resources:
             requests:
-              memory: "256Mi"  # Increased memory request
-              cpu: "500m"      # Increased CPU request
+              memory: "256Mi"
+              cpu: "500m"
             limits:
-              memory: "512Mi"  # Increased memory limit
-              cpu: "1"         # Increased CPU limit
+              memory: "512Mi"
+              cpu: "1"
           readinessProbe:
             httpGet:
               path: /health
@@ -57,9 +58,9 @@ spec:
     app: backend
   ports:
     - protocol: TCP
-      port: 9000  # Service port
-      targetPort: 9000  # Target port in the container
-      nodePort: 31000  # NodePort for external access
+      port: 9000
+      targetPort: 9000
+      nodePort: 31000
   type: NodePort
 ---
 
@@ -81,7 +82,7 @@ spec:
         - name: mongodb
           image: mongo:6.0
           ports:
-            - containerPort: 27017  # MongoDB default port
+            - containerPort: 27017
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
               value: "root"
@@ -118,9 +119,9 @@ spec:
     app: mongodb
   ports:
     - protocol: TCP
-      port: 27017  # Service port
-      targetPort: 27017  # Target port in the container
-  type: ClusterIP  # Internal service
+      port: 27017
+      targetPort: 27017
+  type: ClusterIP
 ---
 
 apiVersion: v1
