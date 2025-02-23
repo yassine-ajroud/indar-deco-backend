@@ -4,14 +4,14 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "sonar": "sonar-scanner",
-    "start": "node ./server.js",
-    "start:dev": "node ./dev-build/main.js",
-    "start:prod": "node ./prod-build/main.js",
-    "start:prod:optimization": "node ./prod-build-optimization/main.js",
-    "build:dev": "webpack --config webpack.dev.js --mode development",
-    "build:prod": "webpack --config webpack.prod.js --mode production"
-  },
+  "sonar": "sonar-scanner",
+  "start": "node ./prod-build/server.js",  
+  "start:dev": "node ./dev-build/main.js",
+  "start:prod": "node ./prod-build/main.js",
+  "start:prod:optimization": "node ./prod-build-optimization/main.js",
+  "build:dev": "webpack --config webpack.dev.js --mode development",
+  "build:prod": "webpack --config webpack.prod.js --mode production"
+},
   "author": "",
   "license": "ISC",
   "dependencies": {
