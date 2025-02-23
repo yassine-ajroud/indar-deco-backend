@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: instartech/backend:instardeco # Ton image Docker
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_URL
+              value: "mongodb://root:instar@mongodb:27017/indar-deco" # Connexion MongoDB via le service
+            - name: NODE_ENV
+              value: "production"  # Variable d'environnement pour spécifier l'environnement
+          volumeMounts:
+            - name: uploads-volume
+              mountPath: /app/uploads # Point de montage pour les uploads
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort # Pour exposer le service sur un port accessible
+  name: backend-service
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+spec:
+  selector:
+    app: mongodb
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+  type: ClusterIP # Service interne pour MongoDB
