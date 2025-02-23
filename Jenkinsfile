@@ -85,11 +85,11 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+        stage('Deploy to k8s') {
             steps {
                 script {
-                    // Deploy all Kubernetes manifests from the k8s directory
-                    withCredentials([file(credentialsId: 'k8sconfigpwd', variable: 'KUBECONFIG')]) {
+                    // Déployer tous les fichiers YAML du répertoire k8s
+                    withCredentials([kubeconfigFile(credentialsId: 'k8sconfigpwd', variable: 'KUBECONFIG')]) {
                         sh '''
                             export KUBECONFIG=${KUBECONFIG}
                             kubectl apply -f k8s/
@@ -103,7 +103,7 @@ pipeline {
     post {
         always {
             script {
-                // Clean up Docker credentials after the pipeline runs
+                // Nettoyer les credentials Docker après l'exécution du pipeline
                 sh 'docker logout'
             }
         }
