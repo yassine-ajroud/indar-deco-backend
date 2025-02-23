@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-require('dotenv').config();
+require('dotenv').config();  // Charger les variables d'environnement du fichier .env
 
 const app = express();
 
 // Vérifier si les variables d'environnement sont bien chargées
-if (!process.env.PORT || !process.env.DB_HOST) {
+if (!process.env.PORT || !process.env.DB_HOST || !process.env.DB_USER || !process.env.DB_PASS) {
     console.error("❌ ERREUR: Les variables d'environnement ne sont pas chargées correctement.");
     process.exit(1);
 }
@@ -34,8 +34,10 @@ const uploadPaths = [
 uploadPaths.forEach(path => app.use(`/${path}`, express.static(path)));
 
 // Connexion MongoDB
+const dbConnectionString = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/indar-deco`;
+
 mongoose
-    .connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/indar-deco`)
+    .connect(dbConnectionString)
     .then(() => console.log("✅ DB Connected"))
     .catch((err) => {
         console.error("❌ ERREUR: Impossible de se connecter à MongoDB", err);
