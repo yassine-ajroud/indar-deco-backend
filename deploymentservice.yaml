@@ -20,7 +20,7 @@ spec:
             - containerPort: 9000
           env:
             - name: MONGO_URL
-              value: "mongodb://root:instar@mongodb-service:27017/indar-deco"
+              value: "mongodb://root:instar@mongodb:27017/indar-deco"
             - name: NODE_ENV
               value: "production"
           command: ["node", "./prod-build/server.js"]
@@ -33,7 +33,7 @@ spec:
               cpu: "1"
           readinessProbe:
             httpGet:
-              path: /health
+              path: /health  # Nouvelle sonde ajoutée
               port: 9000
             initialDelaySeconds: 10
             periodSeconds: 5
@@ -47,6 +47,7 @@ spec:
         - key: "node-role.kubernetes.io/control-plane"
           operator: "Exists"
           effect: "NoSchedule"
+
 ---
 apiVersion: v1
 kind: Service
@@ -115,7 +116,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb-service
+  name: mongodb
 spec:
   selector:
     app: mongodb
