@@ -88,7 +88,7 @@ pipeline {
     steps {
         script {
             kubernetesDeploy(
-                configs: 'backend-deployment.yaml,backend-service.yaml,mongodb-deployment.yaml,mongodb-service.yaml,mongodb-pv.yaml,mongodb-pvc.yaml',
+                configs: 'deploymentservice.yaml',
                 kubeconfigId: 'k8sconfigpwd'
             )
         }
