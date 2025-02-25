@@ -25,9 +25,6 @@ COPY .env .env
 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-RUN mkdir -p /app/uploads \
-    && chown -R appuser:appgroup /app/uploads
-
 USER appuser
 
 EXPOSE 9000

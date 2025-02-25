@@ -7,11 +7,9 @@ services:
     env_file:
       - .env
     ports:
-      - "9002:9000"  # Changed host port to 9002 to avoid conflict with SonarQube (9000) and Kubernetes (9001)
+      - "9002:9000"  
     depends_on:
       - mongodb
-    volumes:
-      - uploads_volume:/app/uploads
     user: "appuser:appgroup"
     entrypoint: ["node", "./prod-build/server.js"]
 
@@ -24,12 +22,10 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: instar
       MONGO_INITDB_DATABASE: indar-deco
     ports:
-      - "27018:27017"  # Changed host port to 27018 to avoid conflict with Kubernetes (27017)
+      - "27018:27017"  
     volumes:
       - mongodb_data:/data/db
 
 volumes:
   mongodb_data:
-    driver: local
-  uploads_volume:
     driver: local
