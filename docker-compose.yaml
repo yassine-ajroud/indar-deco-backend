@@ -10,6 +10,8 @@ services:
       - "9002:9000"  
     depends_on:
       - mongodb
+    volumes:
+      - uploads_volume:/app/uploads
     user: "appuser:appgroup"
     entrypoint: ["node", "./prod-build/server.js"]
 
@@ -28,4 +30,6 @@ services:
 
 volumes:
   mongodb_data:
+    driver: local
+  uploads_volume:
     driver: local
