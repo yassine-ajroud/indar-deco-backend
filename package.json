@@ -16,7 +16,7 @@
     "build:dev": "webpack --config webpack.dev.js --mode development",
     "build:prod": "webpack --config webpack.prod.js --mode production",
     "lint": "eslint . --ext .js,.ts --max-warnings=0",
-    "format": "prettier --write .",
+    "prettier": "prettier --write .",
     "check-format": "prettier --check ."
   },
   "author": "",
