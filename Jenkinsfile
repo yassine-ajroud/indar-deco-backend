@@ -28,9 +28,12 @@ pipeline {
             }
         }
 
-        stage('Check Code Formatting with Prettier') {
+        stage('Check and Fix Code Formatting with Prettier') {
             steps {
                 script {
+                    // Auto-correct the code formatting using Prettier
+                    sh 'npm run prettier -- --write'
+                    // Check if Prettier formatting is correct after the fix
                     sh 'npm run check-format'
                 }
             }
@@ -77,8 +80,8 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
-                        sh 'npm install sonar-scanner --save-dev' 
-                        sh 'npx sonar-scanner -X' 
+                        sh 'npm install sonar-scanner --save-dev'
+                        sh 'npx sonar-scanner -X'
                     }
                 }
             }
