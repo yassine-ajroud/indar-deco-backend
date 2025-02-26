@@ -639,11 +639,9 @@
                         case 9:
                           (_context4.prev = 9),
                             (_context4.t0 = _context4.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                error: "Failed to update the supplier.",
-                              });
+                            res.status(500).json({
+                              error: "Failed to update the supplier.",
+                            });
                         case 12:
                         case "end":
                           return _context4.stop();
@@ -684,21 +682,17 @@
                               .json({ error: "supplier not found." }),
                           );
                         case 6:
-                          res
-                            .status(200)
-                            .json({
-                              message: "supplier deleted successfully.",
-                            }),
+                          res.status(200).json({
+                            message: "supplier deleted successfully.",
+                          }),
                             (_context5.next = 12);
                           break;
                         case 9:
                           (_context5.prev = 9),
                             (_context5.t0 = _context5.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                error: "Failed to delete the supplier.",
-                              });
+                            res.status(500).json({
+                              error: "Failed to delete the supplier.",
+                            });
                         case 12:
                         case "end":
                           return _context5.stop();
@@ -1235,12 +1229,10 @@
                                   })
                                     .save()
                                     .then(function (user) {
-                                      res
-                                        .status(201)
-                                        .json({
-                                          message: "user Added Successfully",
-                                          uId: user.id,
-                                        });
+                                      res.status(201).json({
+                                        message: "user Added Successfully",
+                                        uId: user.id,
+                                      });
                                     })
                                     .catch(function (error) {
                                       res
@@ -1408,11 +1400,9 @@
                                                 (_context3.next = 13);
                                               break;
                                             case 12:
-                                              res
-                                                .status(404)
-                                                .json({
-                                                  message: "no email found",
-                                                });
+                                              res.status(404).json({
+                                                message: "no email found",
+                                              });
                                             case 13:
                                             case "end":
                                               return _context3.stop();
@@ -1466,19 +1456,14 @@
                                             ) {
                                               case 0:
                                                 user
-                                                  ? res
-                                                      .status(200)
-                                                      .json({
-                                                        message:
-                                                          "get user successful  ",
-                                                        user,
-                                                      })
-                                                  : res
-                                                      .status(404)
-                                                      .json({
-                                                        message:
-                                                          "no user found",
-                                                      });
+                                                  ? res.status(200).json({
+                                                      message:
+                                                        "get user successful  ",
+                                                      user,
+                                                    })
+                                                  : res.status(404).json({
+                                                      message: "no user found",
+                                                    });
                                               case 1:
                                               case "end":
                                                 return _context5.stop();
@@ -1701,12 +1686,10 @@
                           );
                         case 12:
                           (userr = _context10.sent),
-                            res
-                              .status(200)
-                              .json({
-                                message: "profil updated suuccessful",
-                                userr,
-                              }),
+                            res.status(200).json({
+                              message: "profil updated suuccessful",
+                              userr,
+                            }),
                             (_context10.next = 19);
                           break;
                         case 16:
@@ -2067,11 +2050,9 @@
                                             case 4:
                                               return _context15.abrupt(
                                                 "return",
-                                                res
-                                                  .status(404)
-                                                  .json({
-                                                    message: "no user  found",
-                                                  }),
+                                                res.status(404).json({
+                                                  message: "no user  found",
+                                                }),
                                               );
                                             case 5:
                                             case "end":
@@ -2118,14 +2099,12 @@
                           );
                         case 5:
                           _context17.sent,
-                            res
-                              .status(200)
-                              .json({
-                                message: "user ".concat(
-                                  banned ? "banned" : "unbanned",
-                                  " ",
-                                ),
-                              }),
+                            res.status(200).json({
+                              message: "user ".concat(
+                                banned ? "banned" : "unbanned",
+                                " ",
+                              ),
+                            }),
                             (_context17.next = 12);
                           break;
                         case 9:
@@ -2171,11 +2150,9 @@
                         case 7:
                           (_context18.prev = 7),
                             (_context18.t0 = _context18.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                message: "Error occurred while fetching users",
-                              });
+                            res.status(500).json({
+                              message: "Error occurred while fetching users",
+                            });
                         case 10:
                         case "end":
                           return _context18.stop();
@@ -2225,11 +2202,9 @@
                         case 12:
                           (_context19.prev = 12),
                             (_context19.t0 = _context19.catch(1)),
-                            res
-                              .status(500)
-                              .json({
-                                message: "Error occurred while deleting user",
-                              });
+                            res.status(500).json({
+                              message: "Error occurred while deleting user",
+                            });
                         case 15:
                         case "end":
                           return _context19.stop();
@@ -2272,11 +2247,9 @@
                         case 9:
                           (_context20.prev = 9),
                             (_context20.t0 = _context20.catch(2)),
-                            res
-                              .status(500)
-                              .json({
-                                message: "Error occurred while fetching user",
-                              });
+                            res.status(500).json({
+                              message: "Error occurred while fetching user",
+                            });
                         case 12:
                         case "end":
                           return _context20.stop();
@@ -2320,17 +2293,15 @@
                         expirationDate.setMinutes(
                           expirationDate.getMinutes() + 15,
                         ),
-                          res
-                            .status(200)
-                            .json({
-                              message: "login successful",
-                              token,
-                              refreshtoken: _refreshtoken,
-                              tokenExpiration: moment(expirationDate).format(
-                                "YYYY-MM-DD HH:mm:ss",
-                              ),
-                              Uid: user._id,
-                            });
+                          res.status(200).json({
+                            message: "login successful",
+                            token,
+                            refreshtoken: _refreshtoken,
+                            tokenExpiration: moment(expirationDate).format(
+                              "YYYY-MM-DD HH:mm:ss",
+                            ),
+                            Uid: user._id,
+                          });
                       } else
                         res
                           .status(202)
@@ -2378,17 +2349,15 @@
                     _refreshtoken2 = req.body.refreshtoken,
                     expirationDate = new Date();
                   expirationDate.setMinutes(expirationDate.getMinutes() + 15),
-                    res
-                      .status(200)
-                      .json({
-                        message: "Token refreshed",
-                        token,
-                        refreshtoken: _refreshtoken2,
-                        tokenExpiration: moment(expirationDate).format(
-                          "YYYY-MM-DD HH:mm:ss",
-                        ),
-                        Uid: uid,
-                      });
+                    res.status(200).json({
+                      message: "Token refreshed",
+                      token,
+                      refreshtoken: _refreshtoken2,
+                      tokenExpiration: moment(expirationDate).format(
+                        "YYYY-MM-DD HH:mm:ss",
+                      ),
+                      Uid: uid,
+                    });
                 }
               },
             );
@@ -2949,11 +2918,9 @@
                         case 9:
                           (_context2.prev = 9),
                             (_context2.t0 = _context2.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                error: "Failed to fetch the subcategory.",
-                              });
+                            res.status(500).json({
+                              error: "Failed to fetch the subcategory.",
+                            });
                         case 12:
                         case "end":
                           return _context2.stop();
@@ -2991,12 +2958,10 @@
                         case 7:
                           (_context3.prev = 7),
                             (_context3.t0 = _context3.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                message:
-                                  "Error occurred while fetching subcategories",
-                              });
+                            res.status(500).json({
+                              message:
+                                "Error occurred while fetching subcategories",
+                            });
                         case 10:
                         case "end":
                           return _context3.stop();
@@ -3048,11 +3013,9 @@
                         case 9:
                           (_context4.prev = 9),
                             (_context4.t0 = _context4.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                error: "Failed to update the subcategory.",
-                              });
+                            res.status(500).json({
+                              error: "Failed to update the subcategory.",
+                            });
                         case 12:
                         case "end":
                           return _context4.stop();
@@ -3093,21 +3056,17 @@
                               .json({ error: "subcategory not found." }),
                           );
                         case 6:
-                          res
-                            .status(200)
-                            .json({
-                              message: "subcategory deleted successfully.",
-                            }),
+                          res.status(200).json({
+                            message: "subcategory deleted successfully.",
+                          }),
                             (_context5.next = 12);
                           break;
                         case 9:
                           (_context5.prev = 9),
                             (_context5.t0 = _context5.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                error: "Failed to delete the subcategory.",
-                              });
+                            res.status(500).json({
+                              error: "Failed to delete the subcategory.",
+                            });
                         case 12:
                         case "end":
                           return _context5.stop();
@@ -4504,29 +4463,25 @@
                           )
                         );
                       case 13:
-                        res
-                          .status(201)
-                          .json({
-                            message: "Avis simple créé avec succès",
-                            review: newSimpleReview,
-                          }),
+                        res.status(201).json({
+                          message: "Avis simple créé avec succès",
+                          review: newSimpleReview,
+                        }),
                           (_context.next = 19);
                         break;
                       case 16:
                         (_context.prev = 16),
                           (_context.t4 = _context.catch(0)),
-                          res
-                            .status(500)
-                            .json(
-                              _defineProperty(
-                                {
-                                  error:
-                                    "Erreur lors de la création de l'avis simple",
-                                },
-                                "error",
-                                _context.t4.message,
-                              ),
-                            );
+                          res.status(500).json(
+                            _defineProperty(
+                              {
+                                error:
+                                  "Erreur lors de la création de l'avis simple",
+                              },
+                              "error",
+                              _context.t4.message,
+                            ),
+                          );
                       case 19:
                       case "end":
                         return _context.stop();
@@ -4585,35 +4540,31 @@
                         case 15:
                           (prod = _context2.sent),
                             (avg = prod.rate),
-                            res
-                              .status(200)
-                              .json({
-                                oneStar,
-                                twoStars,
-                                threeStars,
-                                fourStars,
-                                fiveStars,
-                                simpleReviews,
-                                number: arr.length,
-                                avg,
-                              }),
+                            res.status(200).json({
+                              oneStar,
+                              twoStars,
+                              threeStars,
+                              fourStars,
+                              fiveStars,
+                              simpleReviews,
+                              number: arr.length,
+                              avg,
+                            }),
                             (_context2.next = 23);
                           break;
                         case 20:
                           (_context2.prev = 20),
                             (_context2.t0 = _context2.catch(0)),
-                            res
-                              .status(500)
-                              .json(
-                                _defineProperty(
-                                  {
-                                    error:
-                                      "Erreur lors de la récupération des avis simples",
-                                  },
-                                  "error",
-                                  _context2.t0.message,
-                                ),
-                              );
+                            res.status(500).json(
+                              _defineProperty(
+                                {
+                                  error:
+                                    "Erreur lors de la récupération des avis simples",
+                                },
+                                "error",
+                                _context2.t0.message,
+                              ),
+                            );
                         case 23:
                         case "end":
                           return _context2.stop();
@@ -4661,18 +4612,16 @@
                         case 9:
                           (_context3.prev = 9),
                             (_context3.t0 = _context3.catch(0)),
-                            res
-                              .status(500)
-                              .json(
-                                _defineProperty(
-                                  {
-                                    error:
-                                      "Erreur lors de la récupération de l'avis simple",
-                                  },
-                                  "error",
-                                  _context3.t0.message,
-                                ),
-                              );
+                            res.status(500).json(
+                              _defineProperty(
+                                {
+                                  error:
+                                    "Erreur lors de la récupération de l'avis simple",
+                                },
+                                "error",
+                                _context3.t0.message,
+                              ),
+                            );
                         case 12:
                         case "end":
                           return _context3.stop();
@@ -4742,18 +4691,16 @@
                         case 17:
                           (_context4.prev = 17),
                             (_context4.t4 = _context4.catch(0)),
-                            res
-                              .status(500)
-                              .json(
-                                _defineProperty(
-                                  {
-                                    error:
-                                      "Erreur lors de la mise à jour de l'avis simple",
-                                  },
-                                  "error",
-                                  _context4.t4.message,
-                                ),
-                              );
+                            res.status(500).json(
+                              _defineProperty(
+                                {
+                                  error:
+                                    "Erreur lors de la mise à jour de l'avis simple",
+                                },
+                                "error",
+                                _context4.t4.message,
+                              ),
+                            );
                         case 20:
                         case "end":
                           return _context4.stop();
@@ -4813,28 +4760,24 @@
                             )
                           );
                         case 14:
-                          res
-                            .status(200)
-                            .json({
-                              message: "Avis simple supprimé avec succès.",
-                            }),
+                          res.status(200).json({
+                            message: "Avis simple supprimé avec succès.",
+                          }),
                             (_context5.next = 20);
                           break;
                         case 17:
                           (_context5.prev = 17),
                             (_context5.t4 = _context5.catch(0)),
-                            res
-                              .status(500)
-                              .json(
-                                _defineProperty(
-                                  {
-                                    error:
-                                      "Erreur lors de la suppression de l'avis simple",
-                                  },
-                                  "error",
-                                  _context5.t4.message,
-                                ),
-                              );
+                            res.status(500).json(
+                              _defineProperty(
+                                {
+                                  error:
+                                    "Erreur lors de la suppression de l'avis simple",
+                                },
+                                "error",
+                                _context5.t4.message,
+                              ),
+                            );
                         case 20:
                         case "end":
                           return _context5.stop();
@@ -4884,18 +4827,16 @@
                         case 11:
                           (_context6.prev = 11),
                             (_context6.t0 = _context6.catch(0)),
-                            res
-                              .status(500)
-                              .json(
-                                _defineProperty(
-                                  {
-                                    error:
-                                      "Erreur lors de la récupération des avis simples",
-                                  },
-                                  "error",
-                                  _context6.t0.message,
-                                ),
-                              );
+                            res.status(500).json(
+                              _defineProperty(
+                                {
+                                  error:
+                                    "Erreur lors de la récupération des avis simples",
+                                },
+                                "error",
+                                _context6.t0.message,
+                              ),
+                            );
                         case 14:
                         case "end":
                           return _context6.stop();
@@ -5477,11 +5418,9 @@
                                               case 0:
                                                 cart
                                                   ? res.status(200).json(cart)
-                                                  : res
-                                                      .status(404)
-                                                      .json({
-                                                        msg: "cart not found",
-                                                      });
+                                                  : res.status(404).json({
+                                                      msg: "cart not found",
+                                                    });
                                               case 1:
                                               case "end":
                                                 return _context2.stop();
@@ -5594,11 +5533,9 @@
                         case 12:
                           (_context5.prev = 12),
                             (_context5.t0 = _context5.catch(1)),
-                            res
-                              .status(500)
-                              .json({
-                                message: "Error occurred while deleting cart",
-                              });
+                            res.status(500).json({
+                              message: "Error occurred while deleting cart",
+                            });
                         case 15:
                         case "end":
                           return _context5.stop();
@@ -6163,11 +6100,9 @@
                                                   ? res
                                                       .status(200)
                                                       .json(wishlist)
-                                                  : res
-                                                      .status(404)
-                                                      .json({
-                                                        msg: "wishlist not found",
-                                                      });
+                                                  : res.status(404).json({
+                                                      msg: "wishlist not found",
+                                                    });
                                               case 1:
                                               case "end":
                                                 return _context2.stop();
@@ -6286,12 +6221,9 @@
                         case 12:
                           (_context5.prev = 12),
                             (_context5.t0 = _context5.catch(1)),
-                            res
-                              .status(500)
-                              .json({
-                                message:
-                                  "Error occurred while deleting wishlist",
-                              });
+                            res.status(500).json({
+                              message: "Error occurred while deleting wishlist",
+                            });
                         case 15:
                         case "end":
                           return _context5.stop();
@@ -10093,29 +10025,25 @@
                           newReclamation.save()
                         );
                       case 5:
-                        res
-                          .status(201)
-                          .json({
-                            message: "Réclamation créée avec succès",
-                            reclamation: newReclamation,
-                          }),
+                        res.status(201).json({
+                          message: "Réclamation créée avec succès",
+                          reclamation: newReclamation,
+                        }),
                           (_context.next = 11);
                         break;
                       case 8:
                         (_context.prev = 8),
                           (_context.t0 = _context.catch(0)),
-                          res
-                            .status(500)
-                            .json(
-                              _defineProperty(
-                                {
-                                  error:
-                                    "Erreur lors de la création de la réclamation",
-                                },
-                                "error",
-                                _context.t0.message,
-                              ),
-                            );
+                          res.status(500).json(
+                            _defineProperty(
+                              {
+                                error:
+                                  "Erreur lors de la création de la réclamation",
+                              },
+                              "error",
+                              _context.t0.message,
+                            ),
+                          );
                       case 11:
                       case "end":
                         return _context.stop();
@@ -10154,18 +10082,16 @@
                         case 8:
                           (_context2.prev = 8),
                             (_context2.t0 = _context2.catch(0)),
-                            res
-                              .status(500)
-                              .json(
-                                _defineProperty(
-                                  {
-                                    error:
-                                      "Erreur lors de la récupération des réclamations",
-                                  },
-                                  "error",
-                                  _context2.t0.message,
-                                ),
-                              );
+                            res.status(500).json(
+                              _defineProperty(
+                                {
+                                  error:
+                                    "Erreur lors de la récupération des réclamations",
+                                },
+                                "error",
+                                _context2.t0.message,
+                              ),
+                            );
                         case 11:
                         case "end":
                           return _context2.stop();
@@ -10213,18 +10139,16 @@
                         case 9:
                           (_context3.prev = 9),
                             (_context3.t0 = _context3.catch(0)),
-                            res
-                              .status(500)
-                              .json(
-                                _defineProperty(
-                                  {
-                                    error:
-                                      "Erreur lors de la récupération de la réclamation",
-                                  },
-                                  "error",
-                                  _context3.t0.message,
-                                ),
-                              );
+                            res.status(500).json(
+                              _defineProperty(
+                                {
+                                  error:
+                                    "Erreur lors de la récupération de la réclamation",
+                                },
+                                "error",
+                                _context3.t0.message,
+                              ),
+                            );
                         case 12:
                         case "end":
                           return _context3.stop();
@@ -10276,18 +10200,16 @@
                         case 9:
                           (_context4.prev = 9),
                             (_context4.t0 = _context4.catch(0)),
-                            res
-                              .status(500)
-                              .json(
-                                _defineProperty(
-                                  {
-                                    error:
-                                      "Erreur lors de la mise à jour de la réclamation",
-                                  },
-                                  "error",
-                                  _context4.t0.message,
-                                ),
-                              );
+                            res.status(500).json(
+                              _defineProperty(
+                                {
+                                  error:
+                                    "Erreur lors de la mise à jour de la réclamation",
+                                },
+                                "error",
+                                _context4.t0.message,
+                              ),
+                            );
                         case 12:
                         case "end":
                           return _context4.stop();
@@ -10328,28 +10250,24 @@
                               .json({ error: "Réclamation non trouvée." }),
                           );
                         case 6:
-                          res
-                            .status(200)
-                            .json({
-                              message: "Réclamation supprimée avec succès.",
-                            }),
+                          res.status(200).json({
+                            message: "Réclamation supprimée avec succès.",
+                          }),
                             (_context5.next = 12);
                           break;
                         case 9:
                           (_context5.prev = 9),
                             (_context5.t0 = _context5.catch(0)),
-                            res
-                              .status(500)
-                              .json(
-                                _defineProperty(
-                                  {
-                                    error:
-                                      "Erreur lors de la suppression de la réclamation",
-                                  },
-                                  "error",
-                                  _context5.t0.message,
-                                ),
-                              );
+                            res.status(500).json(
+                              _defineProperty(
+                                {
+                                  error:
+                                    "Erreur lors de la suppression de la réclamation",
+                                },
+                                "error",
+                                _context5.t0.message,
+                              ),
+                            );
                         case 12:
                         case "end":
                           return _context5.stop();
@@ -12334,11 +12252,9 @@
                                               case 0:
                                                 notif
                                                   ? res.status(200).json(notif)
-                                                  : res
-                                                      .status(404)
-                                                      .json({
-                                                        msg: "Notification not found",
-                                                      });
+                                                  : res.status(404).json({
+                                                      msg: "Notification not found",
+                                                    });
                                               case 1:
                                               case "end":
                                                 return _context2.stop();
@@ -12393,13 +12309,11 @@
                               res.json(notif);
                             })
                             .catch(function (error) {
-                              res
-                                .status(500)
-                                .json({
-                                  message:
-                                    "Erreur lors de la récupération des notif",
-                                  error,
-                                });
+                              res.status(500).json({
+                                message:
+                                  "Erreur lors de la récupération des notif",
+                                error,
+                              });
                             });
                       case 2:
                       case "end":
@@ -12483,24 +12397,20 @@
                               .json({ message: "notifications not found" }),
                           );
                         case 9:
-                          res
-                            .status(200)
-                            .json({
-                              message: "notifications deleted successfully",
-                              notifications,
-                            });
+                          res.status(200).json({
+                            message: "notifications deleted successfully",
+                            notifications,
+                          });
                         case 10:
                           _context6.next = 15;
                           break;
                         case 12:
                           (_context6.prev = 12),
                             (_context6.t0 = _context6.catch(1)),
-                            res
-                              .status(500)
-                              .json({
-                                message:
-                                  "Error occurred while deleting notifications",
-                              });
+                            res.status(500).json({
+                              message:
+                                "Error occurred while deleting notifications",
+                            });
                         case 15:
                         case "end":
                           return _context6.stop();
@@ -13698,12 +13608,10 @@
                         case 7:
                           (_context3.prev = 7),
                             (_context3.t0 = _context3.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                message:
-                                  "Error occurred while fetching categories",
-                              });
+                            res.status(500).json({
+                              message:
+                                "Error occurred while fetching categories",
+                            });
                         case 10:
                         case "end":
                           return _context3.stop();
@@ -13754,11 +13662,9 @@
                         case 9:
                           (_context4.prev = 9),
                             (_context4.t0 = _context4.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                error: "Failed to update the category.",
-                              });
+                            res.status(500).json({
+                              error: "Failed to update the category.",
+                            });
                         case 12:
                         case "end":
                           return _context4.stop();
@@ -13799,21 +13705,17 @@
                               .json({ error: "category not found." }),
                           );
                         case 6:
-                          res
-                            .status(200)
-                            .json({
-                              message: "category deleted successfully.",
-                            }),
+                          res.status(200).json({
+                            message: "category deleted successfully.",
+                          }),
                             (_context5.next = 12);
                           break;
                         case 9:
                           (_context5.prev = 9),
                             (_context5.t0 = _context5.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                error: "Failed to delete the category.",
-                              });
+                            res.status(500).json({
+                              error: "Failed to delete the category.",
+                            });
                         case 12:
                         case "end":
                           return _context5.stop();
@@ -14343,12 +14245,10 @@
                             });
                           })
                           .catch(function (error) {
-                            res
-                              .status(500)
-                              .json({
-                                message: "Erreur lors de l'ajout de l'avis",
-                                error,
-                              });
+                            res.status(500).json({
+                              message: "Erreur lors de l'ajout de l'avis",
+                              error,
+                            });
                           });
                     case 4:
                     case "end":
@@ -14379,13 +14279,11 @@
                               res.json(reviews);
                             })
                             .catch(function (error) {
-                              res
-                                .status(500)
-                                .json({
-                                  message:
-                                    "Erreur lors de la récupération des avis",
-                                  error,
-                                });
+                              res.status(500).json({
+                                message:
+                                  "Erreur lors de la récupération des avis",
+                                error,
+                              });
                             });
                       case 2:
                       case "end":
@@ -14425,13 +14323,11 @@
                               });
                             })
                             .catch(function (error) {
-                              res
-                                .status(500)
-                                .json({
-                                  message:
-                                    "Erreur lors de la mise à jour de l'avis",
-                                  error,
-                                });
+                              res.status(500).json({
+                                message:
+                                  "Erreur lors de la mise à jour de l'avis",
+                                error,
+                              });
                             });
                       case 3:
                       case "end":
@@ -14461,13 +14357,11 @@
                               res.json({ message: "Rating deleted" });
                             })
                             .catch(function (error) {
-                              res
-                                .status(500)
-                                .json({
-                                  message:
-                                    "Erreur lors de la suppression de l'avis",
-                                  error,
-                                });
+                              res.status(500).json({
+                                message:
+                                  "Erreur lors de la suppression de l'avis",
+                                error,
+                              });
                             });
                       case 2:
                       case "end":
@@ -15003,12 +14897,10 @@
                       case 7:
                         (_context.prev = 7),
                           (_context.t0 = _context.catch(0)),
-                          res
-                            .status(500)
-                            .json({
-                              error:
-                                "Failed to create the product." + _context.t0,
-                            });
+                          res.status(500).json({
+                            error:
+                              "Failed to create the product." + _context.t0,
+                          });
                       case 10:
                       case "end":
                         return _context.stop();
@@ -15278,11 +15170,9 @@
                         case 8:
                           (_context7.prev = 8),
                             (_context7.t0 = _context7.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                error: "Failed to fetch products by category.",
-                              });
+                            res.status(500).json({
+                              error: "Failed to fetch products by category.",
+                            });
                         case 11:
                         case "end":
                           return _context7.stop();
@@ -15322,12 +15212,10 @@
                           }
                           return _context8.abrupt(
                             "return",
-                            res
-                              .status(404)
-                              .json({
-                                error:
-                                  "No products found for this category and subcategory.",
-                              }),
+                            res.status(404).json({
+                              error:
+                                "No products found for this category and subcategory.",
+                            }),
                           );
                         case 7:
                           res.status(200).json(products), (_context8.next = 13);
@@ -15335,12 +15223,10 @@
                         case 10:
                           (_context8.prev = 10),
                             (_context8.t0 = _context8.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                error:
-                                  "Failed to fetch products by category and subcategory.",
-                              });
+                            res.status(500).json({
+                              error:
+                                "Failed to fetch products by category and subcategory.",
+                            });
                         case 13:
                         case "end":
                           return _context8.stop();
@@ -15378,11 +15264,9 @@
                         case 7:
                           (_context9.prev = 7),
                             (_context9.t0 = _context9.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                error: "Failed to create the 3D product.",
-                              });
+                            res.status(500).json({
+                              error: "Failed to create the 3D product.",
+                            });
                         case 10:
                         case "end":
                           return _context9.stop();
@@ -15429,11 +15313,9 @@
                         case 9:
                           (_context10.prev = 9),
                             (_context10.t0 = _context10.catch(0)),
-                            res
-                              .status(500)
-                              .json({
-                                error: "Failed to fetch the 3D product.",
-                              });
+                            res.status(500).json({
+                              error: "Failed to fetch the 3D product.",
+                            });
                         case 12:
                         case "end":
                           return _context10.stop();

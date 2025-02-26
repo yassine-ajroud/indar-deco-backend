@@ -48,12 +48,10 @@ exports.updateComment = async (req, res) => {
       { comment, image },
       { new: true },
     );
-    res
-      .status(200)
-      .json({
-        message: "Commentaire mis à jour avec succès",
-        review: updatedReview,
-      });
+    res.status(200).json({
+      message: "Commentaire mis à jour avec succès",
+      review: updatedReview,
+    });
   } catch (error) {
     res
       .status(500)

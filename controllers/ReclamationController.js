@@ -32,12 +32,10 @@ exports.getAllReclamations = async (req, res) => {
     const reclamations = await Reclamation.find({ user: usr });
     res.status(200).json(reclamations);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "Erreur lors de la récupération des réclamations",
-        error: error.message,
-      });
+    res.status(500).json({
+      error: "Erreur lors de la récupération des réclamations",
+      error: error.message,
+    });
   }
 };
 
@@ -49,12 +47,10 @@ exports.getReclamationById = async (req, res) => {
     }
     res.status(200).json(reclamation);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "Erreur lors de la récupération de la réclamation",
-        error: error.message,
-      });
+    res.status(500).json({
+      error: "Erreur lors de la récupération de la réclamation",
+      error: error.message,
+    });
   }
 };
 
@@ -70,12 +66,10 @@ exports.updateReclamation = async (req, res) => {
     }
     res.status(200).json(reclamation);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "Erreur lors de la mise à jour de la réclamation",
-        error: error.message,
-      });
+    res.status(500).json({
+      error: "Erreur lors de la mise à jour de la réclamation",
+      error: error.message,
+    });
   }
 };
 
@@ -87,11 +81,9 @@ exports.deleteReclamation = async (req, res) => {
     }
     res.status(200).json({ message: "Réclamation supprimée avec succès." });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "Erreur lors de la suppression de la réclamation",
-        error: error.message,
-      });
+    res.status(500).json({
+      error: "Erreur lors de la suppression de la réclamation",
+      error: error.message,
+    });
   }
 };

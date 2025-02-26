@@ -82,11 +82,9 @@ exports.getProductsByCategoryAndSubcategory = async (req, res) => {
     const { category, subCategory } = req.params;
     const products = await Product.find({ category, subCategory });
     if (products.length === 0) {
-      return res
-        .status(404)
-        .json({
-          error: "No products found for this category and subcategory.",
-        });
+      return res.status(404).json({
+        error: "No products found for this category and subcategory.",
+      });
     }
     res.status(200).json(products);
   } catch (error) {
