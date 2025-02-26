@@ -76,8 +76,8 @@ exports.deleteSale = async (req,res)=>{
       return res.status(404).json({ error: 'Sale not found.' });
     }
     
-    
-    res.status(200).json(sale);
+    res.status(200).json({ message: 'Sale deleted successfully.' });
+
 
   } catch (error) {
     res.status(500).json({ error: 'Failed to record the sale.' });
@@ -85,7 +85,10 @@ exports.deleteSale = async (req,res)=>{
 
   exports.updateSale = async (req,res)=>{
     try {    
-      const sale = await Sale.findByIdAndUpdate(req.params.id,req.body,{new:true});      
+      const sale = await Sale.findByIdAndUpdate(req.params.id,req.body,{new:true});  
+      if (!sale) {
+        return res.status(404).json({ error: 'Sale not found.' });
+      }    
       res.status(200).json(sale);
   
     } catch (error) {

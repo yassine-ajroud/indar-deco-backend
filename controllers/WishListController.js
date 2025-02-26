@@ -25,24 +25,23 @@ const createWishList =async (req,res)=>{
       }
   }
 
-  const updateWishList =async (req,res)=>{
-    var id = req.body.id
-    var products = req.body.products
-
+  const updateWishList = async (req, res) => {
     try {
       const updatedWishList = await WishList.findByIdAndUpdate(
-        id,
-        {
-            products: products,
-        },
+        req.body.id,
+        { products: req.body.products },
         { new: true }
       );
+  
+      if (!updatedWishList) {
+        return res.status(404).json({ message: "wishlist not found" });
+      }
+  
       res.status(200).json(updatedWishList);
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json({ error: err.message });
     }
- 
-  }
+  };
 
   const deleteWishList =async (req,res)=>{
     var id  = req.body.id;
