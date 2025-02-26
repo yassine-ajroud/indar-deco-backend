@@ -1,259 +1,142 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="116" failures="0" errors="0" time="6.958">
-  <testsuite name="createCategory" errors="0" failures="0" skipped="0" timestamp="2025-02-26T21:18:46" time="5.383" tests="13">
-    <testcase classname="createCategory should create a new category and return 201" name="createCategory should create a new category and return 201" time="0.073">
-    </testcase>
-    <testcase classname="createCategory should return 500 if an error occurs during category creation" name="createCategory should return 500 if an error occurs during category creation" time="0.004">
-    </testcase>
-    <testcase classname="getCategoryById should return category data if category is found" name="getCategoryById should return category data if category is found" time="0.003">
-    </testcase>
-    <testcase classname="getCategoryById should return 404 if category is not found" name="getCategoryById should return 404 if category is not found" time="0.003">
-    </testcase>
-    <testcase classname="getCategoryById should return 500 if an error occurs" name="getCategoryById should return 500 if an error occurs" time="0.002">
-    </testcase>
-    <testcase classname="getAllCategories should return all categories if categories are found" name="getAllCategories should return all categories if categories are found" time="0.002">
-    </testcase>
-    <testcase classname="getAllCategories should return 500 if an error occurs while fetching categories" name="getAllCategories should return 500 if an error occurs while fetching categories" time="0.002">
-    </testcase>
-    <testcase classname="updateCategory should return the updated category if the category exists" name="updateCategory should return the updated category if the category exists" time="0.002">
-    </testcase>
-    <testcase classname="updateCategory should return 404 if category is not found" name="updateCategory should return 404 if category is not found" time="0.003">
-    </testcase>
-    <testcase classname="updateCategory should return 500 if an error occurs during update" name="updateCategory should return 500 if an error occurs during update" time="0.04">
-    </testcase>
-    <testcase classname="deleteCategory should delete the category and return success message" name="deleteCategory should delete the category and return success message" time="0.002">
-    </testcase>
-    <testcase classname="deleteCategory should return 404 if category is not found" name="deleteCategory should return 404 if category is not found" time="0.002">
-    </testcase>
-    <testcase classname="deleteCategory should return 500 if an error occurs during deletion" name="deleteCategory should return 500 if an error occurs during deletion" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="create new cart" errors="0" failures="0" skipped="0" timestamp="2025-02-26T21:18:46" time="5.524" tests="9">
-    <testcase classname="create new cart should create a new cart with provided user id" name="create new cart should create a new cart with provided user id" time="0.096">
-    </testcase>
-    <testcase classname="Get Cart by User ID should return a cart when found" name="Get Cart by User ID should return a cart when found" time="0.005">
-    </testcase>
-    <testcase classname="Get Cart by User ID should return 404 when cart is not found" name="Get Cart by User ID should return 404 when cart is not found" time="0.003">
-    </testcase>
-    <testcase classname="Update Cart should update cart and return 200" name="Update Cart should update cart and return 200" time="0.002">
-    </testcase>
-    <testcase classname="Update Cart should return 404 if cart is not found" name="Update Cart should return 404 if cart is not found" time="0.002">
-    </testcase>
-    <testcase classname="Update Cart should return 500 on database error" name="Update Cart should return 500 on database error" time="0.002">
-    </testcase>
-    <testcase classname="Delete Cart should delete the cart and return 200" name="Delete Cart should delete the cart and return 200" time="0.002">
-    </testcase>
-    <testcase classname="Delete Cart should return 404 if cart is not found" name="Delete Cart should return 404 if cart is not found" time="0.005">
-    </testcase>
-    <testcase classname="Delete Cart should return 500 on database error" name="Delete Cart should return 500 on database error" time="0.006">
-    </testcase>
-  </testsuite>
-  <testsuite name="Supplier Controller" errors="0" failures="0" skipped="0" timestamp="2025-02-26T21:18:46" time="5.501" tests="13">
-    <testcase classname="Supplier Controller createSupplier should create a new supplier" name="Supplier Controller createSupplier should create a new supplier" time="0.033">
-    </testcase>
-    <testcase classname="Supplier Controller createSupplier should return 500 if creation fails" name="Supplier Controller createSupplier should return 500 if creation fails" time="0.003">
-    </testcase>
-    <testcase classname="Supplier Controller getAllSuppliers should return all suppliers" name="Supplier Controller getAllSuppliers should return all suppliers" time="0.002">
-    </testcase>
-    <testcase classname="Supplier Controller getAllSuppliers should return 500 if fetching suppliers fails" name="Supplier Controller getAllSuppliers should return 500 if fetching suppliers fails" time="0.002">
-    </testcase>
-    <testcase classname="Supplier Controller getSupplierById should return supplier by id" name="Supplier Controller getSupplierById should return supplier by id" time="0.004">
-    </testcase>
-    <testcase classname="Supplier Controller getSupplierById should return 404 if supplier not found" name="Supplier Controller getSupplierById should return 404 if supplier not found" time="0.002">
-    </testcase>
-    <testcase classname="Supplier Controller getSupplierById should return 500 if fetching by id fails" name="Supplier Controller getSupplierById should return 500 if fetching by id fails" time="0.002">
-    </testcase>
-    <testcase classname="Supplier Controller updateSupplier should update supplier" name="Supplier Controller updateSupplier should update supplier" time="0.002">
-    </testcase>
-    <testcase classname="Supplier Controller updateSupplier should return 404 if supplier not found" name="Supplier Controller updateSupplier should return 404 if supplier not found" time="0.001">
-    </testcase>
-    <testcase classname="Supplier Controller updateSupplier should return 500 if update fails" name="Supplier Controller updateSupplier should return 500 if update fails" time="0.006">
-    </testcase>
-    <testcase classname="Supplier Controller deleteSupplier should delete the supplier" name="Supplier Controller deleteSupplier should delete the supplier" time="0.002">
-    </testcase>
-    <testcase classname="Supplier Controller deleteSupplier should return 404 if supplier not found" name="Supplier Controller deleteSupplier should return 404 if supplier not found" time="0.001">
-    </testcase>
-    <testcase classname="Supplier Controller deleteSupplier should return 500 if deletion fails" name="Supplier Controller deleteSupplier should return 500 if deletion fails" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="Record Sale" errors="0" failures="0" skipped="0" timestamp="2025-02-26T21:18:46" time="5.786" tests="13">
-    <testcase classname="Record Sale should record a sale and return 201" name="Record Sale should record a sale and return 201" time="0.04">
-    </testcase>
-    <testcase classname="Record Sale should return 500 if there is a database error" name="Record Sale should return 500 if there is a database error" time="0.002">
-    </testcase>
-    <testcase classname="Record Sale should return 400 if required fields are missing" name="Record Sale should return 400 if required fields are missing" time="0.003">
-    </testcase>
-    <testcase classname="Get All Sales should retrieve all sales for a given user and return 200" name="Get All Sales should retrieve all sales for a given user and return 200" time="0.001">
-    </testcase>
-    <testcase classname="Get All Sales should return 500 if there is a database error" name="Get All Sales should return 500 if there is a database error" time="0.002">
-    </testcase>
-    <testcase classname="Get Sale By ID should retrieve a sale by its ID and return 200" name="Get Sale By ID should retrieve a sale by its ID and return 200" time="0.007">
-    </testcase>
-    <testcase classname="Get Sale By ID should return 404 if sale not found" name="Get Sale By ID should return 404 if sale not found" time="0.002">
-    </testcase>
-    <testcase classname="Get Sale By ID should return 500 if there is a database error" name="Get Sale By ID should return 500 if there is a database error" time="0.002">
-    </testcase>
-    <testcase classname="Update Sale should successfully update a sale and return 200" name="Update Sale should successfully update a sale and return 200" time="0.001">
-    </testcase>
-    <testcase classname="Update Sale should return 404 if sale not found" name="Update Sale should return 404 if sale not found" time="0.001">
-    </testcase>
-    <testcase classname="Update Sale should return 500 if there is a database error" name="Update Sale should return 500 if there is a database error" time="0.001">
-    </testcase>
-    <testcase classname="deleteSale should delete the sale and return a success message" name="deleteSale should delete the sale and return a success message" time="0.001">
-    </testcase>
-    <testcase classname="deleteSale should return 404 if sale is not found" name="deleteSale should return 404 if sale is not found" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="create new WishList" errors="0" failures="0" skipped="0" timestamp="2025-02-26T21:18:46" time="5.688" tests="9">
-    <testcase classname="create new WishList should create a new WishList with provided user id" name="create new WishList should create a new WishList with provided user id" time="0.041">
-    </testcase>
-    <testcase classname="Get wishlist by User ID should return a wishlist when found" name="Get wishlist by User ID should return a wishlist when found" time="0.002">
-    </testcase>
-    <testcase classname="Get wishlist by User ID should return 404 when wishlist is not found" name="Get wishlist by User ID should return 404 when wishlist is not found" time="0.002">
-    </testcase>
-    <testcase classname="Update WishList should update the wishlist and return 200" name="Update WishList should update the wishlist and return 200" time="0.003">
-    </testcase>
-    <testcase classname="Update WishList should return 404 if wishlist is not found" name="Update WishList should return 404 if wishlist is not found" time="0.001">
-    </testcase>
-    <testcase classname="Update WishList should return 500 on database error" name="Update WishList should return 500 on database error" time="0.002">
-    </testcase>
-    <testcase classname="Delete WishList should delete the wishlist and return 200" name="Delete WishList should delete the wishlist and return 200" time="0.001">
-    </testcase>
-    <testcase classname="Delete WishList should return 404 if wishlist is not found" name="Delete WishList should return 404 if wishlist is not found" time="0.001">
-    </testcase>
-    <testcase classname="Delete WishList should return 500 on database error" name="Delete WishList should return 500 on database error" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="Create Reclamation" errors="0" failures="0" skipped="0" timestamp="2025-02-26T21:18:46" time="5.798" tests="12">
-    <testcase classname="Create Reclamation should create a new reclamation and return 201" name="Create Reclamation should create a new reclamation and return 201" time="0.022">
-    </testcase>
-    <testcase classname="Create Reclamation should return 500 if there is a database error" name="Create Reclamation should return 500 if there is a database error" time="0.002">
-    </testcase>
-    <testcase classname="Get All Reclamations should return all reclamations for a given user" name="Get All Reclamations should return all reclamations for a given user" time="0.001">
-    </testcase>
-    <testcase classname="Get Reclamation By Id should return a reclamation if found" name="Get Reclamation By Id should return a reclamation if found" time="0.002">
-    </testcase>
-    <testcase classname="Get Reclamation By Id should return 404 if reclamation is not found" name="Get Reclamation By Id should return 404 if reclamation is not found" time="0.002">
-    </testcase>
-    <testcase classname="Get Reclamation By Id should return 500 if there is a database error" name="Get Reclamation By Id should return 500 if there is a database error" time="0.002">
-    </testcase>
-    <testcase classname="Update Reclamation should update a reclamation if found" name="Update Reclamation should update a reclamation if found" time="0.002">
-    </testcase>
-    <testcase classname="Update Reclamation should return 404 if reclamation is not found" name="Update Reclamation should return 404 if reclamation is not found" time="0.001">
-    </testcase>
-    <testcase classname="Update Reclamation should return 500 if there is a database error" name="Update Reclamation should return 500 if there is a database error" time="0.004">
-    </testcase>
-    <testcase classname="Delete Reclamation should delete a reclamation if found" name="Delete Reclamation should delete a reclamation if found" time="0.004">
-    </testcase>
-    <testcase classname="Delete Reclamation should return 404 if reclamation is not found" name="Delete Reclamation should return 404 if reclamation is not found" time="0.002">
-    </testcase>
-    <testcase classname="Delete Reclamation should return 500 if there is a database error" name="Delete Reclamation should return 500 if there is a database error" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="Review Controller" errors="0" failures="0" skipped="0" timestamp="2025-02-26T21:18:46" time="5.801" tests="4">
-    <testcase classname="Review Controller addComment should add a new comment" name="Review Controller addComment should add a new comment" time="0.028">
-    </testcase>
-    <testcase classname="Review Controller getAllComments should return all comments for a product" name="Review Controller getAllComments should return all comments for a product" time="0.004">
-    </testcase>
-    <testcase classname="Review Controller updateComment should update a comment" name="Review Controller updateComment should update a comment" time="0.003">
-    </testcase>
-    <testcase classname="Review Controller deleteComment should delete a comment" name="Review Controller deleteComment should delete a comment" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="Product Controller" errors="0" failures="0" skipped="0" timestamp="2025-02-26T21:18:46" time="5.975" tests="11">
-    <testcase classname="Product Controller should create a new product" name="Product Controller should create a new product" time="0.014">
-    </testcase>
-    <testcase classname="Product Controller should return error when product creation fails" name="Product Controller should return error when product creation fails" time="0.002">
-    </testcase>
-    <testcase classname="Product Controller should get all products" name="Product Controller should get all products" time="0.001">
-    </testcase>
-    <testcase classname="Product Controller should return error when getting all products fails" name="Product Controller should return error when getting all products fails" time="0.001">
-    </testcase>
-    <testcase classname="Product Controller should get product by ID" name="Product Controller should get product by ID" time="0.001">
-    </testcase>
-    <testcase classname="Product Controller should return 404 if product not found" name="Product Controller should return 404 if product not found" time="0.002">
-    </testcase>
-    <testcase classname="Product Controller should return error when fetching product by ID fails" name="Product Controller should return error when fetching product by ID fails" time="0.001">
-    </testcase>
-    <testcase classname="Product Controller should update a product" name="Product Controller should update a product" time="0.001">
-    </testcase>
-    <testcase classname="Product Controller should return 404 if product to update is not found" name="Product Controller should return 404 if product to update is not found" time="0.002">
-    </testcase>
-    <testcase classname="Product Controller should delete a product" name="Product Controller should delete a product" time="0.002">
-    </testcase>
-    <testcase classname="Product Controller should return 404 when deleting a non-existing product" name="Product Controller should return 404 when deleting a non-existing product" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="Promotion Controller" errors="0" failures="0" skipped="0" timestamp="2025-02-26T21:18:46" time="6.044" tests="6">
-    <testcase classname="Promotion Controller should create a promotion and update the product" name="Promotion Controller should create a promotion and update the product" time="0.016">
-    </testcase>
-    <testcase classname="Promotion Controller should return all promotions" name="Promotion Controller should return all promotions" time="0.003">
-    </testcase>
-    <testcase classname="Promotion Controller should return a promotion by ID" name="Promotion Controller should return a promotion by ID" time="0.002">
-    </testcase>
-    <testcase classname="Promotion Controller should update a promotion" name="Promotion Controller should update a promotion" time="0.001">
-    </testcase>
-    <testcase classname="Promotion Controller should delete a promotion and update the product" name="Promotion Controller should delete a promotion and update the product" time="0.001">
-    </testcase>
-    <testcase classname="Promotion Controller should return 404 if promotion is not found on delete" name="Promotion Controller should return 404 if promotion is not found on delete" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="SimpleReview Controller" errors="0" failures="0" skipped="0" timestamp="2025-02-26T21:18:46" time="6.053" tests="9">
-    <testcase classname="SimpleReview Controller createSimpleReview should create a new review and update product rating" name="SimpleReview Controller createSimpleReview should create a new review and update product rating" time="0.014">
-    </testcase>
-    <testcase classname="SimpleReview Controller getAllSimpleReviews should return all reviews with rating stats" name="SimpleReview Controller getAllSimpleReviews should return all reviews with rating stats" time="0.001">
-    </testcase>
-    <testcase classname="SimpleReview Controller getSimpleReviewById should return a review if found" name="SimpleReview Controller getSimpleReviewById should return a review if found" time="0.003">
-    </testcase>
-    <testcase classname="SimpleReview Controller getSimpleReviewById should return 404 if review not found" name="SimpleReview Controller getSimpleReviewById should return 404 if review not found" time="0.002">
-    </testcase>
-    <testcase classname="SimpleReview Controller updateSimpleReview should update a review and recalculate average rating" name="SimpleReview Controller updateSimpleReview should update a review and recalculate average rating" time="0.002">
-    </testcase>
-    <testcase classname="SimpleReview Controller updateSimpleReview should return 404 if review not found" name="SimpleReview Controller updateSimpleReview should return 404 if review not found" time="0.002">
-    </testcase>
-    <testcase classname="SimpleReview Controller deleteSimpleReview should delete a review and update product rating" name="SimpleReview Controller deleteSimpleReview should delete a review and update product rating" time="0.002">
-    </testcase>
-    <testcase classname="SimpleReview Controller deleteSimpleReview should return 404 if review not found" name="SimpleReview Controller deleteSimpleReview should return 404 if review not found" time="0.001">
-    </testcase>
-    <testcase classname="SimpleReview Controller getSimpleReviewAverage should return the average rating for a product" name="SimpleReview Controller getSimpleReviewAverage should return the average rating for a product" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="SubCategory Controller" errors="0" failures="0" skipped="0" timestamp="2025-02-26T21:18:52" time="0.524" tests="9">
-    <testcase classname="SubCategory Controller createSubCategory should create a new subCategory" name="SubCategory Controller createSubCategory should create a new subCategory" time="0.003">
-    </testcase>
-    <testcase classname="SubCategory Controller getSubCategoryById should return a subCategory if found" name="SubCategory Controller getSubCategoryById should return a subCategory if found" time="0.001">
-    </testcase>
-    <testcase classname="SubCategory Controller getSubCategoryById should return 404 if subCategory is not found" name="SubCategory Controller getSubCategoryById should return 404 if subCategory is not found" time="0.001">
-    </testcase>
-    <testcase classname="SubCategory Controller getAllSubCategories should return all subCategories" name="SubCategory Controller getAllSubCategories should return all subCategories" time="0.001">
-    </testcase>
-    <testcase classname="SubCategory Controller updateSubCategory should update the subCategory" name="SubCategory Controller updateSubCategory should update the subCategory" time="0">
-    </testcase>
-    <testcase classname="SubCategory Controller updateSubCategory should return 404 if subCategory is not found" name="SubCategory Controller updateSubCategory should return 404 if subCategory is not found" time="0.001">
-    </testcase>
-    <testcase classname="SubCategory Controller deleteSubCategory should delete the subcategory and return success message" name="SubCategory Controller deleteSubCategory should delete the subcategory and return success message" time="0.001">
-    </testcase>
-    <testcase classname="SubCategory Controller deleteSubCategory should return 404 if subcategory is not found" name="SubCategory Controller deleteSubCategory should return 404 if subcategory is not found" time="0">
-    </testcase>
-    <testcase classname="SubCategory Controller deleteSubCategory should return 500 if an error occurs during deletion" name="SubCategory Controller deleteSubCategory should return 500 if an error occurs during deletion" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="Auth Controller Tests" errors="0" failures="0" skipped="0" timestamp="2025-02-26T21:18:46" time="6.202" tests="8">
-    <testcase classname="Auth Controller Tests register should register a user successfully" name="Auth Controller Tests register should register a user successfully" time="0.01">
-    </testcase>
-    <testcase classname="Auth Controller Tests register should return error if user already exists" name="Auth Controller Tests register should return error if user already exists" time="0.001">
-    </testcase>
-    <testcase classname="Auth Controller Tests login should login a user successfully" name="Auth Controller Tests login should login a user successfully" time="0.005">
-    </testcase>
-    <testcase classname="Auth Controller Tests login should return error if password does not match" name="Auth Controller Tests login should return error if password does not match" time="0.001">
-    </testcase>
-    <testcase classname="Auth Controller Tests login should return error if user is banned" name="Auth Controller Tests login should return error if user is banned" time="0.007">
-    </testcase>
-    <testcase classname="Auth Controller Tests forgetPassword should send a reset email successfully" name="Auth Controller Tests forgetPassword should send a reset email successfully" time="0.003">
-    </testcase>
-    <testcase classname="Auth Controller Tests profilgetById should return user profile by ID" name="Auth Controller Tests profilgetById should return user profile by ID" time="0">
-    </testcase>
-    <testcase classname="Auth Controller Tests profilgetById should return error if no user found" name="Auth Controller Tests profilgetById should return error if no user found" time="0">
-    </testcase>
-  </testsuite>
-</testsuites>
+<testExecutions version="1">
+<file path="tests\CategoryController.test.js">
+<testCase name="createCategory should create a new category and return 201" duration="38" />
+<testCase name="createCategory should return 500 if an error occurs during category creation" duration="3" />
+<testCase name="getCategoryById should return category data if category is found" duration="2" />
+<testCase name="getCategoryById should return 404 if category is not found" duration="7" />
+<testCase name="getCategoryById should return 500 if an error occurs" duration="3" />
+<testCase name="getAllCategories should return all categories if categories are found" duration="3" />
+<testCase name="getAllCategories should return 500 if an error occurs while fetching categories" duration="2" />
+<testCase name="updateCategory should return the updated category if the category exists" duration="3" />
+<testCase name="updateCategory should return 404 if category is not found" duration="3" />
+<testCase name="updateCategory should return 500 if an error occurs during update" duration="2" />
+<testCase name="deleteCategory should delete the category and return success message" duration="4" />
+<testCase name="deleteCategory should return 404 if category is not found" duration="2" />
+<testCase name="deleteCategory should return 500 if an error occurs during deletion" duration="3" />
+</file>
+<file path="tests\SalesController.test.js">
+<testCase name="Record Sale should record a sale and return 201" duration="51" />
+<testCase name="Record Sale should return 500 if there is a database error" duration="4" />
+<testCase name="Record Sale should return 400 if required fields are missing" duration="3" />
+<testCase name="Get All Sales should retrieve all sales for a given user and return 200" duration="3" />
+<testCase name="Get All Sales should return 500 if there is a database error" duration="9" />
+<testCase name="Get Sale By ID should retrieve a sale by its ID and return 200" duration="3" />
+<testCase name="Get Sale By ID should return 404 if sale not found" duration="2" />
+<testCase name="Get Sale By ID should return 500 if there is a database error" duration="2" />
+<testCase name="Update Sale should successfully update a sale and return 200" duration="5" />
+<testCase name="Update Sale should return 404 if sale not found" duration="3" />
+<testCase name="Update Sale should return 500 if there is a database error" duration="2" />
+<testCase name="deleteSale should delete the sale and return a success message" duration="3" />
+<testCase name="deleteSale should return 404 if sale is not found" duration="2" />
+</file>
+<file path="tests\ReclamationController.test.js">
+<testCase name="Create Reclamation should create a new reclamation and return 201" duration="98" />
+<testCase name="Create Reclamation should return 500 if there is a database error" duration="4" />
+<testCase name="Get All Reclamations should return all reclamations for a given user" duration="3" />
+<testCase name="Get Reclamation By Id should return a reclamation if found" duration="6" />
+<testCase name="Get Reclamation By Id should return 404 if reclamation is not found" duration="10" />
+<testCase name="Get Reclamation By Id should return 500 if there is a database error" duration="3" />
+<testCase name="Update Reclamation should update a reclamation if found" duration="2" />
+<testCase name="Update Reclamation should return 404 if reclamation is not found" duration="2" />
+<testCase name="Update Reclamation should return 500 if there is a database error" duration="2" />
+<testCase name="Delete Reclamation should delete a reclamation if found" duration="5" />
+<testCase name="Delete Reclamation should return 404 if reclamation is not found" duration="1" />
+<testCase name="Delete Reclamation should return 500 if there is a database error" duration="1" />
+</file>
+<file path="tests\CartController.test.js">
+<testCase name="create new cart should create a new cart with provided user id" duration="37" />
+<testCase name="Get Cart by User ID should return a cart when found" duration="2" />
+<testCase name="Get Cart by User ID should return 404 when cart is not found" duration="2" />
+<testCase name="Update Cart should update cart and return 200" duration="10" />
+<testCase name="Update Cart should return 404 if cart is not found" duration="3" />
+<testCase name="Update Cart should return 500 on database error" duration="2" />
+<testCase name="Delete Cart should delete the cart and return 200" duration="2" />
+<testCase name="Delete Cart should return 404 if cart is not found" duration="2" />
+<testCase name="Delete Cart should return 500 on database error" duration="2" />
+</file>
+<file path="tests\ReviewController.test.js">
+<testCase name="Review Controller addComment should add a new comment" duration="38" />
+<testCase name="Review Controller getAllComments should return all comments for a product" duration="5" />
+<testCase name="Review Controller updateComment should update a comment" duration="2" />
+<testCase name="Review Controller deleteComment should delete a comment" duration="3" />
+</file>
+<file path="tests\WishListController.test.js">
+<testCase name="create new WishList should create a new WishList with provided user id" duration="23" />
+<testCase name="Get wishlist by User ID should return a wishlist when found" duration="2" />
+<testCase name="Get wishlist by User ID should return 404 when wishlist is not found" duration="3" />
+<testCase name="Update WishList should update the wishlist and return 200" duration="3" />
+<testCase name="Update WishList should return 404 if wishlist is not found" duration="6" />
+<testCase name="Update WishList should return 500 on database error" duration="5" />
+<testCase name="Delete WishList should delete the wishlist and return 200" duration="2" />
+<testCase name="Delete WishList should return 404 if wishlist is not found" duration="1" />
+<testCase name="Delete WishList should return 500 on database error" duration="1" />
+</file>
+<file path="tests\SupplierController.test.js">
+<testCase name="Supplier Controller createSupplier should create a new supplier" duration="25" />
+<testCase name="Supplier Controller createSupplier should return 500 if creation fails" duration="2" />
+<testCase name="Supplier Controller getAllSuppliers should return all suppliers" duration="3" />
+<testCase name="Supplier Controller getAllSuppliers should return 500 if fetching suppliers fails" duration="2" />
+<testCase name="Supplier Controller getSupplierById should return supplier by id" duration="2" />
+<testCase name="Supplier Controller getSupplierById should return 404 if supplier not found" duration="2" />
+<testCase name="Supplier Controller getSupplierById should return 500 if fetching by id fails" duration="1" />
+<testCase name="Supplier Controller updateSupplier should update supplier" duration="2" />
+<testCase name="Supplier Controller updateSupplier should return 404 if supplier not found" duration="1" />
+<testCase name="Supplier Controller updateSupplier should return 500 if update fails" duration="2" />
+<testCase name="Supplier Controller deleteSupplier should delete the supplier" duration="2" />
+<testCase name="Supplier Controller deleteSupplier should return 404 if supplier not found" duration="1" />
+<testCase name="Supplier Controller deleteSupplier should return 500 if deletion fails" duration="2" />
+</file>
+<file path="tests\ProductController.test.js">
+<testCase name="Product Controller should create a new product" duration="20" />
+<testCase name="Product Controller should return error when product creation fails" duration="3" />
+<testCase name="Product Controller should get all products" duration="2" />
+<testCase name="Product Controller should return error when getting all products fails" duration="2" />
+<testCase name="Product Controller should get product by ID" duration="3" />
+<testCase name="Product Controller should return 404 if product not found" duration="3" />
+<testCase name="Product Controller should return error when fetching product by ID fails" duration="1" />
+<testCase name="Product Controller should update a product" duration="2" />
+<testCase name="Product Controller should return 404 if product to update is not found" duration="1" />
+<testCase name="Product Controller should delete a product" duration="2" />
+<testCase name="Product Controller should return 404 when deleting a non-existing product" duration="1" />
+</file>
+<file path="tests\PromotionController.test.js">
+<testCase name="Promotion Controller should create a promotion and update the product" duration="17" />
+<testCase name="Promotion Controller should return all promotions" duration="1" />
+<testCase name="Promotion Controller should return a promotion by ID" duration="2" />
+<testCase name="Promotion Controller should update a promotion" duration="1" />
+<testCase name="Promotion Controller should delete a promotion and update the product" duration="2" />
+<testCase name="Promotion Controller should return 404 if promotion is not found on delete" duration="2" />
+</file>
+<file path="tests\SubCategoryController.test.js">
+<testCase name="SubCategory Controller createSubCategory should create a new subCategory" duration="3" />
+<testCase name="SubCategory Controller getSubCategoryById should return a subCategory if found" duration="1" />
+<testCase name="SubCategory Controller getSubCategoryById should return 404 if subCategory is not found" duration="1" />
+<testCase name="SubCategory Controller getAllSubCategories should return all subCategories" duration="1" />
+<testCase name="SubCategory Controller updateSubCategory should update the subCategory" duration="1" />
+<testCase name="SubCategory Controller updateSubCategory should return 404 if subCategory is not found" duration="0" />
+<testCase name="SubCategory Controller deleteSubCategory should delete the subcategory and return success message" duration="1" />
+<testCase name="SubCategory Controller deleteSubCategory should return 404 if subcategory is not found" duration="1" />
+<testCase name="SubCategory Controller deleteSubCategory should return 500 if an error occurs during deletion" duration="1" />
+</file>
+<file path="tests\RatingController.test.js">
+<testCase name="SimpleReview Controller createSimpleReview should create a new review and update product rating" duration="15" />
+<testCase name="SimpleReview Controller getAllSimpleReviews should return all reviews with rating stats" duration="2" />
+<testCase name="SimpleReview Controller getSimpleReviewById should return a review if found" duration="1" />
+<testCase name="SimpleReview Controller getSimpleReviewById should return 404 if review not found" duration="1" />
+<testCase name="SimpleReview Controller updateSimpleReview should update a review and recalculate average rating" duration="2" />
+<testCase name="SimpleReview Controller updateSimpleReview should return 404 if review not found" duration="1" />
+<testCase name="SimpleReview Controller deleteSimpleReview should delete a review and update product rating" duration="1" />
+<testCase name="SimpleReview Controller deleteSimpleReview should return 404 if review not found" duration="1" />
+<testCase name="SimpleReview Controller getSimpleReviewAverage should return the average rating for a product" duration="1" />
+</file>
+<file path="tests\AuthController.test.js">
+<testCase name="Auth Controller Tests register should register a user successfully" duration="11" />
+<testCase name="Auth Controller Tests register should return error if user already exists" duration="7" />
+<testCase name="Auth Controller Tests login should login a user successfully" duration="3" />
+<testCase name="Auth Controller Tests login should return error if password does not match" duration="0" />
+<testCase name="Auth Controller Tests login should return error if user is banned" duration="1" />
+<testCase name="Auth Controller Tests forgetPassword should send a reset email successfully" duration="1" />
+<testCase name="Auth Controller Tests profilgetById should return user profile by ID" duration="0" />
+<testCase name="Auth Controller Tests profilgetById should return error if no user found" duration="1" />
+</file>
+</testExecutions>
