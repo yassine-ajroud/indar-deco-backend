@@ -31,11 +31,7 @@ pipeline {
    stage('Run Tests') {
     steps {
         script {
-            try {
-                sh 'npm test'
-            } catch (err) {
-                echo 'Tests failed or coverage thresholds not met. Continuing pipeline...'
-            }
+            sh 'npm test'
         }
     }
     post {
@@ -60,16 +56,16 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv('SonarQube') {
-                        sh 'npm install sonar-scanner'
-                        sh 'npm run sonar'
-                    }
-                }
+     stage('SonarQube Analysis') {
+    steps {
+        script {
+            withSonarQubeEnv('SonarQube') {
+                sh 'npm install sonar-scanner'
+                sh 'sonar-scanner -X' // Enable debug logging
             }
         }
+    }
+}
 
         stage('Build Docker Image') {
             steps {
