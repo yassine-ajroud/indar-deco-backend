@@ -1,22 +1,33 @@
-
 const Promotion = require("../models/Promotion");
 const Product = require("../models/Product");
 
 jest.mock("../models/Promotion");
 jest.mock("../models/Product");
 
-
 const {
-    createPromotion,updatePromotion,getAllPromotions,getPromotionById,deletePromotion
-
+  createPromotion,
+  updatePromotion,
+  getAllPromotions,
+  getPromotionById,
+  deletePromotion,
 } = require("../controllers/PromotionController");
-
 
 describe("Promotion Controller", () => {
   let req, res, next;
 
   beforeEach(() => {
-    req = { body: { product: "product123", discountPercentage: 20, newPrice: 80, startDate: "2025-01-01", endDate: "2025-01-10", image: "promo.jpg", text: "Great deal!" }, params: { id: "promo123" } };
+    req = {
+      body: {
+        product: "product123",
+        discountPercentage: 20,
+        newPrice: 80,
+        startDate: "2025-01-01",
+        endDate: "2025-01-10",
+        image: "promo.jpg",
+        text: "Great deal!",
+      },
+      params: { id: "promo123" },
+    };
     res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
     next = jest.fn();
     jest.clearAllMocks();

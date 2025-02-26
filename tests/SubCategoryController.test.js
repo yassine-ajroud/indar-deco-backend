@@ -1,18 +1,30 @@
-const { createSubCategory, getSubCategoryById, getAllSubCategories, updateSubCategory, deleteSubCategory } = require("../controllers/SubCategoryController");
+const {
+  createSubCategory,
+  getSubCategoryById,
+  getAllSubCategories,
+  updateSubCategory,
+  deleteSubCategory,
+} = require("../controllers/SubCategoryController");
 const SubCategory = require("../models/SubCategory");
 
 describe("SubCategory Controller", () => {
   let req, res;
 
   beforeEach(() => {
-    req = { params: { id: "someSubCategoryId" }, body: { title: "SubCategory Title" } };
-    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
-    jest.clearAllMocks(); 
+    req = {
+      params: { id: "someSubCategoryId" },
+      body: { title: "SubCategory Title" },
+    };
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+    jest.clearAllMocks();
   });
 
   describe("createSubCategory", () => {
     it("should create a new subCategory", async () => {
-      const mockSubCategory = { _id: "someSubCategoryId", title: "SubCategory Title" };
+      const mockSubCategory = {
+        _id: "someSubCategoryId",
+        title: "SubCategory Title",
+      };
 
       const mockSave = jest.fn().mockResolvedValue(mockSubCategory);
       SubCategory.prototype.save = mockSave;
@@ -23,13 +35,14 @@ describe("SubCategory Controller", () => {
       expect(res.json).toHaveBeenCalledWith(mockSubCategory);
       expect(mockSave).toHaveBeenCalled();
     });
-
- 
   });
 
   describe("getSubCategoryById", () => {
     it("should return a subCategory if found", async () => {
-      const mockSubCategory = { _id: "someSubCategoryId", title: "SubCategory Title" };
+      const mockSubCategory = {
+        _id: "someSubCategoryId",
+        title: "SubCategory Title",
+      };
 
       const mockFindById = jest.fn().mockResolvedValue(mockSubCategory);
       SubCategory.findById = mockFindById;
@@ -50,12 +63,13 @@ describe("SubCategory Controller", () => {
       expect(res.status).toHaveBeenCalledWith(404);
       expect(mockFindById).toHaveBeenCalledWith(req.params.id);
     });
-
   });
 
   describe("getAllSubCategories", () => {
     it("should return all subCategories", async () => {
-      const mockSubCategories = [{ _id: "someSubCategoryId", title: "SubCategory Title" }];
+      const mockSubCategories = [
+        { _id: "someSubCategoryId", title: "SubCategory Title" },
+      ];
 
       const mockFind = jest.fn().mockResolvedValue(mockSubCategories);
       SubCategory.find = mockFind;
@@ -69,16 +83,25 @@ describe("SubCategory Controller", () => {
 
   describe("updateSubCategory", () => {
     it("should update the subCategory", async () => {
-      const mockSubCategory = { _id: "someSubCategoryId", title: "Updated SubCategory Title" };
+      const mockSubCategory = {
+        _id: "someSubCategoryId",
+        title: "Updated SubCategory Title",
+      };
 
-      const mockFindByIdAndUpdate = jest.fn().mockResolvedValue(mockSubCategory);
+      const mockFindByIdAndUpdate = jest
+        .fn()
+        .mockResolvedValue(mockSubCategory);
       SubCategory.findByIdAndUpdate = mockFindByIdAndUpdate;
 
       await updateSubCategory(req, res);
 
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith(mockSubCategory);
-      expect(mockFindByIdAndUpdate).toHaveBeenCalledWith(req.params.id, req.body, { new: true });
+      expect(mockFindByIdAndUpdate).toHaveBeenCalledWith(
+        req.params.id,
+        req.body,
+        { new: true },
+      );
     });
 
     it("should return 404 if subCategory is not found", async () => {
@@ -93,45 +116,56 @@ describe("SubCategory Controller", () => {
 
   describe("deleteSubCategory", () => {
     let req, res;
-  
+
     beforeEach(() => {
-      req = { params: { id: "someSubCategoryId" } };  
-      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
-      jest.clearAllMocks();  
+      req = { params: { id: "someSubCategoryId" } };
+      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+      jest.clearAllMocks();
     });
-  
+
     it("should delete the subcategory and return success message", async () => {
-      const mockSubCategory = { _id: "someSubCategoryId", title: "SubCategory Title" };
-  
+      const mockSubCategory = {
+        _id: "someSubCategoryId",
+        title: "SubCategory Title",
+      };
+
       const mockFindOneAndDelete = jest.fn().mockResolvedValue(mockSubCategory);
       SubCategory.findOneAndDelete = mockFindOneAndDelete;
-  
+
       await deleteSubCategory(req, res);
-  
+
       expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.json).toHaveBeenCalledWith({ message: "subcategory deleted successfully." });
-      expect(mockFindOneAndDelete).toHaveBeenCalledWith({ "_id": req.params.id });
+      expect(res.json).toHaveBeenCalledWith({
+        message: "subcategory deleted successfully.",
+      });
+      expect(mockFindOneAndDelete).toHaveBeenCalledWith({ _id: req.params.id });
     });
-  
+
     it("should return 404 if subcategory is not found", async () => {
       const mockFindOneAndDelete = jest.fn().mockResolvedValue(null);
       SubCategory.findOneAndDelete = mockFindOneAndDelete;
-  
+
       await deleteSubCategory(req, res);
-  
+
       expect(res.status).toHaveBeenCalledWith(404);
-      expect(res.json).toHaveBeenCalledWith({ error: "subcategory not found." });
-      expect(mockFindOneAndDelete).toHaveBeenCalledWith({ "_id": req.params.id });
+      expect(res.json).toHaveBeenCalledWith({
+        error: "subcategory not found.",
+      });
+      expect(mockFindOneAndDelete).toHaveBeenCalledWith({ _id: req.params.id });
     });
-  
+
     it("should return 500 if an error occurs during deletion", async () => {
-      const mockFindOneAndDelete = jest.fn().mockRejectedValue(new Error("Database error"));
+      const mockFindOneAndDelete = jest
+        .fn()
+        .mockRejectedValue(new Error("Database error"));
       SubCategory.findOneAndDelete = mockFindOneAndDelete;
-  
+
       await deleteSubCategory(req, res);
-  
+
       expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.json).toHaveBeenCalledWith({ error: "Failed to delete the subcategory." });
+      expect(res.json).toHaveBeenCalledWith({
+        error: "Failed to delete the subcategory.",
+      });
     });
   });
 });

@@ -14,7 +14,10 @@
     "start:prod": "node ./prod-build/main.js",
     "start:prod:optimization": "node ./prod-build-optimization/main.js",
     "build:dev": "webpack --config webpack.dev.js --mode development",
-    "build:prod": "webpack --config webpack.prod.js --mode production"
+    "build:prod": "webpack --config webpack.prod.js --mode production",
+    "lint": "eslint . --ext .js,.ts --max-warnings=0",
+    "format": "prettier --write .",
+    "check-format": "prettier --check ."
   },
   "author": "",
   "license": "ISC",
@@ -46,56 +49,60 @@
   "devDependencies": {
     "@babel/core": "^7.26.9",
     "@babel/preset-env": "^7.26.9",
+    "@eslint/js": "^9.21.0",
     "@types/jest": "^29.5.14",
     "babel-jest": "^29.7.0",
     "babel-loader": "^9.2.1",
+    "eslint": "^9.21.0",
+    "globals": "^16.0.0",
     "jest": "^29.7.0",
     "jest-junit": "^16.0.0",
     "jest-sonar": "^0.2.16",
     "jest-sonar-reporter": "^2.0.0",
     "node-loader": "^2.1.0",
     "nodemon": "^3.1.7",
+    "prettier": "^3.5.2",
     "ts-jest": "^29.2.6",
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1",
     "webpack-node-externals": "^3.0.0"
   },
-"jest": {
+  "jest": {
     "collectCoverage": true,
     "coverageDirectory": "coverage",
     "coverageReporters": [
-        "html",
-        "text",
-        "lcov"
+      "html",
+      "text",
+      "lcov"
     ],
     "coverageThreshold": {
-        "global": {
-            "branches": 70,
-            "functions": 70,
-            "lines": 70,
-            "statements": 70
-        }
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
     },
     "testEnvironment": "node",
     "testMatch": [
-        "**/*.test.js"
+      "**/*.test.js"
     ],
     "moduleFileExtensions": [
-        "js",
-        "json"
+      "js",
+      "json"
     ],
     "transform": {
-        "^.+\\.js$": "babel-jest"
+      "^.+\\.js$": "babel-jest"
     },
     "reporters": [
-        "default",
-        [
-            "jest-sonar",
-            {
-                "outputDirectory": "coverage",
-                "outputName": "test-report.xml"
-            }
-        ]
+      "default",
+      [
+        "jest-sonar",
+        {
+          "outputDirectory": "coverage",
+          "outputName": "test-report.xml"
+        }
+      ]
     ]
-}
+  }
 }

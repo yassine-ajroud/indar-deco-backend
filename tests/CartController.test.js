@@ -1,6 +1,11 @@
 jest.mock("../models/Cart.js");
 
-const { createCart , getCartById , updateCart , deleteCart} = require("../controllers/CartController.js");
+const {
+  createCart,
+  getCartById,
+  updateCart,
+  deleteCart,
+} = require("../controllers/CartController.js");
 const Cart = require("../models/Cart.js");
 
 describe("create new cart", () => {
@@ -9,7 +14,7 @@ describe("create new cart", () => {
   beforeEach(() => {
     req = { body: { userId: "65fdf2932cff2a8189cc7f57", sales: [] } };
     res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-    jest.clearAllMocks(); 
+    jest.clearAllMocks();
   });
 
   it("should create a new cart with provided user id", async () => {
@@ -23,9 +28,6 @@ describe("create new cart", () => {
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.json).toHaveBeenCalledTimes(1);
   });
-
-  
-
 });
 
 describe("Get Cart by User ID", () => {
@@ -34,13 +36,17 @@ describe("Get Cart by User ID", () => {
   beforeEach(() => {
     req = { body: { userId: "65fdf2932cff2a8189cc7f57" } };
     res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-    jest.clearAllMocks(); 
+    jest.clearAllMocks();
   });
 
   it("should return a cart when found", async () => {
-    const mockCart = { _id: "fakeCartId", userId: "65fdf2932cff2a8189cc7f57", sales: [] };
-    
-    Cart.findOne.mockResolvedValue(mockCart); 
+    const mockCart = {
+      _id: "fakeCartId",
+      userId: "65fdf2932cff2a8189cc7f57",
+      sales: [],
+    };
+
+    Cart.findOne.mockResolvedValue(mockCart);
 
     await getCartById(req, res);
 
@@ -64,13 +70,13 @@ describe("Update Cart", () => {
   beforeEach(() => {
     req = { body: { id: "fakeCartId", sales: ["123"] } };
     res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-    jest.clearAllMocks(); 
+    jest.clearAllMocks();
   });
 
   it("should update cart and return 200", async () => {
     const mockUpdatedCart = { _id: "fakeCartId", sales: req.body.sales };
 
-    Cart.findByIdAndUpdate.mockResolvedValue(mockUpdatedCart); 
+    Cart.findByIdAndUpdate.mockResolvedValue(mockUpdatedCart);
 
     await updateCart(req, res);
 
@@ -79,7 +85,7 @@ describe("Update Cart", () => {
   });
 
   it("should return 404 if cart is not found", async () => {
-    Cart.findByIdAndUpdate.mockResolvedValue(null); 
+    Cart.findByIdAndUpdate.mockResolvedValue(null);
 
     await updateCart(req, res);
 
@@ -88,12 +94,14 @@ describe("Update Cart", () => {
   });
 
   it("should return 500 on database error", async () => {
-    Cart.findByIdAndUpdate.mockRejectedValue(new Error("Database error")); 
+    Cart.findByIdAndUpdate.mockRejectedValue(new Error("Database error"));
 
     await updateCart(req, res);
 
     expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ error: "Database error" }));
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ error: "Database error" }),
+    );
   });
 });
 
@@ -103,20 +111,22 @@ describe("Delete Cart", () => {
   beforeEach(() => {
     req = { body: { id: "fakeCartId" } };
     res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-    jest.clearAllMocks(); 
+    jest.clearAllMocks();
   });
 
   it("should delete the cart and return 200", async () => {
-    Cart.findByIdAndDelete.mockResolvedValue({ _id: "fakeCartId" }); 
+    Cart.findByIdAndDelete.mockResolvedValue({ _id: "fakeCartId" });
 
     await deleteCart(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ message: "cart deleted successfully" });
+    expect(res.json).toHaveBeenCalledWith({
+      message: "cart deleted successfully",
+    });
   });
 
   it("should return 404 if cart is not found", async () => {
-    Cart.findByIdAndDelete.mockResolvedValue(null); 
+    Cart.findByIdAndDelete.mockResolvedValue(null);
 
     await deleteCart(req, res);
 
@@ -130,6 +140,8 @@ describe("Delete Cart", () => {
     await deleteCart(req, res);
 
     expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({ message: "Error occurred while deleting cart" });
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Error occurred while deleting cart",
+    });
   });
 });

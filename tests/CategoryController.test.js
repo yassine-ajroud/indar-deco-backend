@@ -1,13 +1,19 @@
-const { createCategory,getCategoryById ,getAllCategories ,updateCategory , deleteCategory} = require("../controllers/CategoryController");
+const {
+  createCategory,
+  getCategoryById,
+  getAllCategories,
+  updateCategory,
+  deleteCategory,
+} = require("../controllers/CategoryController");
 const Category = require("../models/Category");
 
 describe("createCategory", () => {
   let req, res;
 
   beforeEach(() => {
-    req = { body: { title: "Furniture", image: "image_url" } };  
-    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
-    jest.clearAllMocks(); 
+    req = { body: { title: "Furniture", image: "image_url" } };
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+    jest.clearAllMocks();
   });
 
   it("should create a new category and return 201", async () => {
@@ -41,9 +47,9 @@ describe("getCategoryById", () => {
   let req, res;
 
   beforeEach(() => {
-    req = { params: { id: "categoryId" } };  
-    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
-    jest.clearAllMocks(); 
+    req = { params: { id: "categoryId" } };
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+    jest.clearAllMocks();
   });
 
   it("should return category data if category is found", async () => {
@@ -69,13 +75,17 @@ describe("getCategoryById", () => {
   });
 
   it("should return 500 if an error occurs", async () => {
-    const mockFindById = jest.fn().mockRejectedValue(new Error("Database error"));
+    const mockFindById = jest
+      .fn()
+      .mockRejectedValue(new Error("Database error"));
     Category.findById = mockFindById;
 
     await getCategoryById(req, res);
     expect(res.status).toHaveBeenCalledWith(500);
 
-    expect(res.json).toHaveBeenCalledWith({ error: "Failed to fetch the category." });
+    expect(res.json).toHaveBeenCalledWith({
+      error: "Failed to fetch the category.",
+    });
 
     expect(mockFindById).toHaveBeenCalledWith("categoryId");
   });
@@ -85,15 +95,15 @@ describe("getAllCategories", () => {
   let req, res;
 
   beforeEach(() => {
-    req = {};  
-    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
-    jest.clearAllMocks(); 
+    req = {};
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+    jest.clearAllMocks();
   });
 
   it("should return all categories if categories are found", async () => {
     const mockCategories = [
       { title: "Furniture", image: "image_url_1" },
-      { title: "Electronics", image: "image_url_2" }
+      { title: "Electronics", image: "image_url_2" },
     ];
 
     const mockFind = jest.fn().mockResolvedValue(mockCategories);
@@ -112,91 +122,112 @@ describe("getAllCategories", () => {
     await getAllCategories(req, res);
 
     expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({ message: "Error occurred while fetching categories" });
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Error occurred while fetching categories",
+    });
     expect(mockFind).toHaveBeenCalledWith({});
   });
 });
 
 describe("updateCategory", () => {
-    let req, res;
-  
-    beforeEach(() => {
-      req = { params: { id: "someCategoryId" }, body: { title: "Updated Category", image: "updated_image_url" } };
-      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
-      jest.clearAllMocks(); 
-    });
-  
-    it("should return the updated category if the category exists", async () => {
-      const mockCategory = { _id: "someCategoryId", title: "Updated Category", image: "updated_image_url" };
-        const mockUpdate = jest.fn().mockResolvedValue(mockCategory);
-      Category.findByIdAndUpdate = mockUpdate;
-  
-      await updateCategory(req, res);
-        expect(res.status).toHaveBeenCalledWith(200);
-        expect(res.json).toHaveBeenCalledWith(mockCategory);
-        expect(mockUpdate).toHaveBeenCalledWith(req.params.id, req.body, { new: true });
-    });
-  
-    it("should return 404 if category is not found", async () => {
-      const mockUpdate = jest.fn().mockResolvedValue(null);
-      Category.findByIdAndUpdate = mockUpdate;
-  
-      await updateCategory(req, res);
-        expect(res.status).toHaveBeenCalledWith(404);
-        expect(res.json).toHaveBeenCalledWith({ error: "category not found." });
-        expect(mockUpdate).toHaveBeenCalledWith(req.params.id, req.body, { new: true });
-    });
-  
-    it("should return 500 if an error occurs during update", async () => {
-      const mockUpdate = jest.fn().mockRejectedValue(new Error("Database error"));
-      Category.findByIdAndUpdate = mockUpdate;
-  
-      await updateCategory(req, res);
-  
-      expect(res.status).toHaveBeenCalledWith(500);
-  
-      expect(res.json).toHaveBeenCalledWith({ error: "Failed to update the category." });
-        expect(mockUpdate).toHaveBeenCalledWith(req.params.id, req.body, { new: true });
+  let req, res;
+
+  beforeEach(() => {
+    req = {
+      params: { id: "someCategoryId" },
+      body: { title: "Updated Category", image: "updated_image_url" },
+    };
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+    jest.clearAllMocks();
+  });
+
+  it("should return the updated category if the category exists", async () => {
+    const mockCategory = {
+      _id: "someCategoryId",
+      title: "Updated Category",
+      image: "updated_image_url",
+    };
+    const mockUpdate = jest.fn().mockResolvedValue(mockCategory);
+    Category.findByIdAndUpdate = mockUpdate;
+
+    await updateCategory(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(mockCategory);
+    expect(mockUpdate).toHaveBeenCalledWith(req.params.id, req.body, {
+      new: true,
     });
   });
 
-  describe("deleteCategory", () => {
-    let req, res;
-  
-    beforeEach(() => {
-      req = { params: { id: "someCategoryId" } };
-      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
-      jest.clearAllMocks(); 
-    });
-  
-    it("should delete the category and return success message", async () => {
-      const mockCategory = { _id: "someCategoryId", title: "Category to Delete" };
-        const mockDelete = jest.fn().mockResolvedValue(mockCategory);
-      Category.findOneAndDelete = mockDelete;
-  
-      await deleteCategory(req, res);
-        expect(res.status).toHaveBeenCalledWith(200);
-        expect(res.json).toHaveBeenCalledWith({ message: "category deleted successfully." });
-        expect(mockDelete).toHaveBeenCalledWith({ "_id": req.params.id });
-    });
-  
-    it("should return 404 if category is not found", async () => {
-      const mockDelete = jest.fn().mockResolvedValue(null);
-      Category.findOneAndDelete = mockDelete;
-  
-      await deleteCategory(req, res);
-        expect(res.status).toHaveBeenCalledWith(404);
-        expect(res.json).toHaveBeenCalledWith({ error: "category not found." });
-        expect(mockDelete).toHaveBeenCalledWith({ "_id": req.params.id });
-    });
-  
-    it("should return 500 if an error occurs during deletion", async () => {
-      const mockDelete = jest.fn().mockRejectedValue(new Error("Database error"));
-      Category.findOneAndDelete = mockDelete;
-  
-      await deleteCategory(req, res);
-        expect(res.status).toHaveBeenCalledWith(500);
-        expect(res.json).toHaveBeenCalledWith({ error: "Failed to delete the category." });
-        expect(mockDelete).toHaveBeenCalledWith({ "_id": req.params.id });
+  it("should return 404 if category is not found", async () => {
+    const mockUpdate = jest.fn().mockResolvedValue(null);
+    Category.findByIdAndUpdate = mockUpdate;
+
+    await updateCategory(req, res);
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({ error: "category not found." });
+    expect(mockUpdate).toHaveBeenCalledWith(req.params.id, req.body, {
+      new: true,
     });
   });
+
+  it("should return 500 if an error occurs during update", async () => {
+    const mockUpdate = jest.fn().mockRejectedValue(new Error("Database error"));
+    Category.findByIdAndUpdate = mockUpdate;
+
+    await updateCategory(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+
+    expect(res.json).toHaveBeenCalledWith({
+      error: "Failed to update the category.",
+    });
+    expect(mockUpdate).toHaveBeenCalledWith(req.params.id, req.body, {
+      new: true,
+    });
+  });
+});
+
+describe("deleteCategory", () => {
+  let req, res;
+
+  beforeEach(() => {
+    req = { params: { id: "someCategoryId" } };
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+    jest.clearAllMocks();
+  });
+
+  it("should delete the category and return success message", async () => {
+    const mockCategory = { _id: "someCategoryId", title: "Category to Delete" };
+    const mockDelete = jest.fn().mockResolvedValue(mockCategory);
+    Category.findOneAndDelete = mockDelete;
+
+    await deleteCategory(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      message: "category deleted successfully.",
+    });
+    expect(mockDelete).toHaveBeenCalledWith({ _id: req.params.id });
+  });
+
+  it("should return 404 if category is not found", async () => {
+    const mockDelete = jest.fn().mockResolvedValue(null);
+    Category.findOneAndDelete = mockDelete;
+
+    await deleteCategory(req, res);
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({ error: "category not found." });
+    expect(mockDelete).toHaveBeenCalledWith({ _id: req.params.id });
+  });
+
+  it("should return 500 if an error occurs during deletion", async () => {
+    const mockDelete = jest.fn().mockRejectedValue(new Error("Database error"));
+    Category.findOneAndDelete = mockDelete;
+
+    await deleteCategory(req, res);
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "Failed to delete the category.",
+    });
+    expect(mockDelete).toHaveBeenCalledWith({ _id: req.params.id });
+  });
+});

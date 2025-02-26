@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   backend:
@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     ports:
-      - "9002:9000"  
+      - "9002:9000"
     depends_on:
       - mongodb
     volumes:
@@ -24,7 +24,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: instar
       MONGO_INITDB_DATABASE: indar-deco
     ports:
-      - "27018:27017"  
+      - "27018:27017"
     volumes:
       - mongodb_data:/data/db
 

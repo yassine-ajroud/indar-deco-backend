@@ -1,4 +1,10 @@
-const { createSupplier, getAllSuppliers, getSupplierById, updateSupplier, deleteSupplier } = require("../controllers/SupplierController");
+const {
+  createSupplier,
+  getAllSuppliers,
+  getSupplierById,
+  updateSupplier,
+  deleteSupplier,
+} = require("../controllers/SupplierController");
 const Supplier = require("../models/supplier");
 
 jest.mock("../models/supplier");
@@ -24,7 +30,9 @@ describe("Supplier Controller", () => {
   describe("createSupplier", () => {
     it("should create a new supplier", async () => {
       const mockSupplier = { ...req.body, _id: "someSupplierId" };
-      Supplier.mockReturnValueOnce({ save: jest.fn().mockResolvedValue(mockSupplier) });
+      Supplier.mockReturnValueOnce({
+        save: jest.fn().mockResolvedValue(mockSupplier),
+      });
 
       await createSupplier(req, res);
 
@@ -32,7 +40,9 @@ describe("Supplier Controller", () => {
     });
 
     it("should return 500 if creation fails", async () => {
-      Supplier.mockReturnValueOnce({ save: jest.fn().mockRejectedValue(new Error("Error")) });
+      Supplier.mockReturnValueOnce({
+        save: jest.fn().mockRejectedValue(new Error("Error")),
+      });
 
       await createSupplier(req, res);
 
@@ -57,7 +67,9 @@ describe("Supplier Controller", () => {
       await getAllSuppliers(req, res);
 
       expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.json).toHaveBeenCalledWith({ error: "Failed to fetch supplier." });
+      expect(res.json).toHaveBeenCalledWith({
+        error: "Failed to fetch supplier.",
+      });
     });
   });
 
@@ -87,7 +99,9 @@ describe("Supplier Controller", () => {
       await getSupplierById(req, res);
 
       expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.json).toHaveBeenCalledWith({ error: "Failed to fetch the supplier." });
+      expect(res.json).toHaveBeenCalledWith({
+        error: "Failed to fetch the supplier.",
+      });
     });
   });
 
@@ -117,7 +131,9 @@ describe("Supplier Controller", () => {
       await updateSupplier(req, res);
 
       expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.json).toHaveBeenCalledWith({ error: "Failed to update the supplier." });
+      expect(res.json).toHaveBeenCalledWith({
+        error: "Failed to update the supplier.",
+      });
     });
   });
 
@@ -129,7 +145,9 @@ describe("Supplier Controller", () => {
       await deleteSupplier(req, res);
 
       expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.json).toHaveBeenCalledWith({ message: "supplier deleted successfully." });
+      expect(res.json).toHaveBeenCalledWith({
+        message: "supplier deleted successfully.",
+      });
     });
 
     it("should return 404 if supplier not found", async () => {
@@ -147,7 +165,9 @@ describe("Supplier Controller", () => {
       await deleteSupplier(req, res);
 
       expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.json).toHaveBeenCalledWith({ error: "Failed to delete the supplier." });
+      expect(res.json).toHaveBeenCalledWith({
+        error: "Failed to delete the supplier.",
+      });
     });
   });
 });

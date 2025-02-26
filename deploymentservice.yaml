@@ -33,7 +33,7 @@ spec:
               cpu: "1"
           readinessProbe:
             httpGet:
-              path: /health  # Nouvelle sonde ajoutée
+              path: /health # Nouvelle sonde ajoutée
               port: 9000
             initialDelaySeconds: 10
             periodSeconds: 5

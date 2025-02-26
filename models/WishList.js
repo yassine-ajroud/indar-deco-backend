@@ -2,20 +2,19 @@ const mongoose = require("mongoose");
 
 const ListSchema = new mongoose.Schema(
   {
-    userId: {   
+    userId: {
       type: mongoose.ObjectId,
-      ref: "User",    
-      required: true
+      ref: "User",
+      required: true,
     },
 
-    products: 
-    [{
-      type: String
-  }
-    ]
-    
+    products: [
+      {
+        type: String,
+      },
+    ],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 module.exports = mongoose.model("wishlsit", ListSchema);

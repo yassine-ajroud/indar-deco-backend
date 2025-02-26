@@ -9,56 +9,58 @@ const createCart = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-   
-  const getCartById =async (req,res)=>{
-    var uid =req.body.userId
-    try {
-         await Cart.findOne({ userId:uid }).then(async cart=>{
-          if(cart){
-            res.status(200).json(cart);
-          }else{
-            res.status(404).json({msg:'cart not found'});
-          }
-        })
-      } catch (err) {
-        res.status(500).json(err);
+
+const getCartById = async (req, res) => {
+  var uid = req.body.userId;
+  try {
+    await Cart.findOne({ userId: uid }).then(async (cart) => {
+      if (cart) {
+        res.status(200).json(cart);
+      } else {
+        res.status(404).json({ msg: "cart not found" });
       }
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
+};
 
-  const updateCart = async (req, res) => {
-    try {
-      const updatedCart = await Cart.findByIdAndUpdate(
-        req.body.id,
-        { sales: req.body.sales },
-        { new: true }
-      );
-  
-      if (!updatedCart) {
-        return res.status(404).json({ msg: "Cart not found" });
-      }
-  
-      return res.status(200).json(updatedCart);
-    } catch (err) {
-      return res.status(500).json({ error: err.message });
+const updateCart = async (req, res) => {
+  try {
+    const updatedCart = await Cart.findByIdAndUpdate(
+      req.body.id,
+      { sales: req.body.sales },
+      { new: true },
+    );
+
+    if (!updatedCart) {
+      return res.status(404).json({ msg: "Cart not found" });
     }
-  };
 
-  const deleteCart =async (req,res)=>{
-    var id  = req.body.id;
-  
-    try {
-      const cart = await Cart.findByIdAndDelete(id);
-      if (!cart) {
-        return res.status(404).json({ message: 'cart not found' });
-      }else{
-                res.status(200).json({ message: 'cart deleted successfully' });
-
-      }
-    } catch (error) {
-      res.status(500).json({ message: 'Error occurred while deleting cart' });
-    }
+    return res.status(200).json(updatedCart);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
   }
+};
+
+const deleteCart = async (req, res) => {
+  var id = req.body.id;
+
+  try {
+    const cart = await Cart.findByIdAndDelete(id);
+    if (!cart) {
+      return res.status(404).json({ message: "cart not found" });
+    } else {
+      res.status(200).json({ message: "cart deleted successfully" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error occurred while deleting cart" });
+  }
+};
 
 module.exports = {
-    createCart,getCartById,updateCart,deleteCart
-}
+  createCart,
+  getCartById,
+  updateCart,
+  deleteCart,
+};

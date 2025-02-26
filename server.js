@@ -1,93 +1,95 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-require('dotenv').config();
+const express = require("express");
+const mongoose = require("mongoose");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 
-// Vérifier si les variables d'environnement sont bien chargées
-if (!process.env.PORT || !process.env.DB_HOST || !process.env.DB_USER || !process.env.DB_PASS || !process.env.DB_NAME) {
-    console.error("❌ ERREUR: Les variables d'environnement ne sont pas chargées correctement.");
-    process.exit(1); // Arrête le processus si les variables manquent
+if (
+  !process.env.PORT ||
+  !process.env.DB_HOST ||
+  !process.env.DB_USER ||
+  !process.env.DB_PASS ||
+  !process.env.DB_NAME
+) {
+  console.error(
+    "❌ ERREUR: Les variables d'environnement ne sont pas chargées correctement.",
+  );
+  process.exit(1);
 }
 
-// Middleware
-app.use(morgan('dev')); // Log des requêtes HTTP
-app.use(bodyParser.urlencoded({ extended: true })); // Parse les données URL-encoded
-app.use(bodyParser.json()); // Parse les données JSON
-app.use(cors({ origin: '*' })); // Autorise toutes les origines (à restreindre en production)
+app.use(morgan("dev"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors({ origin: "*" }));
 
-// Gestion des fichiers statiques
 const uploadPaths = [
-    "uploads/images",
-    "uploads/product_images",
-    "uploads/color_images",
-    "uploads/color_files",
-    "uploads/suppliers",
-    "uploads/reviews",
-    "uploads/category_image",
-    "uploads/subcategory_image"
+  "uploads/images",
+  "uploads/product_images",
+  "uploads/color_images",
+  "uploads/color_files",
+  "uploads/suppliers",
+  "uploads/reviews",
+  "uploads/category_image",
+  "uploads/subcategory_image",
 ];
 
-uploadPaths.forEach(path => app.use(`/${path}`, express.static(path)));
+uploadPaths.forEach((path) => app.use(`/${path}`, express.static(path)));
 
-// Connexion MongoDB avec gestion des erreurs améliorée
 const mongoURI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?authSource=admin`;
 
-mongoose.connect(mongoURI, {
+mongoose
+  .connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-})
-    .then(() => console.log("✅ MongoDB Connected"))
-    .catch((err) => {
-        console.error("❌ ERREUR: Impossible de se connecter à MongoDB", err);
-        process.exit(1); // Arrête le processus en cas d'échec de connexion
-    });
+  })
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => {
+    console.error("❌ ERREUR: Impossible de se connecter à MongoDB", err);
+    process.exit(1);
+  });
 
-// Importation des routes
-const AuthRoute = require('./routes/Auth');
+const AuthRoute = require("./routes/Auth");
 const cartRoute = require("./routes/Cart");
 const listRoute = require("./routes/WishList");
-const prodRoute = require('./routes/Product');
-const RatingRoutes = require('./routes/Rating');
-const CategoryRoutes = require('./routes/Category');
-const SubCategoryRoutes = require('./routes/SubCategory');
-const SupplierRoutes = require('./routes/SupplierRoutes');
-const PromotionRoutes = require('./routes/Promotion');
-const ReviewRoute = require('./routes/Review');
-const SalesRoutes = require('./routes/Sales');
-const RecRoutes = require('./routes/ReclamationRoutes');
-const NotifRoutes = require('./routes/Notifications');
+const prodRoute = require("./routes/Product");
+const RatingRoutes = require("./routes/Rating");
+const CategoryRoutes = require("./routes/Category");
+const SubCategoryRoutes = require("./routes/SubCategory");
+const SupplierRoutes = require("./routes/SupplierRoutes");
+const PromotionRoutes = require("./routes/Promotion");
+const ReviewRoute = require("./routes/Review");
+const SalesRoutes = require("./routes/Sales");
+const RecRoutes = require("./routes/ReclamationRoutes");
+const NotifRoutes = require("./routes/Notifications");
 
-// Définition des routes
-app.use('/api', AuthRoute);
-app.use('/api', cartRoute);
-app.use('/api', listRoute);
-app.use('/api', prodRoute);
-app.use('/api', RatingRoutes);
-app.use('/api', CategoryRoutes);
-app.use('/api', SubCategoryRoutes);
-app.use('/api', SupplierRoutes);
-app.use('/api', PromotionRoutes);
-app.use('/api', ReviewRoute);
-app.use('/api', SalesRoutes);
-app.use('/api', RecRoutes);
-app.use('/api', NotifRoutes);
+app.use("/api", AuthRoute);
+app.use("/api", cartRoute);
+app.use("/api", listRoute);
+app.use("/api", prodRoute);
+app.use("/api", RatingRoutes);
+app.use("/api", CategoryRoutes);
+app.use("/api", SubCategoryRoutes);
+app.use("/api", SupplierRoutes);
+app.use("/api", PromotionRoutes);
+app.use("/api", ReviewRoute);
+app.use("/api", SalesRoutes);
+app.use("/api", RecRoutes);
+app.use("/api", NotifRoutes);
 
-// Gestion des erreurs 404 (Route non trouvée)
 app.use((req, res, next) => {
-    res.status(404).json({ message: "Route non trouvée" });
+  res.status(404).json({ message: "Route non trouvée" });
 });
 
-// Gestion des erreurs globales
 app.use((err, req, res, next) => {
-    console.error("❌ ERREUR:", err.stack);
-    res.status(500).json({ message: "Une erreur interne est survenue" });
+  console.error("❌ ERREUR:", err.stack);
+  res.status(500).json({ message: "Une erreur interne est survenue" });
 });
 
-// Démarrage du serveur
 app.listen(process.env.PORT, () => {
-    console.log(`🚀 Serveur en cours d'exécution sur le port ${process.env.PORT}`);
+  console.log(
+    `🚀 Serveur en cours d'exécution sur le port ${process.env.PORT}`,
+  );
 });

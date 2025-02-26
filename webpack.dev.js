@@ -1,34 +1,34 @@
-const path = require('path');
-const nodeExternals = require('webpack-node-externals');
+const path = require("path");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
   entry: {
-    main: './server.js',
+    main: "./server.js",
   },
   output: {
-    path: path.join(__dirname, 'dev-build'),
-    publicPath: '/',
-    filename: '[name].js',
+    path: path.join(__dirname, "dev-build"),
+    publicPath: "/",
+    filename: "[name].js",
     clean: true,
   },
-  mode: 'development',
-  target: 'node',
+  mode: "development",
+  target: "node",
   externals: [nodeExternals()],
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
       },
       {
         test: /\.node$/,
-        loader: 'node-loader',
+        loader: "node-loader",
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.json', '.node'],
+    extensions: [".js", ".json", ".node"],
   },
   stats: {
     errorDetails: true,

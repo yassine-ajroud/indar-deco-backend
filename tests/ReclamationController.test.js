@@ -1,6 +1,12 @@
 jest.mock("../models/Reclamation");
 
-const { createReclamation , getAllReclamations , getReclamationById , updateReclamation , deleteReclamation} = require("../controllers/ReclamationController");
+const {
+  createReclamation,
+  getAllReclamations,
+  getReclamationById,
+  updateReclamation,
+  deleteReclamation,
+} = require("../controllers/ReclamationController");
 const Reclamation = require("../models/Reclamation");
 
 describe("Create Reclamation", () => {
@@ -13,11 +19,11 @@ describe("Create Reclamation", () => {
         sales: ["item1", "item2"],
         reference: "order123",
         price: 100,
-        address: "123 Street, City"
-      }
+        address: "123 Street, City",
+      },
     };
     res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-    jest.clearAllMocks(); 
+    jest.clearAllMocks();
   });
 
   it("should create a new reclamation and return 201", async () => {
@@ -26,7 +32,7 @@ describe("Create Reclamation", () => {
       sales: ["item1", "item2"],
       reference: "order123",
       price: 100,
-      address: "123 Street, City"
+      address: "123 Street, City",
     };
 
     Reclamation.prototype.save = jest.fn().mockResolvedValue(fakeReclamation);
@@ -36,20 +42,20 @@ describe("Create Reclamation", () => {
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.json).toHaveBeenCalledWith({
       message: "Réclamation créée avec succès",
-      reclamation: fakeReclamation
+      reclamation: fakeReclamation,
     });
   });
 
   it("should return 500 if there is a database error", async () => {
     const errorMessage = "Database error";
-    Reclamation.prototype.save.mockRejectedValue(new Error(errorMessage)); 
+    Reclamation.prototype.save.mockRejectedValue(new Error(errorMessage));
 
     await createReclamation(req, res);
 
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
       error: "Erreur lors de la création de la réclamation",
-      details: errorMessage
+      details: errorMessage,
     });
   });
 });
@@ -92,160 +98,174 @@ describe("Get All Reclamations", () => {
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(fakeReclamations);
   });
-
 });
 
 describe("Get Reclamation By Id", () => {
-    let req, res;
-  
-    beforeEach(() => {
-      req = { params: { id: "reclamationId" } };
-      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-      jest.clearAllMocks();
-    });
-  
-    it("should return a reclamation if found", async () => {
-      const fakeReclamation = {
-        user: "userId",
-        address: "123 Street",
-        sales: ["item1", "item2"],
-        completed: false,
-        verified: false,
-        reference: "order123",
-        price: 100,
-      };
-  
-      Reclamation.findById = jest.fn().mockResolvedValue(fakeReclamation);
-  
-      await getReclamationById(req, res);
-  
-      expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.json).toHaveBeenCalledWith(fakeReclamation);
-    });
-  
-    it("should return 404 if reclamation is not found", async () => {
-      Reclamation.findById = jest.fn().mockResolvedValue(null);
-  
-      await getReclamationById(req, res);
-  
-      expect(res.status).toHaveBeenCalledWith(404);
-      expect(res.json).toHaveBeenCalledWith({ error: 'Réclamation non trouvée.' });
-    });
-  
-    it("should return 500 if there is a database error", async () => {
-      const errorMessage = "Database error";
-      Reclamation.findById.mockRejectedValue(new Error(errorMessage)); 
-  
-      await getReclamationById(req, res);
-  
-      expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.json).toHaveBeenCalledWith({
-        error: 'Erreur lors de la récupération de la réclamation',
-        error: errorMessage,
-      });
+  let req, res;
+
+  beforeEach(() => {
+    req = { params: { id: "reclamationId" } };
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+    jest.clearAllMocks();
+  });
+
+  it("should return a reclamation if found", async () => {
+    const fakeReclamation = {
+      user: "userId",
+      address: "123 Street",
+      sales: ["item1", "item2"],
+      completed: false,
+      verified: false,
+      reference: "order123",
+      price: 100,
+    };
+
+    Reclamation.findById = jest.fn().mockResolvedValue(fakeReclamation);
+
+    await getReclamationById(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(fakeReclamation);
+  });
+
+  it("should return 404 if reclamation is not found", async () => {
+    Reclamation.findById = jest.fn().mockResolvedValue(null);
+
+    await getReclamationById(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "Réclamation non trouvée.",
     });
   });
 
-  describe("Update Reclamation", () => {
-    let req, res;
-  
-    beforeEach(() => {
-      req = { params: { id: "reclamationId" }, body: { sales: ["item1", "item2"], price: 200 } };
-      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-      jest.clearAllMocks();
+  it("should return 500 if there is a database error", async () => {
+    const errorMessage = "Database error";
+    Reclamation.findById.mockRejectedValue(new Error(errorMessage));
+
+    await getReclamationById(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "Erreur lors de la récupération de la réclamation",
+      error: errorMessage,
     });
-  
-    it("should update a reclamation if found", async () => {
-      const fakeReclamation = {
-        _id: "reclamationId",
-        user: "userId",
-        address: "123 Street",
-        sales: ["item1", "item2"],
-        reference: "order123",
-        price: 200,
-        completed: false,
-        verified: false,
-      };
-  
-      Reclamation.findByIdAndUpdate = jest.fn().mockResolvedValue(fakeReclamation);
-  
-      await updateReclamation(req, res);
-  
-      expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.json).toHaveBeenCalledWith(fakeReclamation);
-    });
-  
-    it("should return 404 if reclamation is not found", async () => {
-      Reclamation.findByIdAndUpdate = jest.fn().mockResolvedValue(null);
-  
-      await updateReclamation(req, res);
-  
-      expect(res.status).toHaveBeenCalledWith(404);
-      expect(res.json).toHaveBeenCalledWith({ error: 'Réclamation non trouvée.' });
-    });
-  
-    it("should return 500 if there is a database error", async () => {
-      const errorMessage = "Database error";
-      Reclamation.findByIdAndUpdate.mockRejectedValue(new Error(errorMessage)); 
-  
-      await updateReclamation(req, res);
-  
-      expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.json).toHaveBeenCalledWith({
-        error: 'Erreur lors de la mise à jour de la réclamation',
-        error: errorMessage,
-      });
+  });
+});
+
+describe("Update Reclamation", () => {
+  let req, res;
+
+  beforeEach(() => {
+    req = {
+      params: { id: "reclamationId" },
+      body: { sales: ["item1", "item2"], price: 200 },
+    };
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+    jest.clearAllMocks();
+  });
+
+  it("should update a reclamation if found", async () => {
+    const fakeReclamation = {
+      _id: "reclamationId",
+      user: "userId",
+      address: "123 Street",
+      sales: ["item1", "item2"],
+      reference: "order123",
+      price: 200,
+      completed: false,
+      verified: false,
+    };
+
+    Reclamation.findByIdAndUpdate = jest
+      .fn()
+      .mockResolvedValue(fakeReclamation);
+
+    await updateReclamation(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(fakeReclamation);
+  });
+
+  it("should return 404 if reclamation is not found", async () => {
+    Reclamation.findByIdAndUpdate = jest.fn().mockResolvedValue(null);
+
+    await updateReclamation(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "Réclamation non trouvée.",
     });
   });
 
-  describe("Delete Reclamation", () => {
-    let req, res;
-  
-    beforeEach(() => {
-      req = { params: { id: "reclamationId" } };
-      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-      jest.clearAllMocks();
-    });
-  
-    it("should delete a reclamation if found", async () => {
-      const fakeReclamation = {
-        _id: "reclamationId",
-        user: "userId",
-        address: "123 Street",
-        sales: ["item1", "item2"],
-        reference: "order123",
-        price: 200,
-        completed: false,
-        verified: false,
-      };
-  
-      Reclamation.findByIdAndRemove = jest.fn().mockResolvedValue(fakeReclamation);
-  
-      await deleteReclamation(req, res);
-  
-      expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.json).toHaveBeenCalledWith({ message: 'Réclamation supprimée avec succès.' });
-    });
-  
-    it("should return 404 if reclamation is not found", async () => {
-      Reclamation.findByIdAndRemove = jest.fn().mockResolvedValue(null);
-  
-      await deleteReclamation(req, res);
-  
-      expect(res.status).toHaveBeenCalledWith(404);
-      expect(res.json).toHaveBeenCalledWith({ error: 'Réclamation non trouvée.' });
-    });
-  
-    it("should return 500 if there is a database error", async () => {
-      const errorMessage = "Database error";
-      Reclamation.findByIdAndRemove.mockRejectedValue(new Error(errorMessage));
-  
-      await deleteReclamation(req, res);
-  
-      expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.json).toHaveBeenCalledWith({
-        error: 'Erreur lors de la suppression de la réclamation',
-        error: errorMessage,
-      });
+  it("should return 500 if there is a database error", async () => {
+    const errorMessage = "Database error";
+    Reclamation.findByIdAndUpdate.mockRejectedValue(new Error(errorMessage));
+
+    await updateReclamation(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "Erreur lors de la mise à jour de la réclamation",
+      error: errorMessage,
     });
   });
+});
+
+describe("Delete Reclamation", () => {
+  let req, res;
+
+  beforeEach(() => {
+    req = { params: { id: "reclamationId" } };
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+    jest.clearAllMocks();
+  });
+
+  it("should delete a reclamation if found", async () => {
+    const fakeReclamation = {
+      _id: "reclamationId",
+      user: "userId",
+      address: "123 Street",
+      sales: ["item1", "item2"],
+      reference: "order123",
+      price: 200,
+      completed: false,
+      verified: false,
+    };
+
+    Reclamation.findByIdAndRemove = jest
+      .fn()
+      .mockResolvedValue(fakeReclamation);
+
+    await deleteReclamation(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Réclamation supprimée avec succès.",
+    });
+  });
+
+  it("should return 404 if reclamation is not found", async () => {
+    Reclamation.findByIdAndRemove = jest.fn().mockResolvedValue(null);
+
+    await deleteReclamation(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "Réclamation non trouvée.",
+    });
+  });
+
+  it("should return 500 if there is a database error", async () => {
+    const errorMessage = "Database error";
+    Reclamation.findByIdAndRemove.mockRejectedValue(new Error(errorMessage));
+
+    await deleteReclamation(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      error: "Erreur lors de la suppression de la réclamation",
+      error: errorMessage,
+    });
+  });
+});

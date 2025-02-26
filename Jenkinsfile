@@ -28,29 +28,42 @@ pipeline {
             }
         }
 
-   stage('Run Tests') {
-    steps {
-        script {
-            try {
-                sh 'npm test'
-            } catch (err) {
-                echo 'Tests failed or coverage thresholds not met. Continuing pipeline...'
+        stage('Check Code Formatting with Prettier') {
+            steps {
+                script {
+                    sh 'npm run check-format'
+                }
+            }
+            post {
+                failure {
+                    echo 'Code formatting issues detected. Please fix the formatting issues.'
+                }
             }
         }
-    }
-    post {
-        success {
-            publishHTML(target: [
-                allowMissing: false,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'coverage/lcov-report',
-                reportFiles: 'index.html',
-                reportName: 'Coverage Report'
-            ])
+
+        stage('Run Tests') {
+            steps {
+                script {
+                    try {
+                        sh 'npm test'
+                    } catch (err) {
+                        echo 'Tests failed or coverage thresholds not met. Continuing pipeline...'
+                    }
+                }
+            }
+            post {
+                success {
+                    publishHTML(target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'coverage/lcov-report',
+                        reportFiles: 'index.html',
+                        reportName: 'Coverage Report'
+                    ])
+                }
+            }
         }
-    }
-}
 
         stage('Build the Project') {
             steps {
@@ -60,16 +73,16 @@ pipeline {
             }
         }
 
-       stage('SonarQube Analysis') {
-    steps {
-        script {
-            withSonarQubeEnv('SonarQube') {
-                sh 'npm install sonar-scanner --save-dev' 
-                sh 'npx sonar-scanner -X' 
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQube') {
+                        sh 'npm install sonar-scanner --save-dev' 
+                        sh 'npx sonar-scanner -X' 
+                    }
+                }
             }
         }
-    }
-}
 
         stage('Build Docker Image') {
             steps {
