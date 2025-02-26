@@ -1,1 +1,1 @@
-! 2jsXhrmiddleware/authenticate.js
+! 2webX’hr/coverage/controllers/WishListController.js.html

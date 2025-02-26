@@ -1,1 +1,1 @@
- 2jsXqhrcontrollers/RatingController.js
+ 2jsXfhrcontrollers/RatingController.js

@@ -12,11 +12,11 @@ exports.createReclamation = async (req, res) => {
       price,
     });
 
-    const savedReclamation = await newReclamation.save(); // Save it first
+    const savedReclamation = await newReclamation.save(); 
 
     res.status(201).json({
       message: "Réclamation créée avec succès",
-      reclamation: savedReclamation, // Ensure this is what's being passed to json
+      reclamation: savedReclamation, 
     });
   } catch (error) {
     res.status(500).json({

@@ -57,12 +57,12 @@ describe("Record Sale", () => {
     });
 
     it("should return 400 if required fields are missing", async () => {
-        req.body = {}; // Empty body to simulate missing required fields
+        req.body = {}; 
 
         await recordSale(req, res);
 
         expect(res.status).toHaveBeenCalledWith(500);
-        expect(res.json).toHaveBeenCalledWith({ message: expect.any(String) }); // The message should be the error from missing required fields
+        expect(res.json).toHaveBeenCalledWith({ message: expect.any(String) }); 
     });
 });
 
@@ -157,7 +157,7 @@ describe("Get Sale By ID", () => {
     });
 
     it("should return 404 if sale not found", async () => {
-        Sale.findById = jest.fn().mockResolvedValue(null); // No sale found
+        Sale.findById = jest.fn().mockResolvedValue(null); 
 
         await getSaleById(req, res);
 
@@ -195,8 +195,8 @@ describe("Update Sale", () => {
             fournisseurId: "fournisseur456",
             UserId: "user789",
             modelId: "model321",
-            quantity: 10,  // updated value
-            price: 200,    // updated value
+            quantity: 10,  
+            price: 200,    
             status: [
                 { index: 0, status: 1, date: new Date().toISOString().slice(0, 10) },
                 { index: 1, status: 2, date: null },
@@ -212,7 +212,7 @@ describe("Update Sale", () => {
     });
 
     it("should return 404 if sale not found", async () => {
-        Sale.findByIdAndUpdate = jest.fn().mockResolvedValue(null); // No sale found
+        Sale.findByIdAndUpdate = jest.fn().mockResolvedValue(null); 
 
         await updateSale(req, res);
 
@@ -235,13 +235,12 @@ describe("deleteSale", () => {
     let req, res;
 
     beforeEach(() => {
-        req = { params: { id: "some-sale-id" } }; // Mock sale ID
+        req = { params: { id: "some-sale-id" } }; 
         res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
         jest.clearAllMocks();
     });
 
     it("should delete the sale and return a success message", async () => {
-        // Mocking Sale.findByIdAndDelete to simulate a successful deletion
         Sale.findByIdAndDelete = jest.fn().mockResolvedValue({});
 
         await deleteSale(req, res);
@@ -251,7 +250,6 @@ describe("deleteSale", () => {
     });
 
     it("should return 404 if sale is not found", async () => {
-        // Mocking Sale.findByIdAndDelete to simulate no sale found
         Sale.findByIdAndDelete = jest.fn().mockResolvedValue(null);
 
         await deleteSale(req, res);

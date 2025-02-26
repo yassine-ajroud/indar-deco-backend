@@ -1,0 +1,1 @@
+ 2webXèhr/coverage/controllers/CategoryController.js.html

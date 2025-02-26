@@ -24,13 +24,7 @@ describe("create new cart", () => {
     expect(res.json).toHaveBeenCalledTimes(1);
   });
 
-  //   await createCart(req, res);
   
-  //   console.log("Mock calls for res.status:", res.status.mock.calls);
-  
-  //   expect(res.status).toHaveBeenCalledWith(500);
-  //   expect(res.json).toHaveBeenCalledWith({ error: "Save failed" });
-  // });
 
 });
 
@@ -70,13 +64,13 @@ describe("Update Cart", () => {
   beforeEach(() => {
     req = { body: { id: "fakeCartId", sales: ["123"] } };
     res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-    jest.clearAllMocks(); // Reset mocks before each test
+    jest.clearAllMocks(); 
   });
 
   it("should update cart and return 200", async () => {
     const mockUpdatedCart = { _id: "fakeCartId", sales: req.body.sales };
 
-    Cart.findByIdAndUpdate.mockResolvedValue(mockUpdatedCart); // Mock successful DB update
+    Cart.findByIdAndUpdate.mockResolvedValue(mockUpdatedCart); 
 
     await updateCart(req, res);
 
@@ -85,7 +79,7 @@ describe("Update Cart", () => {
   });
 
   it("should return 404 if cart is not found", async () => {
-    Cart.findByIdAndUpdate.mockResolvedValue(null); // Simulate no cart found
+    Cart.findByIdAndUpdate.mockResolvedValue(null); 
 
     await updateCart(req, res);
 
@@ -94,7 +88,7 @@ describe("Update Cart", () => {
   });
 
   it("should return 500 on database error", async () => {
-    Cart.findByIdAndUpdate.mockRejectedValue(new Error("Database error")); // Simulate DB error
+    Cart.findByIdAndUpdate.mockRejectedValue(new Error("Database error")); 
 
     await updateCart(req, res);
 

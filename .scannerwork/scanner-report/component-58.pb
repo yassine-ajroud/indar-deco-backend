@@ -1,1 +1,1 @@
-: 2jsX2hrroutes/Promotion.js
+: 2webXšhr*coverage/lcov-report/models/Review.js.html

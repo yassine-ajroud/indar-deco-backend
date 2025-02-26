@@ -1,1 +1,1 @@
-) 2jsXhrmodels/Rating.js
+) 2webX¹hr<coverage/lcov-report/controllers/PromotionController.js.html

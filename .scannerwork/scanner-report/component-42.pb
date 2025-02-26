@@ -1,1 +1,1 @@
-* 2jsX hrmodels/Reclamation.js
+* 2webX„hr9coverage/lcov-report/controllers/RatingController.js.html

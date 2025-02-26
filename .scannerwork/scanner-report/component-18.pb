@@ -1,1 +1,1 @@
- 2jsXAhr!controllers/WishListController.js
+ 2jsX@hr!controllers/WishListController.js

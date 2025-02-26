@@ -1,1 +1,1 @@
-- 2jsXhrmodels/SubCategory.js
+- 2webXõhr8coverage/lcov-report/controllers/SalesController.js.html

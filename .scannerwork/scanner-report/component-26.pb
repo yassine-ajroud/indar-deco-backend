@@ -1,0 +1,1 @@
+ 2webX¹hr0coverage/controllers/PromotionController.js.html

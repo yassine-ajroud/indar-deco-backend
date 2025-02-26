@@ -1,70 +1,60 @@
 const Review = require('../models/Review');
 
-// create
+// Ajouter un commentaire
 exports.addComment = async (req, res) => {
-  const { productId } = req.params;
-  const { user, comment , image} = req.body;
+    const { productId } = req.params;
+    const { user, comment, image } = req.body;
 
-  const newReview = new Review({
-    user: user, 
-    product: productId, 
-    comment: comment,
-    image: '',
-  });
-
-  newReview.save()
-    .then((review) => {
-      res.json({ message: 'Avis ajouté avec succès', review });
-    })
-    .catch((error) => {
-      res.status(500).json({ message: 'Erreur lors de l\'ajout de l\'avis', error });
+    const newReview = new Review({
+        user,
+        product: productId,
+        comment,
+        image,
     });
+
+    try {
+        const savedReview = await newReview.save();
+        res.status(201).json({ message: 'Avis ajouté avec succès', review: savedReview });
+    } catch (error) {
+        res.status(500).json({ message: 'Erreur lors de l\'ajout de l\'avis', error });
+    }
 };
 
+// Obtenir tous les commentaires pour un produit
+exports.getAllComments = async (req, res) => {
+  const { productId } = req.params;
 
-//get all 
-exports.getAllComments = async (req, res) => {    const { productId } = req.params;
-  
-    Review.find({ product: productId })
-      .populate('user', 'Firstname Lastname') 
-      .exec()
-      .then((reviews) => {
-        res.json(reviews);
-      })
-      .catch((error) => {
-        res.status(500).json({ message: 'Erreur lors de la récupération des avis', error });
-      });
-  };
+  try {
+      const reviews = await Review.find({ product: productId })
+          .populate('user', 'Firstname Lastname')
+          .exec(); // Assurez-vous que exec() est appelée
+      res.status(200).json(reviews);
+  } catch (error) {
+      res.status(500).json({ message: 'Erreur lors de la récupération des avis', error });
+  }
+};
 
-
-  // update
-  exports.updateComment = async (req, res) => {
+// Mettre à jour un commentaire
+exports.updateComment = async (req, res) => {
     const { reviewId } = req.params;
-    const { comment,image } = req.body;
-  
-    Review.findByIdAndUpdate(reviewId, {comment,image }, { new: true })
-      .exec()
-      .then((updatedReview) => {
-        res.json({ message: 'Rating added', review: updatedReview });
-      })
-      .catch((error) => {
+    const { comment, image } = req.body;
+
+    try {
+        const updatedReview = await Review.findByIdAndUpdate(reviewId, { comment, image }, { new: true });
+        res.status(200).json({ message: 'Commentaire mis à jour avec succès', review: updatedReview });
+    } catch (error) {
         res.status(500).json({ message: 'Erreur lors de la mise à jour de l\'avis', error });
-      });
-  };
+    }
+};
 
-
-  // delete
-  exports.deleteComment = async (req, res) => {
+// Supprimer un commentaire
+exports.deleteComment = async (req, res) => {
     const { reviewId } = req.params;
-  
-    Review.findByIdAndDelete(reviewId)
-      .exec()
-      .then(() => {
-        res.json({ message: 'Rating deleted' });
-      })
-      .catch((error) => {
+
+    try {
+        await Review.findByIdAndDelete(reviewId);
+        res.status(200).json({ message: 'Commentaire supprimé avec succès' });
+    } catch (error) {
         res.status(500).json({ message: 'Erreur lors de la suppression de l\'avis', error });
-      });
-  };
-
-
+    }
+};

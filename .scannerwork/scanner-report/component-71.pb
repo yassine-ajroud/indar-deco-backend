@@ -1,0 +1,1 @@
+G 2webXhr!coverage/models/Promotion.js.html

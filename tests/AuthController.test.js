@@ -5,7 +5,6 @@ const nodemailer = require('nodemailer');
 const OTP = require('../models/OTP');
 const User = require('../models/User');
 
-// Mocking dependencies
 jest.mock('../models/User');
 jest.mock('bcryptjs');
 jest.mock('jsonwebtoken');
@@ -14,7 +13,6 @@ jest.mock('../models/OTP');
 
 describe('Auth Controller Tests', () => {
   
-  // Test Register functionality
   describe('register', () => {
     it('should register a user successfully', async () => {
       // Arrange
@@ -38,20 +36,15 @@ describe('Auth Controller Tests', () => {
         json: jest.fn(),
       };
 
-      // Mock the user count to return 0 (i.e., no user exists)
       User.countDocuments.mockResolvedValue(0);
 
-      // Mock bcrypt.hash to return a hashed password
       bcrypt.hash.mockImplementation((password, saltRounds, callback) => callback(null, 'hashedPassword'));
 
-      // Mock the save function for the User model
       const saveMock = jest.fn().mockResolvedValue({ id: '1' });
       User.prototype.save = saveMock;
 
-      // Act
       await register(req, res);
 
-      // Assert
       expect(res.status).toHaveBeenCalledWith(201);
       expect(res.json).toHaveBeenCalledWith({
         message: 'user Added Successfully',
@@ -71,7 +64,6 @@ describe('Auth Controller Tests', () => {
         json: jest.fn(),
       };
 
-      // Mock the user count to return 1 (i.e., user exists)
       User.countDocuments.mockResolvedValue(1);
 
       await register(req, res);
@@ -83,7 +75,6 @@ describe('Auth Controller Tests', () => {
     });
   });
 
-  // Test Login functionality
   describe('login', () => {
     it('should login a user successfully', async () => {
       const req = {
@@ -98,17 +89,14 @@ describe('Auth Controller Tests', () => {
         json: jest.fn(),
       };
 
-      // Mock the User findOne method
       User.findOne.mockResolvedValue({
         email: 'test@example.com',
         password: 'hashedPassword',
         ban: false,
       });
 
-      // Mock bcrypt.compare to simulate correct password comparison
       bcrypt.compare.mockImplementation((inputPassword, storedPassword, callback) => callback(null, true));
 
-      // Mock jwt.sign
       jwt.sign.mockReturnValue('token');
 
       await login(req, res);
@@ -130,14 +118,12 @@ describe('Auth Controller Tests', () => {
         json: jest.fn(),
       };
 
-      // Mock the User findOne method
       User.findOne.mockResolvedValue({
         email: 'test@example.com',
         password: 'hashedPassword',
         ban: false,
       });
 
-      // Mock bcrypt.compare to simulate incorrect password comparison
       bcrypt.compare.mockImplementation((inputPassword, storedPassword, callback) => callback(null, false));
 
       await login(req, res);
@@ -161,7 +147,6 @@ describe('Auth Controller Tests', () => {
         json: jest.fn(),
       };
 
-      // Mock the User findOne method
       User.findOne.mockResolvedValue({
         email: 'test@example.com',
         password: 'hashedPassword',
@@ -177,7 +162,6 @@ describe('Auth Controller Tests', () => {
     });
   });
 
-  // Test Forget Password functionality
   describe('forgetPassword', () => {
     it('should send a reset email successfully', async () => {
         const req = {
@@ -192,16 +176,12 @@ describe('Auth Controller Tests', () => {
             json: jest.fn(),
         };
 
-        // Mock User.findOne to return a user
         User.findOne.mockResolvedValue({ email: 'test@example.com' });
 
-        // Mock OTP.findOne to simulate no previous OTP existing
         OTP.findOne.mockResolvedValue(null);
 
-        // Mock OTP save method
         OTP.prototype.save = jest.fn().mockResolvedValue({});
 
-        // Mock nodemailer sendMail
         const sendMailMock = jest.fn().mockImplementation((details, callback) => callback(null));
         nodemailer.createTransport.mockReturnValue({
             sendMail: sendMailMock,
@@ -213,7 +193,6 @@ describe('Auth Controller Tests', () => {
     });
 });
 
-  // Test Profile Get by ID
   describe('profilgetById', () => {
     it('should return user profile by ID', async () => {
       const req = {
@@ -227,7 +206,6 @@ describe('Auth Controller Tests', () => {
         json: jest.fn(),
       };
 
-      // Mock the User.findOne method
       User.findOne.mockResolvedValue({
         _id: '1',
         firstName: 'John',
@@ -251,7 +229,6 @@ describe('Auth Controller Tests', () => {
         json: jest.fn(),
       };
 
-      // Mock the User.findOne method
       User.findOne.mockResolvedValue(null);
 
       await profilgetById(req, res);

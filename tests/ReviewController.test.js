@@ -35,17 +35,16 @@ describe("Review Controller", () => {
         it("should return all comments for a product", async () => {
             const mockReviews = [{ comment: "Nice!" }, { comment: "Not bad!" }];
     
-            // Configurer le mock pour Review.find().populate().exec()
-            const mockExec = jest.fn().mockResolvedValue(mockReviews); // Simule exec()
-            const mockPopulate = jest.fn().mockReturnValue({ exec: mockExec }); // Simule populate()
-            Review.find.mockReturnValue({ populate: mockPopulate }); // Simule find()
+            const mockExec = jest.fn().mockResolvedValue(mockReviews); 
+            const mockPopulate = jest.fn().mockReturnValue({ exec: mockExec }); 
+            Review.find.mockReturnValue({ populate: mockPopulate }); 
     
             await getAllComments(req, res);
     
             // Vérifications
             expect(Review.find).toHaveBeenCalledWith({ product: req.params.productId });
             expect(mockPopulate).toHaveBeenCalledWith('user', 'Firstname Lastname');
-            expect(mockExec).toHaveBeenCalled(); // Vérifie que exec() est appelée
+            expect(mockExec).toHaveBeenCalled(); 
             expect(res.status).toHaveBeenCalledWith(200);
             expect(res.json).toHaveBeenCalledWith(mockReviews);
         });

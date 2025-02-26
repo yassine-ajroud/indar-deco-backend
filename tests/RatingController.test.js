@@ -7,7 +7,7 @@ jest.mock('../models/Product');
 
 describe('SimpleReview Controller', () => {
     afterEach(() => {
-        jest.clearAllMocks(); // Réinitialiser les mocks après chaque test
+        jest.clearAllMocks(); 
     });
 
     describe('createSimpleReview', () => {
@@ -16,8 +16,8 @@ describe('SimpleReview Controller', () => {
             const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
 
             SimpleReview.prototype.save = jest.fn().mockResolvedValue(req.body);
-            SimpleReview.find.mockResolvedValue([{ rating: 5 }]); // Mock pour getRateAVG()
-            Product.findByIdAndUpdate.mockResolvedValue(null); // Mock de la mise à jour du produit
+            SimpleReview.find.mockResolvedValue([{ rating: 5 }]); 
+            Product.findByIdAndUpdate.mockResolvedValue(null); 
 
             await SimpleReviewController.createSimpleReview(req, res);
 

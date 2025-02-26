@@ -6,8 +6,8 @@ describe("SubCategory Controller", () => {
 
   beforeEach(() => {
     req = { params: { id: "someSubCategoryId" }, body: { title: "SubCategory Title" } };
-    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  // Mock response
-    jest.clearAllMocks(); // Clear mocks before each test
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
+    jest.clearAllMocks(); 
   });
 
   describe("createSubCategory", () => {
@@ -95,9 +95,9 @@ describe("SubCategory Controller", () => {
     let req, res;
   
     beforeEach(() => {
-      req = { params: { id: "someSubCategoryId" } };  // mock request with the subcategory ID
-      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  // mock response
-      jest.clearAllMocks();  // clear mocks before each test
+      req = { params: { id: "someSubCategoryId" } };  
+      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
+      jest.clearAllMocks();  
     });
   
     it("should delete the subcategory and return success message", async () => {

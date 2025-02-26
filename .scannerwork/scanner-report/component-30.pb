@@ -1,0 +1,1 @@
+ 2webXõhr,coverage/controllers/SalesController.js.html

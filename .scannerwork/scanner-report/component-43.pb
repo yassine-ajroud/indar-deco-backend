@@ -1,1 +1,1 @@
-+ 2jsXhrmodels/Review.js
++ 2webX­hr>coverage/lcov-report/controllers/ReclamationController.js.html

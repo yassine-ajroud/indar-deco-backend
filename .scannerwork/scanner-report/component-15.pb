@@ -1,1 +1,1 @@
- 2jsX_hrcontrollers/SalesController.js
+ 2jsXahrcontrollers/SalesController.js

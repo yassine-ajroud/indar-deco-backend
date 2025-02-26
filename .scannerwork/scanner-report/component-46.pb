@@ -1,1 +1,1 @@
-. 2jsXhrmodels/supplier.js
+. 2webXhr>coverage/lcov-report/controllers/SubCategoryController.js.html

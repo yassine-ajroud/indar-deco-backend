@@ -1,1 +1,1 @@
-> 2jsXhrroutes/Sales.js
+> 2webXŒhr(coverage/lcov-report/models/User.js.html

@@ -1,8 +1,6 @@
-// controllers/productController.js
 const Product = require('../models/Product');
 const Product3D = require('../models/Product3D');
 
-// Create a new product
 exports.createProduct =  async (req, res) => {
   try {
     const newProduct = new Product(req.body);
@@ -14,7 +12,6 @@ exports.createProduct =  async (req, res) => {
 };
 
 
-// Get all products
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find().sort({createdAt:-1});
@@ -24,7 +21,6 @@ exports.getAllProducts = async (req, res) => {
   }
 };
 
-// Get soretd products
 exports.getSortedProducts = async (req, res) => {
   try {
     const products = await Product.find().sort({sales:-1});
@@ -34,7 +30,6 @@ exports.getSortedProducts = async (req, res) => {
   }
 };
 
-// Get  single product
 exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -47,7 +42,6 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-// Update 
 exports.updateProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
@@ -62,7 +56,6 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-// Delete a product 
 exports.deleteProduct = async (req, res) => {
   try {
     const product = await Product.findOneAndDelete({"_id":req.params.id});
@@ -76,7 +69,6 @@ exports.deleteProduct = async (req, res) => {
 };
 
 
-// get by category 
 exports.getProductsByCategory = async (req, res) => {
   try {
     const { category } = req.params;
@@ -87,7 +79,6 @@ exports.getProductsByCategory = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch products by category.' });
   }
 };
-// get by category and sub category
 exports.getProductsByCategoryAndSubcategory = async (req, res) => {
   try {
     const { category, subCategory } = req.params;
@@ -102,7 +93,6 @@ exports.getProductsByCategoryAndSubcategory = async (req, res) => {
 };
 
 
-// Create a new product
 exports.create3DProduct = async (req, res) => {
   try {
     const newProduct = new Product3D(req.body);
@@ -113,7 +103,6 @@ exports.create3DProduct = async (req, res) => {
   }
 };
 
-// Get  single 3D product
 exports.get3DProductById = async (req, res) => {
   try {
     const product = await Product3D.findById(req.params.id);

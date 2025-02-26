@@ -1,0 +1,142 @@
+<testExecutions version="1">
+<file path="tests\CategoryController.test.js">
+<testCase name="createCategory should create a new category and return 201" duration="61" />
+<testCase name="createCategory should return 500 if an error occurs during category creation" duration="3" />
+<testCase name="getCategoryById should return category data if category is found" duration="2" />
+<testCase name="getCategoryById should return 404 if category is not found" duration="3" />
+<testCase name="getCategoryById should return 500 if an error occurs" duration="2" />
+<testCase name="getAllCategories should return all categories if categories are found" duration="2" />
+<testCase name="getAllCategories should return 500 if an error occurs while fetching categories" duration="1" />
+<testCase name="updateCategory should return the updated category if the category exists" duration="1" />
+<testCase name="updateCategory should return 404 if category is not found" duration="2" />
+<testCase name="updateCategory should return 500 if an error occurs during update" duration="2" />
+<testCase name="deleteCategory should delete the category and return success message" duration="15" />
+<testCase name="deleteCategory should return 404 if category is not found" duration="1" />
+<testCase name="deleteCategory should return 500 if an error occurs during deletion" duration="1" />
+</file>
+<file path="tests\ReclamationController.test.js">
+<testCase name="Create Reclamation should create a new reclamation and return 201" duration="23" />
+<testCase name="Create Reclamation should return 500 if there is a database error" duration="3" />
+<testCase name="Get All Reclamations should return all reclamations for a given user" duration="4" />
+<testCase name="Get Reclamation By Id should return a reclamation if found" duration="2" />
+<testCase name="Get Reclamation By Id should return 404 if reclamation is not found" duration="1" />
+<testCase name="Get Reclamation By Id should return 500 if there is a database error" duration="2" />
+<testCase name="Update Reclamation should update a reclamation if found" duration="3" />
+<testCase name="Update Reclamation should return 404 if reclamation is not found" duration="2" />
+<testCase name="Update Reclamation should return 500 if there is a database error" duration="3" />
+<testCase name="Delete Reclamation should delete a reclamation if found" duration="3" />
+<testCase name="Delete Reclamation should return 404 if reclamation is not found" duration="2" />
+<testCase name="Delete Reclamation should return 500 if there is a database error" duration="1" />
+</file>
+<file path="tests\SalesController.test.js">
+<testCase name="Record Sale should record a sale and return 201" duration="29" />
+<testCase name="Record Sale should return 500 if there is a database error" duration="4" />
+<testCase name="Record Sale should return 400 if required fields are missing" duration="4" />
+<testCase name="Get All Sales should retrieve all sales for a given user and return 200" duration="4" />
+<testCase name="Get All Sales should return 500 if there is a database error" duration="2" />
+<testCase name="Get Sale By ID should retrieve a sale by its ID and return 200" duration="6" />
+<testCase name="Get Sale By ID should return 404 if sale not found" duration="1" />
+<testCase name="Get Sale By ID should return 500 if there is a database error" duration="1" />
+<testCase name="Update Sale should successfully update a sale and return 200" duration="2" />
+<testCase name="Update Sale should return 404 if sale not found" duration="6" />
+<testCase name="Update Sale should return 500 if there is a database error" duration="2" />
+<testCase name="deleteSale should delete the sale and return a success message" duration="1" />
+<testCase name="deleteSale should return 404 if sale is not found" duration="1" />
+</file>
+<file path="tests\SupplierController.test.js">
+<testCase name="Supplier Controller createSupplier should create a new supplier" duration="31" />
+<testCase name="Supplier Controller createSupplier should return 500 if creation fails" duration="3" />
+<testCase name="Supplier Controller getAllSuppliers should return all suppliers" duration="2" />
+<testCase name="Supplier Controller getAllSuppliers should return 500 if fetching suppliers fails" duration="3" />
+<testCase name="Supplier Controller getSupplierById should return supplier by id" duration="3" />
+<testCase name="Supplier Controller getSupplierById should return 404 if supplier not found" duration="15" />
+<testCase name="Supplier Controller getSupplierById should return 500 if fetching by id fails" duration="3" />
+<testCase name="Supplier Controller updateSupplier should update supplier" duration="2" />
+<testCase name="Supplier Controller updateSupplier should return 404 if supplier not found" duration="1" />
+<testCase name="Supplier Controller updateSupplier should return 500 if update fails" duration="2" />
+<testCase name="Supplier Controller deleteSupplier should delete the supplier" duration="2" />
+<testCase name="Supplier Controller deleteSupplier should return 404 if supplier not found" duration="1" />
+<testCase name="Supplier Controller deleteSupplier should return 500 if deletion fails" duration="1" />
+</file>
+<file path="tests\WishListController.test.js">
+<testCase name="create new WishList should create a new WishList with provided user id" duration="30" />
+<testCase name="Get wishlist by User ID should return a wishlist when found" duration="4" />
+<testCase name="Get wishlist by User ID should return 404 when wishlist is not found" duration="2" />
+<testCase name="Update WishList should update the wishlist and return 200" duration="3" />
+<testCase name="Update WishList should return 404 if wishlist is not found" duration="2" />
+<testCase name="Update WishList should return 500 on database error" duration="5" />
+<testCase name="Delete WishList should delete the wishlist and return 200" duration="2" />
+<testCase name="Delete WishList should return 404 if wishlist is not found" duration="2" />
+<testCase name="Delete WishList should return 500 on database error" duration="1" />
+</file>
+<file path="tests\ReviewController.test.js">
+<testCase name="Review Controller addComment should add a new comment" duration="44" />
+<testCase name="Review Controller getAllComments should return all comments for a product" duration="3" />
+<testCase name="Review Controller updateComment should update a comment" duration="3" />
+<testCase name="Review Controller deleteComment should delete a comment" duration="1" />
+</file>
+<file path="tests\CartController.test.js">
+<testCase name="create new cart should create a new cart with provided user id" duration="25" />
+<testCase name="Get Cart by User ID should return a cart when found" duration="2" />
+<testCase name="Get Cart by User ID should return 404 when cart is not found" duration="2" />
+<testCase name="Update Cart should update cart and return 200" duration="2" />
+<testCase name="Update Cart should return 404 if cart is not found" duration="2" />
+<testCase name="Update Cart should return 500 on database error" duration="4" />
+<testCase name="Delete Cart should delete the cart and return 200" duration="2" />
+<testCase name="Delete Cart should return 404 if cart is not found" duration="2" />
+<testCase name="Delete Cart should return 500 on database error" duration="1" />
+</file>
+<file path="tests\ProductController.test.js">
+<testCase name="Product Controller should create a new product" duration="16" />
+<testCase name="Product Controller should return error when product creation fails" duration="2" />
+<testCase name="Product Controller should get all products" duration="1" />
+<testCase name="Product Controller should return error when getting all products fails" duration="1" />
+<testCase name="Product Controller should get product by ID" duration="1" />
+<testCase name="Product Controller should return 404 if product not found" duration="1" />
+<testCase name="Product Controller should return error when fetching product by ID fails" duration="2" />
+<testCase name="Product Controller should update a product" duration="1" />
+<testCase name="Product Controller should return 404 if product to update is not found" duration="1" />
+<testCase name="Product Controller should delete a product" duration="1" />
+<testCase name="Product Controller should return 404 when deleting a non-existing product" duration="1" />
+</file>
+<file path="tests\RatingController.test.js">
+<testCase name="SimpleReview Controller createSimpleReview should create a new review and update product rating" duration="12" />
+<testCase name="SimpleReview Controller getAllSimpleReviews should return all reviews with rating stats" duration="1" />
+<testCase name="SimpleReview Controller getSimpleReviewById should return a review if found" duration="1" />
+<testCase name="SimpleReview Controller getSimpleReviewById should return 404 if review not found" duration="1" />
+<testCase name="SimpleReview Controller updateSimpleReview should update a review and recalculate average rating" duration="1" />
+<testCase name="SimpleReview Controller updateSimpleReview should return 404 if review not found" duration="1" />
+<testCase name="SimpleReview Controller deleteSimpleReview should delete a review and update product rating" duration="1" />
+<testCase name="SimpleReview Controller deleteSimpleReview should return 404 if review not found" duration="1" />
+<testCase name="SimpleReview Controller getSimpleReviewAverage should return the average rating for a product" duration="1" />
+</file>
+<file path="tests\PromotionController.test.js">
+<testCase name="Promotion Controller should create a promotion and update the product" duration="15" />
+<testCase name="Promotion Controller should return all promotions" duration="6" />
+<testCase name="Promotion Controller should return a promotion by ID" duration="2" />
+<testCase name="Promotion Controller should update a promotion" duration="1" />
+<testCase name="Promotion Controller should delete a promotion and update the product" duration="1" />
+<testCase name="Promotion Controller should return 404 if promotion is not found on delete" duration="1" />
+</file>
+<file path="tests\SubCategoryController.test.js">
+<testCase name="SubCategory Controller createSubCategory should create a new subCategory" duration="2" />
+<testCase name="SubCategory Controller getSubCategoryById should return a subCategory if found" duration="0" />
+<testCase name="SubCategory Controller getSubCategoryById should return 404 if subCategory is not found" duration="0" />
+<testCase name="SubCategory Controller getAllSubCategories should return all subCategories" duration="1" />
+<testCase name="SubCategory Controller updateSubCategory should update the subCategory" duration="0" />
+<testCase name="SubCategory Controller updateSubCategory should return 404 if subCategory is not found" duration="1" />
+<testCase name="SubCategory Controller deleteSubCategory should delete the subcategory and return success message" duration="0" />
+<testCase name="SubCategory Controller deleteSubCategory should return 404 if subcategory is not found" duration="1" />
+<testCase name="SubCategory Controller deleteSubCategory should return 500 if an error occurs during deletion" duration="0" />
+</file>
+<file path="tests\AuthController.test.js">
+<testCase name="Auth Controller Tests register should register a user successfully" duration="7" />
+<testCase name="Auth Controller Tests register should return error if user already exists" duration="0" />
+<testCase name="Auth Controller Tests login should login a user successfully" duration="3" />
+<testCase name="Auth Controller Tests login should return error if password does not match" duration="0" />
+<testCase name="Auth Controller Tests login should return error if user is banned" duration="1" />
+<testCase name="Auth Controller Tests forgetPassword should send a reset email successfully" duration="1" />
+<testCase name="Auth Controller Tests profilgetById should return user profile by ID" duration="0" />
+<testCase name="Auth Controller Tests profilgetById should return error if no user found" duration="5" />
+</file>
+</testExecutions>

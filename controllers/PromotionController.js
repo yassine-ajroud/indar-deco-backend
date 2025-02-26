@@ -2,7 +2,6 @@ const Promotion = require('../models/Promotion');
 const Product = require('../models/Product');
 
 
-// Create a new promotion
 const createPromotion =async (req,res)=>{
   try {
     const newPromotion = new Promotion(req.body);
@@ -14,7 +13,6 @@ const createPromotion =async (req,res)=>{
   }
 };
 
-// Get all promotions
 const getAllPromotions =async (req,res)=>{
   try {
     const promotions = await Promotion.find()
@@ -24,7 +22,6 @@ const getAllPromotions =async (req,res)=>{
   }
 };
 
-// Get promotion by id
 const getPromotionById =async (req,res)=>{
     try {
       const promotions = await Promotion.findById(req.params.id)
@@ -34,7 +31,6 @@ const getPromotionById =async (req,res)=>{
     }
   };                                                    
 
-// Update a promotion
 const updatePromotion =async (req,res)=>{
     try {
     const promotionId = req.params.id;
@@ -54,7 +50,6 @@ const updatePromotion =async (req,res)=>{
   }
 };
 
-// Delete a promotion
 const deletePromotion =async (req,res)=>{
     try {
     const promotionId = req.params.id;

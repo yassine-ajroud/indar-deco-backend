@@ -1,1 +1,1 @@
-/ 2jsX>hrmodels/User.js
+/ 2webX•hr;coverage/lcov-report/controllers/SupplierController.js.html

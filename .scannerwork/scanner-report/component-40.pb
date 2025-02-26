@@ -1,1 +1,1 @@
-( 2jsXhrmodels/Promotion.js
+( 2webXíhr:coverage/lcov-report/controllers/ProductController.js.html

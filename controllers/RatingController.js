@@ -1,21 +1,18 @@
 const SimpleReview = require('../models/Rating');
 const Product = require('../models/Product');
 
-// Fonction pour calculer la moyenne des notes
 async function getRateAVG(prodid) {
     const simpleReviews = await SimpleReview.find({ product: prodid });
     const sum = simpleReviews.reduce((acc, review) => acc + review.rating, 0);
     return simpleReviews.length > 0 ? (sum / simpleReviews.length).toFixed(1) : '0.0';
 }
 
-// Créer un nouvel avis
 exports.createSimpleReview = async (req, res) => {
     try {
         const { user, product, rating } = req.body;
         const newSimpleReview = new SimpleReview({ user, product, rating });
         await newSimpleReview.save();
 
-        // Mettre à jour la note moyenne du produit
         const avgRating = await getRateAVG(product);
         await Product.findByIdAndUpdate(product, { rate: avgRating });
 
@@ -25,7 +22,6 @@ exports.createSimpleReview = async (req, res) => {
     }
 };
 
-// Obtenir tous les avis pour un produit
 exports.getAllSimpleReviews = async (req, res) => {
     try {
         const { productId } = req.params;
@@ -41,7 +37,6 @@ exports.getAllSimpleReviews = async (req, res) => {
     }
 };
 
-// Obtenir un avis par son ID
 exports.getSimpleReviewById = async (req, res) => {
     try {
         const simpleReview = await SimpleReview.findById(req.params.id);
@@ -54,7 +49,6 @@ exports.getSimpleReviewById = async (req, res) => {
     }
 };
 
-// Mettre à jour un avis
 exports.updateSimpleReview = async (req, res) => {
     try {
         const simpleReview = await SimpleReview.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -62,7 +56,6 @@ exports.updateSimpleReview = async (req, res) => {
             return res.status(404).json({ error: 'Avis simple non trouvé.' });
         }
 
-        // Mettre à jour la note moyenne du produit
         const avgRating = await getRateAVG(simpleReview.product);
         await Product.findByIdAndUpdate(simpleReview.product, { rate: avgRating });
 
@@ -72,7 +65,6 @@ exports.updateSimpleReview = async (req, res) => {
     }
 };
 
-// Supprimer un avis
 exports.deleteSimpleReview = async (req, res) => {
     try {
         const simpleReview = await SimpleReview.findByIdAndDelete(req.params.id);
@@ -80,7 +72,6 @@ exports.deleteSimpleReview = async (req, res) => {
             return res.status(404).json({ error: 'Avis simple non trouvé.' });
         }
 
-        // Mettre à jour la note moyenne du produit
         const avgRating = await getRateAVG(simpleReview.product);
         await Product.findByIdAndUpdate(simpleReview.product, { rate: avgRating });
 
@@ -90,7 +81,6 @@ exports.deleteSimpleReview = async (req, res) => {
     }
 };
 
-// Obtenir la moyenne des notes pour un produit
 exports.getSimpleReviewAverage = async (req, res) => {
     try {
         const { productId } = req.params;

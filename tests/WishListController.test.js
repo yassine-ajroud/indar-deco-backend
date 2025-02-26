@@ -62,7 +62,7 @@ describe("Update WishList", () => {
     beforeEach(() => {
       req = { body: { id: "fakeWishListId", products: ["product1", "product2"] } };
       res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-      jest.clearAllMocks(); // Reset mocks before each test
+      jest.clearAllMocks(); 
     });
   
     it("should update the wishlist and return 200", async () => {
@@ -80,7 +80,7 @@ describe("Update WishList", () => {
     });
   
     it("should return 404 if wishlist is not found", async () => {
-      WishList.findByIdAndUpdate.mockResolvedValue(null); // Simulate wishlist not found
+      WishList.findByIdAndUpdate.mockResolvedValue(null); 
   
       await updateWishList(req, res);
   
@@ -89,7 +89,7 @@ describe("Update WishList", () => {
     });
   
     it("should return 500 on database error", async () => {
-      WishList.findByIdAndUpdate.mockRejectedValue(new Error("Database error")); // Simulate DB error
+      WishList.findByIdAndUpdate.mockRejectedValue(new Error("Database error")); 
   
       await updateWishList(req, res);
   
@@ -104,11 +104,11 @@ describe("Update WishList", () => {
     beforeEach(() => {
       req = { body: { id: "fakeWishListId" } };
       res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-      jest.clearAllMocks(); // Reset mocks before each test
+      jest.clearAllMocks(); 
     });
   
     it("should delete the wishlist and return 200", async () => {
-      WishList.findByIdAndDelete.mockResolvedValue({ _id: "fakeWishListId" }); // Simulate successful deletion
+      WishList.findByIdAndDelete.mockResolvedValue({ _id: "fakeWishListId" }); 
   
       await deleteWishList(req, res);
   
@@ -117,7 +117,7 @@ describe("Update WishList", () => {
     });
   
     it("should return 404 if wishlist is not found", async () => {
-      WishList.findByIdAndDelete.mockResolvedValue(null); // Simulate wishlist not found
+      WishList.findByIdAndDelete.mockResolvedValue(null); 
   
       await deleteWishList(req, res);
   
@@ -126,7 +126,7 @@ describe("Update WishList", () => {
     });
   
     it("should return 500 on database error", async () => {
-      WishList.findByIdAndDelete.mockRejectedValue(new Error("Database error")); // Simulate DB error
+      WishList.findByIdAndDelete.mockRejectedValue(new Error("Database error")); 
   
       await deleteWishList(req, res);
   

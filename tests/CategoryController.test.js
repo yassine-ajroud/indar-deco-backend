@@ -5,9 +5,9 @@ describe("createCategory", () => {
   let req, res;
 
   beforeEach(() => {
-    req = { body: { title: "Furniture", image: "image_url" } };  // Mock request body
-    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  // Mock response
-    jest.clearAllMocks(); // Clear mocks before each test
+    req = { body: { title: "Furniture", image: "image_url" } };  
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
+    jest.clearAllMocks(); 
   });
 
   it("should create a new category and return 201", async () => {
@@ -41,9 +41,9 @@ describe("getCategoryById", () => {
   let req, res;
 
   beforeEach(() => {
-    req = { params: { id: "categoryId" } };  // Mock request params with an ID
-    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  // Mock response
-    jest.clearAllMocks(); // Clear mocks before each test
+    req = { params: { id: "categoryId" } };  
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
+    jest.clearAllMocks(); 
   });
 
   it("should return category data if category is found", async () => {
@@ -85,9 +85,9 @@ describe("getAllCategories", () => {
   let req, res;
 
   beforeEach(() => {
-    req = {};  // No params needed for getAllCategories
-    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  // Mock response
-    jest.clearAllMocks(); // Clear mocks before each test
+    req = {};  
+    res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
+    jest.clearAllMocks(); 
   });
 
   it("should return all categories if categories are found", async () => {
@@ -122,8 +122,8 @@ describe("updateCategory", () => {
   
     beforeEach(() => {
       req = { params: { id: "someCategoryId" }, body: { title: "Updated Category", image: "updated_image_url" } };
-      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  // Mock response
-      jest.clearAllMocks(); // Clear mocks before each test
+      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
+      jest.clearAllMocks(); 
     });
   
     it("should return the updated category if the category exists", async () => {
@@ -165,8 +165,8 @@ describe("updateCategory", () => {
   
     beforeEach(() => {
       req = { params: { id: "someCategoryId" } };
-      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  // Mock response
-      jest.clearAllMocks(); // Clear mocks before each test
+      res = { status: jest.fn().mockReturnThis(), json: jest.fn() };  
+      jest.clearAllMocks(); 
     });
   
     it("should delete the category and return success message", async () => {

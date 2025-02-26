@@ -1,1 +1,1 @@
-& 2jsXhrmodels/Product.js
+& 2webXèhr;coverage/lcov-report/controllers/CategoryController.js.html

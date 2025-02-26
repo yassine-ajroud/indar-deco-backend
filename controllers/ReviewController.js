@@ -1,6 +1,5 @@
 const Review = require('../models/Review');
 
-// Ajouter un commentaire
 exports.addComment = async (req, res) => {
     const { productId } = req.params;
     const { user, comment, image } = req.body;
@@ -20,21 +19,19 @@ exports.addComment = async (req, res) => {
     }
 };
 
-// Obtenir tous les commentaires pour un produit
 exports.getAllComments = async (req, res) => {
   const { productId } = req.params;
 
   try {
       const reviews = await Review.find({ product: productId })
           .populate('user', 'Firstname Lastname')
-          .exec(); // Assurez-vous que exec() est appelée
+          .exec(); 
       res.status(200).json(reviews);
   } catch (error) {
       res.status(500).json({ message: 'Erreur lors de la récupération des avis', error });
   }
 };
 
-// Mettre à jour un commentaire
 exports.updateComment = async (req, res) => {
     const { reviewId } = req.params;
     const { comment, image } = req.body;
@@ -47,7 +44,6 @@ exports.updateComment = async (req, res) => {
     }
 };
 
-// Supprimer un commentaire
 exports.deleteComment = async (req, res) => {
     const { reviewId } = req.params;
 

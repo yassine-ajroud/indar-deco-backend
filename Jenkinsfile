@@ -64,8 +64,8 @@ pipeline {
     steps {
         script {
             withSonarQubeEnv('SonarQube') {
-                sh 'npm install sonar-scanner --save-dev' // Install sonar-scanner locally
-                sh 'npx sonar-scanner -X' // Use npx to run the locally installed sonar-scanner
+                sh 'npm install sonar-scanner --save-dev' 
+                sh 'npx sonar-scanner -X' 
             }
         }
     }

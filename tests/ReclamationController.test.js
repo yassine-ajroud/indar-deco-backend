@@ -17,7 +17,7 @@ describe("Create Reclamation", () => {
       }
     };
     res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
-    jest.clearAllMocks(); // Reset mocks before each test
+    jest.clearAllMocks(); 
   });
 
   it("should create a new reclamation and return 201", async () => {
@@ -29,7 +29,6 @@ describe("Create Reclamation", () => {
       address: "123 Street, City"
     };
 
-    // Correctly mocking the save method on the prototype
     Reclamation.prototype.save = jest.fn().mockResolvedValue(fakeReclamation);
 
     await createReclamation(req, res);
@@ -43,7 +42,7 @@ describe("Create Reclamation", () => {
 
   it("should return 500 if there is a database error", async () => {
     const errorMessage = "Database error";
-    Reclamation.prototype.save.mockRejectedValue(new Error(errorMessage)); // Simulate DB error
+    Reclamation.prototype.save.mockRejectedValue(new Error(errorMessage)); 
 
     await createReclamation(req, res);
 
@@ -86,7 +85,6 @@ describe("Get All Reclamations", () => {
       },
     ];
 
-    // Mock the find method to return fakeReclamations
     Reclamation.find = jest.fn().mockResolvedValue(fakeReclamations);
 
     await getAllReclamations(req, res);
@@ -117,7 +115,6 @@ describe("Get Reclamation By Id", () => {
         price: 100,
       };
   
-      // Mock findById to return a fake reclamation
       Reclamation.findById = jest.fn().mockResolvedValue(fakeReclamation);
   
       await getReclamationById(req, res);
@@ -127,7 +124,6 @@ describe("Get Reclamation By Id", () => {
     });
   
     it("should return 404 if reclamation is not found", async () => {
-      // Mock findById to return null (not found)
       Reclamation.findById = jest.fn().mockResolvedValue(null);
   
       await getReclamationById(req, res);
@@ -138,7 +134,7 @@ describe("Get Reclamation By Id", () => {
   
     it("should return 500 if there is a database error", async () => {
       const errorMessage = "Database error";
-      Reclamation.findById.mockRejectedValue(new Error(errorMessage)); // Simulate DB error
+      Reclamation.findById.mockRejectedValue(new Error(errorMessage)); 
   
       await getReclamationById(req, res);
   
@@ -171,7 +167,6 @@ describe("Get Reclamation By Id", () => {
         verified: false,
       };
   
-      // Mock findByIdAndUpdate to return a fake updated reclamation
       Reclamation.findByIdAndUpdate = jest.fn().mockResolvedValue(fakeReclamation);
   
       await updateReclamation(req, res);
@@ -181,7 +176,6 @@ describe("Get Reclamation By Id", () => {
     });
   
     it("should return 404 if reclamation is not found", async () => {
-      // Mock findByIdAndUpdate to return null (not found)
       Reclamation.findByIdAndUpdate = jest.fn().mockResolvedValue(null);
   
       await updateReclamation(req, res);
@@ -192,7 +186,7 @@ describe("Get Reclamation By Id", () => {
   
     it("should return 500 if there is a database error", async () => {
       const errorMessage = "Database error";
-      Reclamation.findByIdAndUpdate.mockRejectedValue(new Error(errorMessage)); // Simulate DB error
+      Reclamation.findByIdAndUpdate.mockRejectedValue(new Error(errorMessage)); 
   
       await updateReclamation(req, res);
   
@@ -214,7 +208,6 @@ describe("Get Reclamation By Id", () => {
     });
   
     it("should delete a reclamation if found", async () => {
-      // Mock findByIdAndRemove to return a fake reclamation
       const fakeReclamation = {
         _id: "reclamationId",
         user: "userId",
@@ -235,7 +228,6 @@ describe("Get Reclamation By Id", () => {
     });
   
     it("should return 404 if reclamation is not found", async () => {
-      // Mock findByIdAndRemove to return null (not found)
       Reclamation.findByIdAndRemove = jest.fn().mockResolvedValue(null);
   
       await deleteReclamation(req, res);
@@ -246,7 +238,7 @@ describe("Get Reclamation By Id", () => {
   
     it("should return 500 if there is a database error", async () => {
       const errorMessage = "Database error";
-      Reclamation.findByIdAndRemove.mockRejectedValue(new Error(errorMessage)); // Simulate DB error
+      Reclamation.findByIdAndRemove.mockRejectedValue(new Error(errorMessage));
   
       await deleteReclamation(req, res);
   

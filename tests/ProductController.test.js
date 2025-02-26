@@ -1,8 +1,7 @@
 const Product = require('../models/Product');
 const productController = require('../controllers/ProductController');
 
-jest.mock('../models/Product'); // Mock the Product model
-
+jest.mock('../models/Product'); 
 describe('Product Controller', () => {
   let req, res;
 

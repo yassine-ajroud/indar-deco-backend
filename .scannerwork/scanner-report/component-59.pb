@@ -1,1 +1,1 @@
-; 2jsXhrroutes/Rating.js
+; 2webX”hr)coverage/lcov-report/models/Sales.js.html

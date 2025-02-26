@@ -1,1 +1,1 @@
-7 2jsX0hrroutes/Category.js
+7 2webXhr-coverage/lcov-report/models/Promotion.js.html

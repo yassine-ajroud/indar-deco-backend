@@ -1,0 +1,1 @@
+L 2webX|hr#coverage/models/SubCategory.js.html

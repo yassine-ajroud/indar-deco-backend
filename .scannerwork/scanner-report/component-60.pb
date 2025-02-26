@@ -1,1 +1,1 @@
-< 2jsXhrroutes/ReclamationRoutes.js
+< 2webX|hr/coverage/lcov-report/models/SubCategory.js.html
