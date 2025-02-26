@@ -28,15 +28,14 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
+      stage('Run Tests') {
             steps {
                 script {
-                    sh 'npm test' // Exécute les tests avec couverture
+                    sh 'npm test'
                 }
             }
             post {
                 success {
-                    // Publie le rapport de couverture dans Jenkins
                     publishHTML(target: [
                         allowMissing: false,
                         alwaysLinkToLastBuild: true,
