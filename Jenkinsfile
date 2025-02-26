@@ -60,16 +60,16 @@ pipeline {
             }
         }
 
-     stage('SonarQube Analysis') {
-    steps {
-        script {
-            withSonarQubeEnv('SonarQube') {
-                sh 'npm install sonar-scanner'
-                sh 'sonar-scanner ' 
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQube') {
+                        sh 'npm install sonar-scanner'
+                        sh 'npm run sonar'
+                    }
+                }
             }
         }
-    }
-}
 
         stage('Build Docker Image') {
             steps {
