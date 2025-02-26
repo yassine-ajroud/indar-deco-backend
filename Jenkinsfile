@@ -28,6 +28,27 @@ pipeline {
             }
         }
 
+        stage('Run Tests') {
+            steps {
+                script {
+                    sh 'npm test' // Exécute les tests avec couverture
+                }
+            }
+            post {
+                success {
+                    // Publie le rapport de couverture dans Jenkins
+                    publishHTML(target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'coverage/lcov-report',
+                        reportFiles: 'index.html',
+                        reportName: 'Coverage Report'
+                    ])
+                }
+            }
+        }
+
         stage('Build the Project') {
             steps {
                 script {
@@ -84,16 +105,5 @@ pipeline {
                 }
             }
         }
-       // stage('Deploy to k8s') {
-   // steps {
-        //script {
-           // kubernetesDeploy(
-               // configs: 'deploymentservice.yaml',
-              //  kubeconfigId: 'k8sconfigpwd'
-           // )
-      //  }
-   // }
-//}
-
     }
 }

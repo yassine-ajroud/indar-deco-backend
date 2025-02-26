@@ -1,35 +1,28 @@
 const Reclamation = require('../models/Reclamation');
-//const moment = require('moment')
 
 exports.createReclamation = async (req, res) => {
   try {
-    const { user, sales, reference ,price,address} = req.body;
+    const { user, sales, reference, price, address } = req.body;
 
     const newReclamation = new Reclamation({
       user,
       sales,
       reference,
       address,
-      price
+      price,
     });
-     await newReclamation.save();
-  //   let details={
-  //     from:"ajroudyassine06@gmail.com",
-  //     to:emaill,
-  //     subject:"commande ajouter",
-  //     text:`Votre commande "${reference}" a été ajoutée avec succès et est en attente d'approbation`
-  
-  // };
-  // let  mailTransporter= nodemailer.createTransport({
-  //     service:"gmail",auth:{user:"ajroudyassine06@gmail.com",pass:"lbma ovqq xhtdfihe",}
-  // }); 
-  //            mailTransporter.sendMail(details,(err)=>{ if(err){ 
-  //             console.status(500).log("it has an error",err) ;
-  //            } 
-  //             })
-    res.status(201).json({ message: 'Réclamation créée avec succès', reclamation: newReclamation });
+
+    const savedReclamation = await newReclamation.save(); // Save it first
+
+    res.status(201).json({
+      message: "Réclamation créée avec succès",
+      reclamation: savedReclamation, // Ensure this is what's being passed to json
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Erreur lors de la création de la réclamation', error: error.message });
+    res.status(500).json({
+      error: "Erreur lors de la création de la réclamation",
+      details: error.message,
+    });
   }
 };
 

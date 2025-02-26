@@ -1,14 +1,14 @@
 const Cart = require("../models/Cart");
 
-const createCart =async (req,res)=>{
-    const newCart = new Cart(req.body);
-    try {
-      const savedCart = await newCart.save();
-      res.status(201).json(savedCart);
-    } catch (err) {
-      res.status(500).json(err);
-    }
+const createCart = async (req, res) => {
+  const newCart = new Cart(req.body);
+  try {
+    const savedCart = await newCart.save();
+    res.status(201).json(savedCart);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
+};
    
   const getCartById =async (req,res)=>{
     var uid =req.body.userId
@@ -25,24 +25,23 @@ const createCart =async (req,res)=>{
       }
   }
 
-  const updateCart =async (req,res)=>{
-    var id = req.body.id
-    var sales = req.body.sales
-
+  const updateCart = async (req, res) => {
     try {
       const updatedCart = await Cart.findByIdAndUpdate(
-        id,
-        {
-         sales: sales,
-        },
+        req.body.id,
+        { sales: req.body.sales },
         { new: true }
       );
-      res.status(200).json(updatedCart);
+  
+      if (!updatedCart) {
+        return res.status(404).json({ msg: "Cart not found" });
+      }
+  
+      return res.status(200).json(updatedCart);
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json({ error: err.message });
     }
- 
-  }
+  };
 
   const deleteCart =async (req,res)=>{
     var id  = req.body.id;
