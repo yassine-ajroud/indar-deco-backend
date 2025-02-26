@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-      stage('Run Tests') {
+        stage('Run Tests') {
             steps {
                 script {
                     sh 'npm test'
@@ -36,6 +36,7 @@ pipeline {
             }
             post {
                 success {
+                    // Publie le rapport de couverture dans Jenkins
                     publishHTML(target: [
                         allowMissing: false,
                         alwaysLinkToLastBuild: true,
@@ -44,6 +45,10 @@ pipeline {
                         reportFiles: 'index.html',
                         reportName: 'Coverage Report'
                     ])
+                }
+                failure {
+                    // En cas d'échec, affiche un message d'erreur
+                    echo 'Tests failed! Check the coverage report for details.'
                 }
             }
         }
