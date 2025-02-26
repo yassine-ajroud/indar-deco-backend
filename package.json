@@ -59,7 +59,7 @@
     "webpack-cli": "^6.0.1",
     "webpack-node-externals": "^3.0.0"
   },
-"jest": {
+  "jest": {
     "collectCoverage": true,
     "coverageDirectory": "coverage",
     "coverageReporters": [
@@ -88,7 +88,10 @@
     },
     "reporters": [
         "default",
-        ["jest-junit", { "outputDirectory": "coverage", "outputName": "test-report.xml" }]
+        ["jest-sonar-reporter", {
+            "outputDirectory": "coverage",
+            "outputName": "test-report.xml"
+        }]
     ]
 }
 }
