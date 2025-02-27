@@ -11,8 +11,8 @@ pipeline {
         DOCKERHUB_USERNAME = 'instartech'
         IMAGE_NAME = 'backend'
         IMAGE_TAG = 'instardeco'
-        LOGSTASH_HOST = '52.224.53.45' // Adresse IP de Logstash
-        LOGSTASH_PORT = '5000' // Port de Logstash
+        LOGSTASH_HOST = '52.224.53.45' // Adresse de ton Logstash
+        LOGSTASH_PORT = 5044
     }
 
     stages {
@@ -33,7 +33,7 @@ pipeline {
         stage('Check and Fix Code Formatting with Prettier') {
             steps {
                 script {
-                    sh 'npm run prettier'
+                    sh 'npm run prettier '
                     sh 'npm run check-format'
                 }
             }
@@ -125,16 +125,12 @@ pipeline {
             }
         }
 
-        stage('Verify Logs in ELK') {
+        // New stage to send logs to Elasticsearch via Logstash
+        stage('Send Logs to Logstash') {
             steps {
                 script {
-                    // Attendre que l'application soit complètement démarrée
-                    sleep(time: 30, unit: 'SECONDS')
-                    
-                    // Vérifier que les logs sont envoyés à Logstash
-                    sh '''
-                        curl -X GET "http://${LOGSTASH_HOST}:${LOGSTASH_PORT}/_cat/indices?v"
-                    '''
+                    // Utilisation de l'application pour envoyer des logs via Winston
+                    sh 'npm run logger'  // Cette commande doit être configurée dans ton package.json pour envoyer les logs
                 }
             }
         }
