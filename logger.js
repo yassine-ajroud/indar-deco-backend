@@ -12,8 +12,10 @@ const logger = winston.createLogger({
     // Transport pour Logstash
     new LogstashTransport({
       host: process.env.LOGSTASH_HOST || 'localhost', // Adresse de Logstash
-      port: process.env.LOGSTASH_PORT || 5000, // Port de Logstash
+      port: process.env.LOGSTASH_PORT || 5044, // Port de Logstash (5044 par défaut)
       ssl_enable: false, // Désactiver SSL (à activer en production)
+    }).on('error', (err) => {
+      console.error('Logstash transport error:', err); // Affiche les erreurs de connexion Logstash
     }),
     // Transport pour la console (optionnel)
     new winston.transports.Console({
@@ -21,5 +23,13 @@ const logger = winston.createLogger({
     }),
   ],
 });
+
+// Test de log
+logger.info('Logger initialized successfully!');
+logger.info('This is a test log!');
+
+// Exemple de log d'erreur
+logger.error('This is an error log!');
+logger.warn('This is a warning log!');
 
 module.exports = logger;

@@ -6,6 +6,8 @@
   "scripts": {
     "sonar": "sonar-scanner",
     "start": "node ./prod-build/server.js",
+    "logger": "node logger.js",
+
     "test": "jest --coverage",
     "test:ci": "jest --coverage --ci",
     "test:watch": "jest --watch",
