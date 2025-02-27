@@ -1,64 +1,68 @@
+
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Code coverage report for controllers/CartController.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style type="text/css">
-      .coverage-summary .sorter {
-        background-image: url(../sort-arrow-sprite.png);
-      }
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
     </style>
-  </head>
-
-  <body>
-    <div class="wrapper">
-      <div class="pad1">
-        <h1>
-          <a href="../index.html">All files</a> /
-          <a href="index.html">controllers</a> CartController.js
-        </h1>
-        <div class="clearfix">
-          <div class="fl pad1y space-right2">
-            <span class="strong">93.54% </span>
-            <span class="quiet">Statements</span>
-            <span class="fraction">29/31</span>
-          </div>
-
-          <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
-            <span class="quiet">Branches</span>
-            <span class="fraction">6/6</span>
-          </div>
-
-          <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
-            <span class="quiet">Functions</span>
-            <span class="fraction">5/5</span>
-          </div>
-
-          <div class="fl pad1y space-right2">
-            <span class="strong">93.54% </span>
-            <span class="quiet">Lines</span>
-            <span class="fraction">29/31</span>
-          </div>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">controllers</a> CartController.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">93.54% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>29/31</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>6/6</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>5/5</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">93.54% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>29/31</span>
+            </div>
+        
+            
         </div>
         <p class="quiet">
-          Press <em>n</em> or <em>j</em> to go to the next uncovered block,
-          <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
         <template id="filterTemplate">
-          <div class="quiet">
-            Filter:
-            <input type="search" id="fileSearch" />
-          </div>
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
         </template>
-      </div>
-      <div class="status-line high"></div>
-      <pre><table class="coverage">
+    </div>
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
 <a name='L3'></a><a href='#L3'>3</a>
@@ -122,7 +126,10 @@
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -178,12 +185,15 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Cart = require("../models/Cart");
 &nbsp;
@@ -196,81 +206,78 @@ const createCart = async (req, res) =&gt; {
 <span class="cstat-no" title="statement not covered" >    res.status(500).json({ error: err.message });</span>
   }
 };
-   
-  const getCartById =async (req,res)=&gt;{
-    var uid =req.body.userId
-    try {
-         await Cart.findOne({ userId:uid }).then(async cart=&gt;{
-          if(cart){
-            res.status(200).json(cart);
-          }else{
-            res.status(404).json({msg:'cart not found'});
-          }
-        })
-      } catch (err) {
-<span class="cstat-no" title="statement not covered" >        res.status(500).json(err);</span>
+&nbsp;
+const getCartById = async (req, res) =&gt; {
+  var uid = req.body.userId;
+  try {
+    await Cart.findOne({ userId: uid }).then(async (cart) =&gt; {
+      if (cart) {
+        res.status(200).json(cart);
+      } else {
+        res.status(404).json({ msg: "cart not found" });
       }
+    });
+  } catch (err) {
+<span class="cstat-no" title="statement not covered" >    res.status(500).json(err);</span>
   }
+};
 &nbsp;
-  const updateCart = async (req, res) =&gt; {
-    try {
-      const updatedCart = await Cart.findByIdAndUpdate(
-        req.body.id,
-        { sales: req.body.sales },
-        { new: true }
-      );
-  
-      if (!updatedCart) {
-        return res.status(404).json({ msg: "Cart not found" });
-      }
-  
-      return res.status(200).json(updatedCart);
-    } catch (err) {
-      return res.status(500).json({ error: err.message });
+const updateCart = async (req, res) =&gt; {
+  try {
+    const updatedCart = await Cart.findByIdAndUpdate(
+      req.body.id,
+      { sales: req.body.sales },
+      { new: true },
+    );
+&nbsp;
+    if (!updatedCart) {
+      return res.status(404).json({ msg: "Cart not found" });
     }
-  };
 &nbsp;
-  const deleteCart =async (req,res)=&gt;{
-    var id  = req.body.id;
-  
-    try {
-      const cart = await Cart.findByIdAndDelete(id);
-      if (!cart) {
-        return res.status(404).json({ message: 'cart not found' });
-      }else{
-                res.status(200).json({ message: 'cart deleted successfully' });
-&nbsp;
-      }
-    } catch (error) {
-      res.status(500).json({ message: 'Error occurred while deleting cart' });
-    }
+    return res.status(200).json(updatedCart);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
   }
+};
+&nbsp;
+const deleteCart = async (req, res) =&gt; {
+  var id = req.body.id;
+&nbsp;
+  try {
+    const cart = await Cart.findByIdAndDelete(id);
+    if (!cart) {
+      return res.status(404).json({ message: "cart not found" });
+    } else {
+      res.status(200).json({ message: "cart deleted successfully" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error occurred while deleting cart" });
+  }
+};
 &nbsp;
 module.exports = {
-    createCart,getCartById,updateCart,deleteCart
-}</pre></td></tr></table></pre>
+  createCart,
+  getCartById,
+  updateCart,
+  deleteCart,
+};
+&nbsp;</pre></td></tr></table></pre>
 
-      <div class="push"></div>
-      <!-- for sticky footer -->
-    </div>
-    <!-- /wrapper -->
-    <div class="footer quiet pad2 space-top1 center small">
-      Code coverage generated by
-      <a
-        href="https://istanbul.js.org/"
-        target="_blank"
-        rel="noopener noreferrer"
-        >istanbul</a
-      >
-      at 2025-02-26T22:22:19.138Z
-    </div>
-    <script src="../prettify.js"></script>
-    <script>
-      window.onload = function () {
-        prettyPrint();
-      };
-    </script>
-    <script src="../sorter.js"></script>
-    <script src="../block-navigation.js"></script>
-  </body>
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-02-27T10:11:17.282Z
+            </div>
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
+    </body>
 </html>
+    

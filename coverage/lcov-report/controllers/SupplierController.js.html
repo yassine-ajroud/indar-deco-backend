@@ -1,64 +1,68 @@
+
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Code coverage report for controllers/SupplierController.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style type="text/css">
-      .coverage-summary .sorter {
-        background-image: url(../sort-arrow-sprite.png);
-      }
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
     </style>
-  </head>
-
-  <body>
-    <div class="wrapper">
-      <div class="pad1">
-        <h1>
-          <a href="../index.html">All files</a> /
-          <a href="index.html">controllers</a> SupplierController.js
-        </h1>
-        <div class="clearfix">
-          <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
-            <span class="quiet">Statements</span>
-            <span class="fraction">33/33</span>
-          </div>
-
-          <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
-            <span class="quiet">Branches</span>
-            <span class="fraction">6/6</span>
-          </div>
-
-          <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
-            <span class="quiet">Functions</span>
-            <span class="fraction">5/5</span>
-          </div>
-
-          <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
-            <span class="quiet">Lines</span>
-            <span class="fraction">33/33</span>
-          </div>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">controllers</a> SupplierController.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>33/33</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>6/6</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>5/5</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>33/33</span>
+            </div>
+        
+            
         </div>
         <p class="quiet">
-          Press <em>n</em> or <em>j</em> to go to the next uncovered block,
-          <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
         <template id="filterTemplate">
-          <div class="quiet">
-            Filter:
-            <input type="search" id="fileSearch" />
-          </div>
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
         </template>
-      </div>
-      <div class="status-line high"></div>
-      <pre><table class="coverage">
+    </div>
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
 <a name='L3'></a><a href='#L3'>3</a>
@@ -115,10 +119,7 @@
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -154,9 +155,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -177,7 +175,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Supplier = require('../models/supplier');
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Supplier = require("../models/supplier");
 &nbsp;
 exports.createSupplier = async (req, res) =&gt; {
   try {
@@ -185,7 +183,7 @@ exports.createSupplier = async (req, res) =&gt; {
     await supplier.save();
     res.status(201).json(supplier);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to create the supplier.' });
+    res.status(500).json({ error: "Failed to create the supplier." });
   }
 };
 &nbsp;
@@ -194,7 +192,7 @@ exports.getAllSuppliers = async (req, res) =&gt; {
     const supplier = await Supplier.find();
     res.status(200).json(supplier);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch supplier.' });
+    res.status(500).json({ error: "Failed to fetch supplier." });
   }
 };
 &nbsp;
@@ -202,26 +200,23 @@ exports.getSupplierById = async (req, res) =&gt; {
   try {
     const supplier = await Supplier.findById(req.params.id);
     if (!supplier) {
-      return res.status(404).json({ error: 'supplier not found.' });
+      return res.status(404).json({ error: "supplier not found." });
     }
     res.status(200).json(supplier);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch the supplier.' });
+    res.status(500).json({ error: "Failed to fetch the supplier." });
   }
 };
 &nbsp;
 exports.updateSupplier = async (req, res) =&gt; {
   try {
-    const supplier = await Supplier.findByIdAndUpdate(
-      req.params.id,
-      req.body
-    );
+    const supplier = await Supplier.findByIdAndUpdate(req.params.id, req.body);
     if (!supplier) {
-      return res.status(404).json({ error: 'supplier not found.' });
+      return res.status(404).json({ error: "supplier not found." });
     }
     res.status(200).json(supplier);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to update the supplier.' });
+    res.status(500).json({ error: "Failed to update the supplier." });
   }
 };
 &nbsp;
@@ -229,36 +224,30 @@ exports.deleteSupplier = async (req, res) =&gt; {
   try {
     const supplier = await Supplier.findByIdAndDelete(req.params.id);
     if (!supplier) {
-      return res.status(404).json({ error: 'supplier not found.' });
+      return res.status(404).json({ error: "supplier not found." });
     }
-    res.status(200).json({ message: 'supplier deleted successfully.' });
+    res.status(200).json({ message: "supplier deleted successfully." });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to delete the supplier.' });
+    res.status(500).json({ error: "Failed to delete the supplier." });
   }
 };
 &nbsp;</pre></td></tr></table></pre>
 
-      <div class="push"></div>
-      <!-- for sticky footer -->
-    </div>
-    <!-- /wrapper -->
-    <div class="footer quiet pad2 space-top1 center small">
-      Code coverage generated by
-      <a
-        href="https://istanbul.js.org/"
-        target="_blank"
-        rel="noopener noreferrer"
-        >istanbul</a
-      >
-      at 2025-02-26T22:22:19.222Z
-    </div>
-    <script src="../prettify.js"></script>
-    <script>
-      window.onload = function () {
-        prettyPrint();
-      };
-    </script>
-    <script src="../sorter.js"></script>
-    <script src="../block-navigation.js"></script>
-  </body>
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-02-27T10:11:17.373Z
+            </div>
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
+    </body>
 </html>
+    

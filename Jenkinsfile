@@ -11,6 +11,8 @@ pipeline {
         DOCKERHUB_USERNAME = 'instartech'
         IMAGE_NAME = 'backend'
         IMAGE_TAG = 'instardeco'
+        LOGSTASH_HOST = '52.224.53.45' // Adresse IP de Logstash
+        LOGSTASH_PORT = '5000' // Port de Logstash
     }
 
     stages {
@@ -31,9 +33,7 @@ pipeline {
         stage('Check and Fix Code Formatting with Prettier') {
             steps {
                 script {
-                    // Auto-correct the code formatting using Prettier
-                    sh 'npm run prettier '
-                    // Check if Prettier formatting is correct after the fix
+                    sh 'npm run prettier'
                     sh 'npm run check-format'
                 }
             }
@@ -121,6 +121,20 @@ pipeline {
             steps {
                 script {
                     sh 'docker-compose --verbose up -d'
+                }
+            }
+        }
+
+        stage('Verify Logs in ELK') {
+            steps {
+                script {
+                    // Attendre que l'application soit complètement démarrée
+                    sleep(time: 30, unit: 'SECONDS')
+                    
+                    // Vérifier que les logs sont envoyés à Logstash
+                    sh '''
+                        curl -X GET "http://${LOGSTASH_HOST}:${LOGSTASH_PORT}/_cat/indices?v"
+                    '''
                 }
             }
         }
