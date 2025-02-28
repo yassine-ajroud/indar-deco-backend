@@ -3,10 +3,8 @@ kind: ConfigMap
 metadata:
   name: backend-config
 data:
-  .env: |
-    PORT={{ .Values.backend.port }}
-    DB_HOST={{ .Values.backend.db.host }}
-    DB_PORT={{ .Values.backend.db.port }}
-    DB_USER={{ .Values.backend.db.user }}
-    DB_PASS={{ .Values.backend.db.password }}
-    DB_NAME={{ .Values.backend.db.name }}
+  DB_HOST: "{{ .Values.backend.db.host }}"
+  DB_PORT: "{{ .Values.backend.db.port }}"
+  DB_USER: "{{ .Values.backend.db.user }}"
+  DB_PASSWORD: "{{ .Values.backend.db.password }}"
+  DB_NAME: "{{ .Values.backend.db.name }}"

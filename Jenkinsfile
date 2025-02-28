@@ -31,9 +31,7 @@ pipeline {
         stage('Check and Fix Code Formatting with Prettier') {
             steps {
                 script {
-                    // Auto-correct the code formatting using Prettier
                     sh 'npm run prettier '
-                    // Check if Prettier formatting is correct after the fix
                     sh 'npm run check-format'
                 }
             }
