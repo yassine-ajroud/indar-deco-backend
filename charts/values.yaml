@@ -1,0 +1,20 @@
+backend:
+  image: "instartech/backend:instardeco"
+  port: 9000
+  db:
+    host: mongodb
+    port: 27017
+    user: root
+    password: instar
+    name: indar-deco
+  volume:
+    path: /app/uploads
+
+mongodb:
+  image: "mongo:6.0"
+  port: 27017
+  rootUser: root
+  rootPassword: instar
+  database: indar-deco
+  volume:
+    path: /data/db

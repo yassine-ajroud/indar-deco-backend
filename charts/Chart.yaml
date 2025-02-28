@@ -1,0 +1,6 @@
+apiVersion: v2
+name: instardeco-chart
+description: A Helm chart for deploying Express.js app and MongoDB
+type: application
+version: 0.1.0
+appVersion: "1.0"

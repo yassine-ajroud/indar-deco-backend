@@ -11,8 +11,6 @@ pipeline {
         DOCKERHUB_USERNAME = 'instartech'
         IMAGE_NAME = 'backend'
         IMAGE_TAG = 'instardeco'
-        LOGSTASH_HOST = '52.224.53.45' // Adresse de ton Logstash
-        LOGSTASH_PORT = 5044
     }
 
     stages {
@@ -33,7 +31,9 @@ pipeline {
         stage('Check and Fix Code Formatting with Prettier') {
             steps {
                 script {
+                    // Auto-correct the code formatting using Prettier
                     sh 'npm run prettier '
+                    // Check if Prettier formatting is correct after the fix
                     sh 'npm run check-format'
                 }
             }
@@ -121,16 +121,6 @@ pipeline {
             steps {
                 script {
                     sh 'docker-compose --verbose up -d'
-                }
-            }
-        }
-
-        // New stage to send logs to Elasticsearch via Logstash
-        stage('Send Logs to Logstash') {
-            steps {
-                script {
-                    // Utilisation de l'application pour envoyer des logs via Winston
-                    sh 'npm run logger'  // Cette commande doit être configurée dans ton package.json pour envoyer les logs
                 }
             }
         }
